@@ -17,6 +17,13 @@ namespace HutechPM.Data.Entities
         [NotNull]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid projectId { set; get; }
+        [Column("project_name")]
+        [NotNull]
+        public string projectName { set; get; }
+        [Column("date_start")]
+        public DateTime dateStart { set; get; }
+        [Column("is_active")]
+        public bool isActive { set; get; }
         public ICollection<ProjectDetail> ApplicationProjectDetails { set; get; }
     }
 }

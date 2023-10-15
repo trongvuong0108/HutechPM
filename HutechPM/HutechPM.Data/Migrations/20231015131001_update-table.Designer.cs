@@ -4,6 +4,7 @@ using HutechPM.Data.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HutechNote.Data.Migrations
 {
     [DbContext(typeof(HutechNoteDbContext))]
-    partial class TaskManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231015131001_update-table")]
+    partial class updatetable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -134,7 +136,7 @@ namespace HutechNote.Data.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("name");
 
-                    b.Property<Guid>("projectDetailId")
+                    b.Property<Guid?>("projectDetailId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("remaining")
@@ -256,13 +258,9 @@ namespace HutechNote.Data.Migrations
 
             modelBuilder.Entity("HutechPM.Data.Entities.ProjectTask", b =>
                 {
-                    b.HasOne("HutechPM.Data.Entities.ProjectDetail", "projectDetail")
+                    b.HasOne("HutechPM.Data.Entities.ProjectDetail", null)
                         .WithMany("projectTasks")
-                        .HasForeignKey("projectDetailId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("projectDetail");
+                        .HasForeignKey("projectDetailId");
                 });
 
             modelBuilder.Entity("HutechPM.Data.Entities.User", b =>

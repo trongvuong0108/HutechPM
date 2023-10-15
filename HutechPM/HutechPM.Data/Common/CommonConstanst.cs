@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HutechPM.Data.Entities
+namespace HutechPM.Data.Common
 {
-    internal class Acttachment
+    public static class CommonConstanst
     {
+        public static readonly string DEFAULT_AVT = "";
     }
 }

@@ -15,7 +15,7 @@ namespace HutechPM.Data.Entities
         ProjectMember = 15,
         ProjectSupport = 20
     }
-    [Table("project_detail")]
+    [Table("ProjectDetail")]
     public class ProjectDetail
     {
         [Key]
@@ -23,12 +23,8 @@ namespace HutechPM.Data.Entities
         [NotNull]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid projectDetailId { set; get; }
-        [Required]
-        [Column("user_id")]
-        public Guid ProjectId { get; set; }
-        [Required]
-        [Column("user_id")]
-        public Guid userId { get; set; }
+        public Guid project { get; set; }
+        public Guid user { get; set; }
         [Column("time_join")]
         public DateTime timeJoin { get; set; }
         [Required]
@@ -37,6 +33,7 @@ namespace HutechPM.Data.Entities
         [Required]
         [Column("project_role")]
         public projectRole projectRole { get; set; }
+        public ICollection<ProjectTask> projectTasks { set; get; }
     }
 
 }

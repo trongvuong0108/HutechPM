@@ -13,8 +13,12 @@ namespace HutechPM.Data.Common
 {
     public class HutechNoteDbContext : DbContext
     {
-        public DbSet<User> ApplicationUsers { get; set; }
-        public DbSet<Project> ApplicationProjects { get; set; }
+        public DbSet<User> users { get; set; }
+        public DbSet<Project> projects { get; set; }
+        public DbSet<ProjectAttachment> acttachments { get; set; }
+        public DbSet<ProjectDetail> projectDetails { get; set; }
+        public DbSet<UserRole> userRoles { get; set; }
+        public DbSet<ProjectTask> projectTasks { get; set; }
         public HutechNoteDbContext()
         {
         }

@@ -4,6 +4,7 @@ using HutechPM.Data.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HutechNote.Data.Migrations
 {
     [DbContext(typeof(HutechNoteDbContext))]
-    partial class TaskManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231015130524_update-database")]
+    partial class updatedatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,7 +72,7 @@ namespace HutechNote.Data.Migrations
 
                     b.HasIndex("taskuserId");
 
-                    b.ToTable("ProjectAttachment");
+                    b.ToTable("acttachments");
                 });
 
             modelBuilder.Entity("HutechPM.Data.Entities.ProjectDetail", b =>
@@ -110,7 +112,7 @@ namespace HutechNote.Data.Migrations
 
                     b.HasIndex("userId");
 
-                    b.ToTable("ProjectDetail");
+                    b.ToTable("project_detail");
                 });
 
             modelBuilder.Entity("HutechPM.Data.Entities.ProjectTask", b =>
@@ -134,7 +136,7 @@ namespace HutechNote.Data.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("name");
 
-                    b.Property<Guid>("projectDetailId")
+                    b.Property<Guid?>("projectId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("remaining")
@@ -143,9 +145,9 @@ namespace HutechNote.Data.Migrations
 
                     b.HasKey("userId");
 
-                    b.HasIndex("projectDetailId");
+                    b.HasIndex("projectId");
 
-                    b.ToTable("ProjectTask");
+                    b.ToTable("projectTasks");
                 });
 
             modelBuilder.Entity("HutechPM.Data.Entities.User", b =>
@@ -154,9 +156,6 @@ namespace HutechNote.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("user_id");
-
-                    b.Property<int?>("UserRoleId")
-                        .HasColumnType("int");
 
                     b.Property<string>("address")
                         .IsRequired()
@@ -208,8 +207,6 @@ namespace HutechNote.Data.Migrations
 
                     b.HasKey("userId");
 
-                    b.HasIndex("UserRoleId");
-
                     b.ToTable("User");
                 });
 
@@ -229,7 +226,7 @@ namespace HutechNote.Data.Migrations
 
                     b.HasKey("UserRoleId");
 
-                    b.ToTable("UserRole");
+                    b.ToTable("userRoles");
                 });
 
             modelBuilder.Entity("HutechPM.Data.Entities.ProjectAttachment", b =>
@@ -256,29 +253,15 @@ namespace HutechNote.Data.Migrations
 
             modelBuilder.Entity("HutechPM.Data.Entities.ProjectTask", b =>
                 {
-                    b.HasOne("HutechPM.Data.Entities.ProjectDetail", "projectDetail")
+                    b.HasOne("HutechPM.Data.Entities.Project", null)
                         .WithMany("projectTasks")
-                        .HasForeignKey("projectDetailId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("projectDetail");
-                });
-
-            modelBuilder.Entity("HutechPM.Data.Entities.User", b =>
-                {
-                    b.HasOne("HutechPM.Data.Entities.UserRole", null)
-                        .WithMany("users")
-                        .HasForeignKey("UserRoleId");
+                        .HasForeignKey("projectId");
                 });
 
             modelBuilder.Entity("HutechPM.Data.Entities.Project", b =>
                 {
                     b.Navigation("ApplicationProjectDetails");
-                });
 
-            modelBuilder.Entity("HutechPM.Data.Entities.ProjectDetail", b =>
-                {
                     b.Navigation("projectTasks");
                 });
 
@@ -290,11 +273,6 @@ namespace HutechNote.Data.Migrations
             modelBuilder.Entity("HutechPM.Data.Entities.User", b =>
                 {
                     b.Navigation("ApplicationProjectDetails");
-                });
-
-            modelBuilder.Entity("HutechPM.Data.Entities.UserRole", b =>
-                {
-                    b.Navigation("users");
                 });
 #pragma warning restore 612, 618
         }

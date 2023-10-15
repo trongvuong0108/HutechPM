@@ -1,4 +1,7 @@
-﻿namespace HutechNote.UI
+﻿using DevExpress.XtraBars;
+using System.Drawing;
+
+namespace HutechNote.UI.Frm
 {
     partial class FrmMain
     {
@@ -32,12 +35,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             fluentDesignFormContainer1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
             accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
+            accordionControlElement4 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             accordionControlElement3 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
+            barLargeButtonItem1 = new BarLargeButtonItem();
             fluentFormDefaultManager1 = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(components);
             accordionControlElement2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            accordionControlElement4 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            accordionControlElement5 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             ((System.ComponentModel.ISupportInitialize)accordionControl1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)fluentDesignFormControl1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)fluentFormDefaultManager1).BeginInit();
@@ -46,77 +51,100 @@
             // fluentDesignFormContainer1
             // 
             fluentDesignFormContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            fluentDesignFormContainer1.Location = new System.Drawing.Point(272, 31);
+            fluentDesignFormContainer1.Location = new Point(272, 31);
             fluentDesignFormContainer1.Name = "fluentDesignFormContainer1";
-            fluentDesignFormContainer1.Size = new System.Drawing.Size(1094, 737);
+            fluentDesignFormContainer1.Size = new Size(1326, 868);
             fluentDesignFormContainer1.TabIndex = 0;
             // 
             // accordionControl1
             // 
             accordionControl1.Dock = System.Windows.Forms.DockStyle.Left;
             accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { accordionControlElement4, accordionControlElement1, accordionControlElement3 });
-            accordionControl1.Location = new System.Drawing.Point(0, 31);
+            accordionControl1.Location = new Point(0, 31);
             accordionControl1.Name = "accordionControl1";
-            accordionControl1.RootDisplayMode = DevExpress.XtraBars.Navigation.AccordionControlRootDisplayMode.Footer;
             accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
-            accordionControl1.Size = new System.Drawing.Size(272, 737);
+            accordionControl1.Size = new Size(272, 868);
             accordionControl1.TabIndex = 1;
             accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
+            // 
+            // accordionControlElement4
+            // 
+            accordionControlElement4.Expanded = true;
+            accordionControlElement4.ImageOptions.Image = (Image)resources.GetObject("accordionControlElement4.ImageOptions.Image");
+            accordionControlElement4.Name = "accordionControlElement4";
+            accordionControlElement4.Text = "Home";
             // 
             // accordionControlElement1
             // 
             accordionControlElement1.Expanded = true;
-            accordionControlElement1.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("accordionControlElement1.ImageOptions.Image");
+            accordionControlElement1.ImageOptions.Image = (Image)resources.GetObject("accordionControlElement1.ImageOptions.Image");
             accordionControlElement1.Name = "accordionControlElement1";
             accordionControlElement1.Text = "Task";
             // 
             // accordionControlElement3
             // 
             accordionControlElement3.Expanded = true;
-            accordionControlElement3.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("accordionControlElement3.ImageOptions.Image");
+            accordionControlElement3.ImageOptions.Image = (Image)resources.GetObject("accordionControlElement3.ImageOptions.Image");
             accordionControlElement3.Name = "accordionControlElement3";
             accordionControlElement3.Text = "User";
             // 
             // fluentDesignFormControl1
             // 
             fluentDesignFormControl1.FluentDesignForm = this;
-            fluentDesignFormControl1.Location = new System.Drawing.Point(0, 0);
+            fluentDesignFormControl1.Items.AddRange(new BarItem[] { barLargeButtonItem1 });
+            fluentDesignFormControl1.Location = new Point(0, 0);
             fluentDesignFormControl1.Manager = fluentFormDefaultManager1;
             fluentDesignFormControl1.Name = "fluentDesignFormControl1";
-            fluentDesignFormControl1.Size = new System.Drawing.Size(1366, 31);
+            fluentDesignFormControl1.Size = new Size(1598, 31);
             fluentDesignFormControl1.TabIndex = 2;
             fluentDesignFormControl1.TabStop = false;
+            // 
+            // barLargeButtonItem1
+            // 
+            barLargeButtonItem1.Alignment = BarItemLinkAlignment.Right;
+            barLargeButtonItem1.Id = 1;
+            barLargeButtonItem1.ImageOptions.Image = (Image)resources.GetObject("barLargeButtonItem1.ImageOptions.Image");
+            barLargeButtonItem1.Name = "barLargeButtonItem1";
+            barLargeButtonItem1.PaintStyle = BarItemPaintStyle.CaptionGlyph;
             // 
             // fluentFormDefaultManager1
             // 
             fluentFormDefaultManager1.Form = this;
+            fluentFormDefaultManager1.Items.AddRange(new BarItem[] { barLargeButtonItem1 });
+            fluentFormDefaultManager1.MaxItemId = 2;
             // 
             // accordionControlElement2
             // 
-            accordionControlElement2.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("accordionControlElement2.ImageOptions.Image");
+            accordionControlElement2.ImageOptions.Image = (Image)resources.GetObject("accordionControlElement2.ImageOptions.Image");
             accordionControlElement2.Name = "accordionControlElement2";
             accordionControlElement2.Text = "Task";
             // 
-            // accordionControlElement4
+            // accordionControlElement5
             // 
-            accordionControlElement4.Expanded = true;
-            accordionControlElement4.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("accordionControlElement4.ImageOptions.Image");
-            accordionControlElement4.Name = "accordionControlElement4";
-            accordionControlElement4.Text = "Home";
+            accordionControlElement5.Name = "accordionControlElement5";
+            accordionControlElement5.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            accordionControlElement5.Text = "Element5";
             // 
             // FrmMain
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            Appearance.Options.UseFont = true;
+            AutoScaleDimensions = new SizeF(6F, 14F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1366, 768);
+            ClientSize = new Size(1598, 899);
             ControlContainer = fluentDesignFormContainer1;
             Controls.Add(fluentDesignFormContainer1);
             Controls.Add(accordionControl1);
             Controls.Add(fluentDesignFormControl1);
             FluentDesignFormControl = fluentDesignFormControl1;
+            Font = new Font("Times New Roman", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            IconOptions.ColorizeInactiveIcon = DevExpress.Utils.DefaultBoolean.True;
+            IconOptions.Icon = (Icon)resources.GetObject("FrmMain.IconOptions.Icon");
+            IconOptions.ShowIcon = false;
+            IconOptions.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.Full;
             Name = "FrmMain";
             NavigationControl = accordionControl1;
-            Text = "TASK MANAGEMENT";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "Hutech PM";
             ((System.ComponentModel.ISupportInitialize)accordionControl1).EndInit();
             ((System.ComponentModel.ISupportInitialize)fluentDesignFormControl1).EndInit();
             ((System.ComponentModel.ISupportInitialize)fluentFormDefaultManager1).EndInit();
@@ -132,6 +160,8 @@
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement2;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement3;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement4;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement5;
+        private BarLargeButtonItem barLargeButtonItem1;
     }
 }
 

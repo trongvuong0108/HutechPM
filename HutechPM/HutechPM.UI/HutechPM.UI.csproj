@@ -14,4 +14,10 @@
     <ProjectReference Include="..\HutechPM.Data\HutechPM.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Assest\hutech.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

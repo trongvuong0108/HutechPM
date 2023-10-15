@@ -1,6 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using HutechPM.Data.Common;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
+using System.Reflection.Metadata;
 
 namespace HutechPM.Data.Entities
 {
@@ -8,7 +10,7 @@ namespace HutechPM.Data.Entities
     public class User
     {
         [Key]
-        [Column("use_id")]
+        [Column("user_id")]
         [NotNull]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid userId { set; get; }
@@ -44,6 +46,9 @@ namespace HutechPM.Data.Entities
 
         [Column("is_active")]
         public bool isActive { set; get; }
+
+        [Column("avatar")]
+        public string avatar { set; get; }
         public ICollection<ProjectDetail> ApplicationProjectDetails { set; get; }
 
         public User(Guid userId, string userName, string email, string phone, string password, string fullName, string address)
@@ -55,6 +60,7 @@ namespace HutechPM.Data.Entities
             this.password = password;
             this.fullName = fullName;
             this.address = address;
+            this.avatar = CommonConstanst.DEFAULT_AVT;
         }
     }
 }

@@ -9,11 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace HutechPM.UI.Form
+namespace HutechPM.UI.Frm
 {
-    public partial class FrmInternetNotAccess : DevExpress.XtraEditors.XtraUserControl
+    public partial class FrmLogin : DevExpress.XtraEditors.XtraForm
     {
-        public FrmInternetNotAccess()
+        public FrmLogin()
         {
             InitializeComponent();
         }

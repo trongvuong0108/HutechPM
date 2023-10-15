@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -9,16 +10,18 @@ using System.Threading.Tasks;
 
 namespace HutechPM.Data.Entities
 {
-    [Table("UserRole")]
-    public class UserRole
+    [Table("ProjectAttachment")]
+    public class ProjectAttachment
     {
         [Key]
-        [Column("user_role_id")]
+        [Column("acttachment_id")]
         [NotNull]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int UserRoleId { get; set; }
-        [Column("user_role_name")]
-        public string Name { get; set; }
-        public List<User> users { get; set; }
+        public Guid acttachmentId { set; get; }
+        [Column("acttachment_name")]
+        public string name { set; get; }
+        [Column("date_create")]
+        public DateTime dateCreate { set; get; }
+        public ProjectTask task { set; get; }
     }
 }
