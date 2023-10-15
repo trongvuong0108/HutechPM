@@ -8,33 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HutechNote.Data.Data.User
+namespace HutechNote.Data.Data.Project
 {
     public class ProjectService
     {
-        
-        public List<UserDTO> GetAllUsers() {
-            return new List<UserDTO>();
-        }
-
-        public UserDTO GetUser(string id) 
-        {
-            return new UserDTO();
-        }
-
-        public List<UserDTO> GetUsersByProject()
-        {
-            return new List<UserDTO>();
-        }
-
-        public List<UserDTO> GetUserByName(string kw)
-        {
-            return new List<UserDTO>();
-        }
-
-        public ActionBaseResult CreateUser(CreateUserRequest user)
-        {
-            return new ActionBaseResult();
-        }
+       
     }
 }

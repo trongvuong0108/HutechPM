@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HutechPM.Data.Data.User
+namespace HutechPM.Data.Data.Project
 {
     public class ProjectRepository
     {
