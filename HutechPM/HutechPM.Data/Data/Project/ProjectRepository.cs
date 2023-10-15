@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace HutechPM.Data.Data.User
 {
-    public class ApplicationUserRepository
+    public class ProjectRepository
     {
         public HutechNoteDbContext _dbContext;
 
-        public ApplicationUserRepository(HutechNoteDbContext dbContext) { _dbContext = dbContext; }
+        public ProjectRepository(HutechNoteDbContext dbContext) { _dbContext = dbContext; }
     }
 }

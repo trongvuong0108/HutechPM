@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace HutechNote.Data.Data.User
 {
-    public class ApplicationUserService
+    public class ProjectService
     {
         
         public List<UserDTO> GetAllUsers() {
