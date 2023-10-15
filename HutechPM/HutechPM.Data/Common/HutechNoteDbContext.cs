@@ -28,7 +28,7 @@ namespace HutechPM.Data.Common
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-QVTNCS6; Initial Catalog=HutechPM; User ID=sa; pwd=Password@1234; MultipleActiveResultSets = True; TrustServerCertificate = True");
+            optionsBuilder.UseSqlServer(@"Data Source=sql.bsite.net\MSSQL2016; Initial Catalog=hutechpm_Database; User ID=hutechpm_Database; pwd=Password@1234; MultipleActiveResultSets = True; TrustServerCertificate = True");
         }
 
         public List<T> ExecSQL<T>(string query)

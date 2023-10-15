@@ -12,7 +12,7 @@ namespace Hutech.Data
     {
         public static void AddApplication(this IServiceCollection services)
         {
-            services.AddScoped<ApplicationUserService>();
+            services.AddScoped<ProjectService>();
         }
     }
 }
