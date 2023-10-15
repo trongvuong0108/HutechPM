@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HutechPM.Data", "HutechPM.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HutechPM.UI", "HutechPM.UI\HutechPM.UI.csproj", "{0F4692E4-7F7E-41DF-96D6-BB4C6CB4623F}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "HutechPM.Setup", "HutechPM.Setup\HutechPM.Setup.vdproj", "{B5DF7816-11D0-44F6-A273-AEC39326F53A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,8 +21,6 @@ Global
 		{0F4692E4-7F7E-41DF-96D6-BB4C6CB4623F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F4692E4-7F7E-41DF-96D6-BB4C6CB4623F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F4692E4-7F7E-41DF-96D6-BB4C6CB4623F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B5DF7816-11D0-44F6-A273-AEC39326F53A}.Debug|Any CPU.ActiveCfg = Debug
-		{B5DF7816-11D0-44F6-A273-AEC39326F53A}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
