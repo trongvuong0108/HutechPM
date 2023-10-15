@@ -1,0 +1,60 @@
+﻿using HutechPM.Data.Entities;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Reflection;
+using System.Reflection.Emit;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HutechPM.Data.Common
+{
+    public class HutechNoteDbContext : DbContext
+    {
+        public DbSet<User> ApplicationUsers { get; set; }
+        public DbSet<Project> ApplicationProjects { get; set; }
+        public HutechNoteDbContext()
+        {
+        }
+        public HutechNoteDbContext(DbContextOptions<HutechNoteDbContext> options) : base(options)
+        {
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-QVTNCS6; Initial Catalog=HutechPM; User ID=sa; pwd=Password@1234; MultipleActiveResultSets = True; TrustServerCertificate = True");
+        }
+
+        public List<T> ExecSQL<T>(string query)
+        {
+            using (var command = Database.GetDbConnection().CreateCommand())
+            {
+                command.CommandText = query;
+                command.CommandType = CommandType.Text;
+                Database.OpenConnection();
+
+                List<T> list = new List<T>();
+                using (var result = command.ExecuteReader())
+                {
+                    T obj = default;
+                    while (result.Read())
+                    {
+                        obj = Activator.CreateInstance<T>();
+                        foreach (PropertyInfo prop in obj.GetType().GetProperties())
+                        {
+                            if (!Equals(result[prop.Name], DBNull.Value))
+                            {
+                                prop.SetValue(obj, result[prop.Name], null);
+                            }
+                        }
+                        list.Add(obj);
+                    }
+                }
+                Database.CloseConnection();
+                return list;
+            }
+        }
+    }
+}
