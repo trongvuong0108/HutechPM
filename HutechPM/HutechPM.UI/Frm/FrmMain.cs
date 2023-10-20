@@ -16,5 +16,10 @@ namespace HutechNote.UI.Frm
         {
             InitializeComponent();
         }
+
+        private void fluentDesignFormContainer1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

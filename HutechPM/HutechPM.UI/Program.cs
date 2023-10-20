@@ -1,5 +1,6 @@
 ﻿using Hutech.Data;
 using HutechNote.UI.Frm;
+using HutechPM.UI.Frm;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows.Forms;
@@ -19,7 +20,7 @@ namespace HutechNote.UI
 
             var services = new ServiceCollection();
             services.AddApplication();
-            Application.Run(new FrmMain());
+            Application.Run(new FrmLogin());
         }
     }
 }

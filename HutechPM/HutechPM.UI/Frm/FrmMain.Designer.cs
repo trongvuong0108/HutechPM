@@ -38,8 +38,10 @@ namespace HutechNote.UI.Frm
             accordionControlElement4 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             accordionControlElement3 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            accordionControlSeparator1 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
             barLargeButtonItem1 = new BarLargeButtonItem();
+            barButtonItem1 = new BarButtonItem();
             fluentFormDefaultManager1 = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(components);
             accordionControlElement2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             accordionControlElement5 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -51,19 +53,20 @@ namespace HutechNote.UI.Frm
             // fluentDesignFormContainer1
             // 
             fluentDesignFormContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            fluentDesignFormContainer1.Location = new Point(272, 31);
+            fluentDesignFormContainer1.Location = new Point(295, 46);
             fluentDesignFormContainer1.Name = "fluentDesignFormContainer1";
-            fluentDesignFormContainer1.Size = new Size(1326, 868);
+            fluentDesignFormContainer1.Size = new Size(1303, 853);
             fluentDesignFormContainer1.TabIndex = 0;
+            fluentDesignFormContainer1.Click += fluentDesignFormContainer1_Click;
             // 
             // accordionControl1
             // 
             accordionControl1.Dock = System.Windows.Forms.DockStyle.Left;
-            accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { accordionControlElement4, accordionControlElement1, accordionControlElement3 });
-            accordionControl1.Location = new Point(0, 31);
+            accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { accordionControlElement4, accordionControlElement1, accordionControlElement3, accordionControlSeparator1 });
+            accordionControl1.Location = new Point(0, 46);
             accordionControl1.Name = "accordionControl1";
             accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
-            accordionControl1.Size = new Size(272, 868);
+            accordionControl1.Size = new Size(295, 853);
             accordionControl1.TabIndex = 1;
             accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 
@@ -76,10 +79,9 @@ namespace HutechNote.UI.Frm
             // 
             // accordionControlElement1
             // 
-            accordionControlElement1.Expanded = true;
             accordionControlElement1.ImageOptions.Image = (Image)resources.GetObject("accordionControlElement1.ImageOptions.Image");
             accordionControlElement1.Name = "accordionControlElement1";
-            accordionControlElement1.Text = "Task";
+            accordionControlElement1.Text = "Project";
             // 
             // accordionControlElement3
             // 
@@ -88,14 +90,18 @@ namespace HutechNote.UI.Frm
             accordionControlElement3.Name = "accordionControlElement3";
             accordionControlElement3.Text = "User";
             // 
+            // accordionControlSeparator1
+            // 
+            accordionControlSeparator1.Name = "accordionControlSeparator1";
+            // 
             // fluentDesignFormControl1
             // 
             fluentDesignFormControl1.FluentDesignForm = this;
-            fluentDesignFormControl1.Items.AddRange(new BarItem[] { barLargeButtonItem1 });
+            fluentDesignFormControl1.Items.AddRange(new BarItem[] { barLargeButtonItem1, barButtonItem1 });
             fluentDesignFormControl1.Location = new Point(0, 0);
             fluentDesignFormControl1.Manager = fluentFormDefaultManager1;
             fluentDesignFormControl1.Name = "fluentDesignFormControl1";
-            fluentDesignFormControl1.Size = new Size(1598, 31);
+            fluentDesignFormControl1.Size = new Size(1598, 46);
             fluentDesignFormControl1.TabIndex = 2;
             fluentDesignFormControl1.TabStop = false;
             // 
@@ -107,11 +113,18 @@ namespace HutechNote.UI.Frm
             barLargeButtonItem1.Name = "barLargeButtonItem1";
             barLargeButtonItem1.PaintStyle = BarItemPaintStyle.CaptionGlyph;
             // 
+            // barButtonItem1
+            // 
+            barButtonItem1.Alignment = BarItemLinkAlignment.Right;
+            barButtonItem1.Caption = "Login";
+            barButtonItem1.Id = 2;
+            barButtonItem1.Name = "barButtonItem1";
+            // 
             // fluentFormDefaultManager1
             // 
             fluentFormDefaultManager1.Form = this;
-            fluentFormDefaultManager1.Items.AddRange(new BarItem[] { barLargeButtonItem1 });
-            fluentFormDefaultManager1.MaxItemId = 2;
+            fluentFormDefaultManager1.Items.AddRange(new BarItem[] { barLargeButtonItem1, barButtonItem1 });
+            fluentFormDefaultManager1.MaxItemId = 3;
             // 
             // accordionControlElement2
             // 
@@ -128,7 +141,7 @@ namespace HutechNote.UI.Frm
             // FrmMain
             // 
             Appearance.Options.UseFont = true;
-            AutoScaleDimensions = new SizeF(6F, 14F);
+            AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new Size(1598, 899);
             ControlContainer = fluentDesignFormContainer1;
@@ -162,6 +175,8 @@ namespace HutechNote.UI.Frm
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement4;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement5;
         private BarLargeButtonItem barLargeButtonItem1;
+        private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator1;
+        private BarButtonItem barButtonItem1;
     }
 }
 
