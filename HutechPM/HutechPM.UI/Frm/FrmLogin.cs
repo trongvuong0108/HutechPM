@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using HutechPM.UI.Uc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,35 @@ namespace HutechPM.UI.Frm
         public FrmLogin()
         {
             InitializeComponent();
+        }
+        uc_Signup uc_Signup;
+        uc_Login uc_Login;
+        private void FrmLogin_Load(object sender, EventArgs e)
+        {
+            uc_Signup = new uc_Signup();
+            uc_Signup.Dock = DockStyle.Fill;
+            panelsignup.Controls.Add(uc_Signup);
+            uc_Signup.BringToFront();
+            /*uc_Login = new uc_Login();
+            uc_Login.Dock = DockStyle.Fill;
+            panelsignup.Controls.Add(uc_Login);
+            uc_Login.BringToFront();*/
+        }
+
+
+        private void buttonExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panelsignup_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
