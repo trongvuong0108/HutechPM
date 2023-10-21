@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\ProjectDetail\**" />
+    <Compile Remove="Data\Sprint\**" />
+    <Compile Remove="Data\Ticket\**" />
+    <Compile Remove="Data\UserRole\**" />
+    <EmbeddedResource Remove="Data\ProjectDetail\**" />
+    <EmbeddedResource Remove="Data\Sprint\**" />
+    <EmbeddedResource Remove="Data\Ticket\**" />
+    <EmbeddedResource Remove="Data\UserRole\**" />
+    <None Remove="Data\ProjectDetail\**" />
+    <None Remove="Data\Sprint\**" />
+    <None Remove="Data\Ticket\**" />
+    <None Remove="Data\UserRole\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CloudinaryDotNet" Version="1.22.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.22" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.22" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.22">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>
