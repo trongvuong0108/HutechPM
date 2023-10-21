@@ -29,9 +29,9 @@ namespace HutechPM.UI.Uc
 
         private void button2_Click(object sender, EventArgs e)
         {
+            panelSignupLast.BringToFront();
         }
 
-        private void panelSignupFirst_Paint(object sender, PaintEventArgs e)
         {
         }
 
@@ -40,7 +40,10 @@ namespace HutechPM.UI.Uc
             panelSignupLast.BringToFront();
         }
 
+        private void label8_Click(object sender, EventArgs e)
+        {
 
+        }
 
         private void uc_Signup_Load(object sender, EventArgs e)
         {
