@@ -33,7 +33,7 @@ namespace HutechNote.UI.Frm
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
-            fluentDesignFormContainer1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
+            fluentDesignFormContainerMain = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
             accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
             accordionControlElement4 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -50,14 +50,14 @@ namespace HutechNote.UI.Frm
             ((System.ComponentModel.ISupportInitialize)fluentFormDefaultManager1).BeginInit();
             SuspendLayout();
             // 
-            // fluentDesignFormContainer1
+            // fluentDesignFormContainerMain
             // 
-            fluentDesignFormContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            fluentDesignFormContainer1.Location = new Point(295, 46);
-            fluentDesignFormContainer1.Name = "fluentDesignFormContainer1";
-            fluentDesignFormContainer1.Size = new Size(1303, 853);
-            fluentDesignFormContainer1.TabIndex = 0;
-            fluentDesignFormContainer1.Click += fluentDesignFormContainer1_Click;
+            fluentDesignFormContainerMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            fluentDesignFormContainerMain.Location = new Point(295, 46);
+            fluentDesignFormContainerMain.Name = "fluentDesignFormContainerMain";
+            fluentDesignFormContainerMain.Size = new Size(1303, 853);
+            fluentDesignFormContainerMain.TabIndex = 0;
+            fluentDesignFormContainerMain.Click += fluentDesignFormContainerMain_Click;
             // 
             // accordionControl1
             // 
@@ -72,7 +72,6 @@ namespace HutechNote.UI.Frm
             // 
             // accordionControlElement4
             // 
-            accordionControlElement4.Expanded = true;
             accordionControlElement4.ImageOptions.Image = (Image)resources.GetObject("accordionControlElement4.ImageOptions.Image");
             accordionControlElement4.Name = "accordionControlElement4";
             accordionControlElement4.Text = "Home";
@@ -143,8 +142,8 @@ namespace HutechNote.UI.Frm
             AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new Size(1598, 899);
-            ControlContainer = fluentDesignFormContainer1;
-            Controls.Add(fluentDesignFormContainer1);
+            ControlContainer = fluentDesignFormContainerMain;
+            Controls.Add(fluentDesignFormContainerMain);
             Controls.Add(accordionControl1);
             Controls.Add(fluentDesignFormControl1);
             FluentDesignFormControl = fluentDesignFormControl1;
@@ -164,7 +163,7 @@ namespace HutechNote.UI.Frm
         }
 
         #endregion
-        private DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer fluentDesignFormContainer1;
+        private DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer fluentDesignFormContainerMain;
         private DevExpress.XtraBars.Navigation.AccordionControl accordionControl1;
         private DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl fluentDesignFormControl1;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement1;

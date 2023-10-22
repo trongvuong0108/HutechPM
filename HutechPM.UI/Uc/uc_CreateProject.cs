@@ -16,5 +16,29 @@ namespace HutechPM.UI.Components
         {
             InitializeComponent();
         }
+
+        private void uc_CreateProject_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void linkLabelLater_Link_MouseHover(object sender, EventArgs e)
+        {
+            linkLabelLater.LinkBehavior = LinkBehavior.NeverUnderline;
+        }
+        private void linkLabelLater_Link_MouseLeave(object sender, EventArgs e)
+        {
+            linkLabelLater.LinkBehavior = LinkBehavior.AlwaysUnderline;
+        }
+
+        private void buttonContinue_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void linkLabelLater_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
     }
 }
