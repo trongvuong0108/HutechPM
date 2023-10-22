@@ -16,43 +16,27 @@ namespace HutechPM.UI.Uc
         {
             InitializeComponent();
         }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox_Click(object sender, EventArgs e)
-        {
-            panelSignupFirst.BringToFront();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            panelSignupLast.BringToFront();
-        }
-
-        {
-        }
-
         private void pictureBoxRight_Click(object sender, EventArgs e)
         {
             panelSignupLast.BringToFront();
         }
 
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void uc_Signup_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void pictureBoxLeft_Click(object sender, EventArgs e)
         {
             panelSignupFirst.BringToFront();
+        }
+        private void checkBoxShowpassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxShowpassword.Checked)
+            {
+                textBoxPassword.UseSystemPasswordChar = false;
+                textBoxConfirmPass.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                textBoxPassword.UseSystemPasswordChar = true;
+                textBoxConfirmPass.UseSystemPasswordChar = true;
+            }
         }
     }
 }
