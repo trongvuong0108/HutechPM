@@ -51,6 +51,7 @@
             textBox3 = new System.Windows.Forms.TextBox();
             label14 = new System.Windows.Forms.Label();
             label15 = new System.Windows.Forms.Label();
+            panelCreateHide = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelCreateProject1.SuspendLayout();
             panelCreateProject2.SuspendLayout();
@@ -92,9 +93,9 @@
             panelCreateProject1.Controls.Add(textBoxProjectname);
             panelCreateProject1.Controls.Add(label2);
             panelCreateProject1.Controls.Add(label1);
-            panelCreateProject1.Location = new System.Drawing.Point(509, 230);
+            panelCreateProject1.Location = new System.Drawing.Point(427, 130);
             panelCreateProject1.Name = "panelCreateProject1";
-            panelCreateProject1.Size = new System.Drawing.Size(700, 720);
+            panelCreateProject1.Size = new System.Drawing.Size(700, 710);
             panelCreateProject1.TabIndex = 3;
             // 
             // label8
@@ -226,9 +227,9 @@
             panelCreateProject2.Controls.Add(textBox3);
             panelCreateProject2.Controls.Add(label14);
             panelCreateProject2.Controls.Add(label15);
-            panelCreateProject2.Location = new System.Drawing.Point(509, 230);
+            panelCreateProject2.Location = new System.Drawing.Point(427, 130);
             panelCreateProject2.Name = "panelCreateProject2";
-            panelCreateProject2.Size = new System.Drawing.Size(700, 720);
+            panelCreateProject2.Size = new System.Drawing.Size(700, 470);
             panelCreateProject2.TabIndex = 43;
             // 
             // label10
@@ -321,15 +322,23 @@
             label15.TabIndex = 32;
             label15.Text = "Invite your team";
             // 
+            // panelCreateHide
+            // 
+            panelCreateHide.Location = new System.Drawing.Point(290, 600);
+            panelCreateHide.Name = "panelCreateHide";
+            panelCreateHide.Size = new System.Drawing.Size(1001, 253);
+            panelCreateHide.TabIndex = 44;
+            // 
             // uc_CreateProject
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            Controls.Add(panelCreateProject1);
             Controls.Add(label7);
             Controls.Add(pictureBox1);
-            Controls.Add(panelCreateProject1);
             Controls.Add(panelCreateProject2);
+            Controls.Add(panelCreateHide);
             Name = "uc_CreateProject";
-            Size = new System.Drawing.Size(2033, 1097);
+            Size = new System.Drawing.Size(1548, 853);
             Load += uc_CreateProject_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panelCreateProject1.ResumeLayout(false);
@@ -364,5 +373,6 @@
         private System.Windows.Forms.LinkLabel linkLabelLater;
         private System.Windows.Forms.Button buttonInvite;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Panel panelCreateHide;
     }
 }
