@@ -33,7 +33,9 @@ namespace HutechPM.UI.Components
 
         private void buttonContinue_Click(object sender, EventArgs e)
         {
-
+            panelCreateProject2.BringToFront();
+            panelCreateProject1.Controls.Clear();
+            panelCreateHide.BringToFront();
         }
 
         private void linkLabelLater_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
