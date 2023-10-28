@@ -58,6 +58,7 @@ namespace HutechNote.Data.Data.ProjectData
         public void AddProject(Project project)
         {
             projectRepository.AddProject(project);
+            projectRepository.SaveChanges();
         }
 
     }

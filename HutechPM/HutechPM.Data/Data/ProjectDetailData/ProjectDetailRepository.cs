@@ -25,5 +25,9 @@ namespace HutechPM.Data.Data.ProjectDetailData
         {
             _dbContext.projectDetails.Add(projectDetail);
         }
+        public void SaveChanges()
+        {
+            _dbContext.SaveChanges();
+        }
     }
 }

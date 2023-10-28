@@ -54,7 +54,7 @@ namespace HutechPM.UI.Uc
             using (HutechNoteDbContext dbContext = new HutechNoteDbContext())
             {
                 UserRepository userRepository = new UserRepository(dbContext);
-                UserService userService = new UserService(userRepository);
+                UserService userService = new UserService(dbContext);
                 
                 if(userService.login(userName, password))
                 {

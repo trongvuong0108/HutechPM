@@ -20,7 +20,9 @@ namespace HutechPM.Data.Data.ProjectDetailData
         public void AddProjectDetail(ProjectDetail projectDetail)
         {
             projectDetailRepository.AddProjectDetail(projectDetail);
+            projectDetailRepository.SaveChanges();
         }
+        
 
     }
 }

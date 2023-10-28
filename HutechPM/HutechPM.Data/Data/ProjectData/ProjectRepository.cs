@@ -32,5 +32,9 @@ namespace HutechPM.Data.Data.ProjectData
             _dbContext.projects.Add(project);
         }
 
+        public void SaveChanges()
+        {
+            _dbContext.SaveChanges();
+        }
     }
 }
