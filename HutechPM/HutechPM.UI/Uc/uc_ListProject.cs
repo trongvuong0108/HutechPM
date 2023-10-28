@@ -55,7 +55,6 @@ namespace HutechPM.UI.Components
             {
                 description = gridViewProjects.GetFocusedRowCellValue("description").ToString();
             }
-
             string owner = gridViewProjects.GetFocusedRowCellValue("owner").ToString();
             string dateStart = gridViewProjects.GetFocusedRowCellValue("dateStart").ToString();
             //string dateEnd = gridViewProjects.GetFocusedRowCellValue("dateEnd").ToString();

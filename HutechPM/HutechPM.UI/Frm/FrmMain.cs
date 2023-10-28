@@ -58,7 +58,7 @@ namespace HutechNote.UI.Frm
         private void fluentDesignFormContainerMain_Click(object sender, EventArgs e)
         {
 
-            if (uc_ListProject == null)
+            /*if (uc_ListProject == null)
             {
                 uc_ListProject = new uc_ListProject();
                 uc_ListProject.Dock = DockStyle.Fill;
@@ -68,19 +68,19 @@ namespace HutechNote.UI.Frm
             else
             {
                 uc_ListProject.BringToFront();
-            }
+            }*/
 
-            //if (uc_ListTask == null)
-            //{
-            //    uc_ListTask = new uc_ListTask();
-            //    uc_ListTask.Dock = DockStyle.Fill;
-            //    fluentDesignFormContainerMain.Controls.Add(uc_ListTask);
-            //    uc_ListTask.BringToFront();
-            //}
-            //else
-            //{
-            //    uc_ListTask.BringToFront();
-            //}
+            if (uc_ListTask == null)
+            {
+                uc_ListTask = new uc_ListTask();
+                uc_ListTask.Dock = DockStyle.Fill;
+                fluentDesignFormContainerMain.Controls.Add(uc_ListTask);
+                uc_ListTask.BringToFront();
+            }
+            else
+            {
+                uc_ListTask.BringToFront();
+            }
 
 
         }
