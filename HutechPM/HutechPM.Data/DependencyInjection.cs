@@ -1,5 +1,5 @@
 ﻿using HutechNote.Data.Data.User;
-using HutechPM.Data.Data.Project;
+using HutechPM.Data.Data.ProjectData;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Hutech.Data

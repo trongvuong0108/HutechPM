@@ -1,6 +1,8 @@
 ﻿using DevExpress.XtraBars;
 using DevExpress.XtraBars.Navigation;
+using HutechNote.Data.Data.ProjectData;
 using HutechPM.UI.Components;
+using HutechPM.UI.Uc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +16,9 @@ namespace HutechNote.UI.Frm
 {
     public partial class FrmMain : DevExpress.XtraBars.FluentDesignSystem.FluentDesignForm
     {
-        uc_CreateProject uc_CreateProject;
+
+        uc_ListProject uc_ListProject;
+        uc_ListTask uc_ListTask;
         public FrmMain()
         {
             InitializeComponent();
@@ -28,6 +32,7 @@ namespace HutechNote.UI.Frm
             item.Style = ElementStyle.Item;
             accordionControlElement1.Elements.Add(item);
             createControlElement();
+
         }
         AccordionControlElement[] accordionControlElement = new AccordionControlElement[8];
         private void createControlElement()
@@ -53,17 +58,32 @@ namespace HutechNote.UI.Frm
         }
         private void fluentDesignFormContainerMain_Click(object sender, EventArgs e)
         {
-            if (uc_CreateProject == null)
+
+            if (uc_ListProject == null)
             {
-                uc_CreateProject = new uc_CreateProject();
-                uc_CreateProject.Dock = DockStyle.Fill;
-                fluentDesignFormContainerMain.Controls.Add(uc_CreateProject);
-                uc_CreateProject.BringToFront();
+                uc_ListProject = new uc_ListProject();
+                uc_ListProject.Dock = DockStyle.Fill;
+                fluentDesignFormContainerMain.Controls.Add(uc_ListProject);
+                uc_ListProject.BringToFront();
             }
             else
             {
-                uc_CreateProject.BringToFront();
+                uc_ListProject.BringToFront();
             }
+
+            //if (uc_ListTask == null)
+            //{
+            //    uc_ListTask = new uc_ListTask();
+            //    uc_ListTask.Dock = DockStyle.Fill;
+            //    fluentDesignFormContainerMain.Controls.Add(uc_ListTask);
+            //    uc_ListTask.BringToFront();
+            //}
+            //else
+            //{
+            //    uc_ListTask.BringToFront();
+            //}
+
+
         }
 
         private void fluentDesignFormControl1_Click(object sender, EventArgs e)
@@ -77,6 +97,11 @@ namespace HutechNote.UI.Frm
         }
 
         private void accordionControlElement1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

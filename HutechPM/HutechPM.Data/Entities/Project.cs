@@ -20,6 +20,8 @@ namespace HutechPM.Data.Entities
         [Column("project_name")]
         [NotNull]
         public string projectName { set; get; }
+        [Column("description")]
+        public string description { set; get; }
         [Column("date_start")]
         public DateTime dateStart { set; get; }
         [Column("is_active")]
