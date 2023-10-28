@@ -7,8 +7,8 @@ namespace HutechPM.Data.UserData
 {
     public class UserService
     {
-        private UserRepository userRepository;
-        public UserService(HutechNoteDbContext _dbContext) { this.userRepository = new UserRepository(_dbContext); }
+        private readonly UserRepository userRepository;
+        public UserService(HutechNoteDbContext context) { this.userRepository = new UserRepository(context); }
         public bool login(string username, string password)
         {
             return userRepository.getAllUser().Any(x => x.userName.Equals(username) && x.password.Equals(password));
@@ -33,8 +33,10 @@ namespace HutechPM.Data.UserData
             return new List<UserDTO>();
         }
 
-        public ActionBaseResult CreateUser(CreateUserRequest user)
+        public ActionBaseResult CreateUser(UserDTO userDTO)
         {
+            User user = new User(new Guid(), userDTO.userName, userDTO.password, userDTO.email, userDTO.phone, userDTO.fullName, userDTO.address);
+            userRepository.createUser(user);
             return new ActionBaseResult();
         }
     }

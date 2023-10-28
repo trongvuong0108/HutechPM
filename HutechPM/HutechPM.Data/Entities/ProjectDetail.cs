@@ -25,8 +25,10 @@ namespace HutechPM.Data.Entities
         [NotNull]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid projectDetailId { set; get; }
+        public Guid? project_id { get; set; }
         [ForeignKey("project_id")]
         public Project project { get; set; }
+        public Guid? user_id { get; set; }
         [ForeignKey("user_id")]
         public User user { get; set; }
         [Column("time_join")]

@@ -16,10 +16,9 @@ namespace HutechNote.Data.Data.ProjectData
 
     public class ProjectService
     {
-        HutechNoteDbContext _dbContext = new HutechNoteDbContext();
-        public ProjectRepository projectRepository;
+        private readonly ProjectRepository projectRepository;
 
-        public ProjectService()
+        public ProjectService(HutechNoteDbContext _dbContext)
         {
             this.projectRepository = new ProjectRepository(_dbContext);
         }

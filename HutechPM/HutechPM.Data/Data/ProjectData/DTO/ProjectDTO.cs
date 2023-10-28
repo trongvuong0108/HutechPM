@@ -11,7 +11,6 @@ namespace HutechPM.Data.Data.ProjectData.DTO
 {
     public class ProjectDTO
     {
-        ProjectService projectService = new ProjectService();
         public string projectName { set; get; }
         public string owner { set; get; }
         public string description { set; get; }

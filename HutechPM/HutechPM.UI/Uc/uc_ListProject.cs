@@ -13,23 +13,28 @@ using HutechPM.UI.Frm;
 using DevExpress.Map.Native;
 using DevExpress.Utils.MVVM;
 using HutechPM.Data.Data.ProjectData.DTO;
+using HutechPM.Data.Common;
 
 namespace HutechPM.UI.Components
 {
     public partial class uc_ListProject : UserControl
     {
+        HutechNoteDbContext _dbContext;
+        ProjectService projectService;
+        ProjectTaskService projectTaskService;
+        ProjectDetailService projectDetailService;
+        List<Project> ListProject;
+        List<ProjectTask> ListProjectTask;
+        List<ProjectDTO> listProjectDTO;
         public uc_ListProject()
         {
             InitializeComponent();
+            _dbContext = new HutechNoteDbContext();
+            projectService = new ProjectService(_dbContext);
+            projectTaskService = new ProjectTaskService();
+            projectDetailService = new ProjectDetailService(_dbContext);
         }
 
-        ProjectService projectService = new ProjectService();
-        ProjectTaskService projectTaskService = new ProjectTaskService();
-        ProjectDetailService projectDetailService = new ProjectDetailService();
-        List<Project> ListProject;
-        List<ProjectTask> ListProjectTask;
-        List<ProjectDetailService> ListProjectDetail;
-        List<ProjectDTO> listProjectDTO;
 
         private void uc_ListProject_Load(object sender, EventArgs e)
         {
