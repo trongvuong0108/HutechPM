@@ -4,13 +4,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace HutechPM.Data.Data.User
+using HutechPM.Data.Entities;
+namespace HutechPM.Data.UserData
 {
     public class ProjectRepository
     {
         public HutechNoteDbContext _dbContext;
 
         public ProjectRepository(HutechNoteDbContext dbContext) { _dbContext = dbContext; }
+
+      /* public List<User> GetAllUser()
+        {
+            return _dbContext.users.ToList();
+        }*/
     }
+        
+    
 }

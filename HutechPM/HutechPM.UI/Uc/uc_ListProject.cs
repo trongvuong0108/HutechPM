@@ -75,6 +75,7 @@ namespace HutechPM.UI.Components
                     isActive = projectDTO.isActive;
                 }
             }
+
             //string isActive = gridViewProjects.GetFocusedRowCellValue("isAcive").ToString();
             using (FrmProject frmProject = new FrmProject(projectName, description, owner, dateStart, isActive))
             {

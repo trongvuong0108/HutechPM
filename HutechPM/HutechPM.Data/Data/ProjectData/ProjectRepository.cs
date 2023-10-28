@@ -34,9 +34,9 @@ namespace HutechPM.Data.Data.ProjectData
             return _dbContext.projectDetails.Include(p => p.projectTasks).Include(p => p.user).FirstOrDefault(p => p.project.projectId == project.projectId && p.projectRole == projectRole.ProjectManager);
         }
 
-        public Project GetProjectid(Guid projectid)
+        public void AddProject(Project project)
         {
-            return _dbContext.projects.Find(projectid);
+            _dbContext.projects.Add(project);
         }
 
     }

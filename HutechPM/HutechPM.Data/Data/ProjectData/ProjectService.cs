@@ -56,12 +56,11 @@ namespace HutechNote.Data.Data.ProjectData
             }
             return ProjectDTOs;
 
-        } 
-        public Project FindProjectid(Guid projectid)
-        {
-            return ;
         }
-       
+        public void AddProject(Project project)
+        {
+            projectRepository.AddProject(project);
+        }
 
     }
 }
