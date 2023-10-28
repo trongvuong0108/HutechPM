@@ -4,6 +4,7 @@ using HutechPM.Data.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HutechNote.Data.Migrations
 {
     [DbContext(typeof(HutechNoteDbContext))]
-    partial class TaskManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231023145200_update_Db_23102023_v2")]
+    partial class update_Db_23102023_v2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,11 +34,6 @@ namespace HutechNote.Data.Migrations
                     b.Property<DateTime>("dateStart")
                         .HasColumnType("datetime2")
                         .HasColumnName("date_start");
-
-                    b.Property<string>("description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("description");
 
                     b.Property<bool>("isActive")
                         .HasColumnType("bit")
@@ -85,12 +82,12 @@ namespace HutechNote.Data.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("project_detail_id");
 
+                    b.Property<Guid>("projectId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("projectRole")
                         .HasColumnType("int")
                         .HasColumnName("project_role");
-
-                    b.Property<Guid>("project_id")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("timeJoin")
                         .HasColumnType("datetime2")
@@ -100,14 +97,14 @@ namespace HutechNote.Data.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("time_left");
 
-                    b.Property<Guid>("user_id")
+                    b.Property<Guid>("userId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("projectDetailId");
 
-                    b.HasIndex("project_id");
+                    b.HasIndex("projectId");
 
-                    b.HasIndex("user_id");
+                    b.HasIndex("userId");
 
                     b.ToTable("ProjectDetail");
                 });
@@ -139,10 +136,6 @@ namespace HutechNote.Data.Migrations
                     b.Property<int>("remaining")
                         .HasColumnType("int")
                         .HasColumnName("remaining");
-
-                    b.Property<int>("taskStatus")
-                        .HasColumnType("int")
-                        .HasColumnName("status");
 
                     b.HasKey("projectTaskid");
 
@@ -250,13 +243,13 @@ namespace HutechNote.Data.Migrations
                 {
                     b.HasOne("HutechPM.Data.Entities.Project", "project")
                         .WithMany("ApplicationProjectDetails")
-                        .HasForeignKey("project_id")
+                        .HasForeignKey("projectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("HutechPM.Data.Entities.User", "user")
                         .WithMany("ApplicationProjectDetails")
-                        .HasForeignKey("user_id")
+                        .HasForeignKey("userId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
