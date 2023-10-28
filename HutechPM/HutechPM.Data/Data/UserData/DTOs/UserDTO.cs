@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HutechNote.Data.Data.User.DTOs
+namespace HutechNote.Data.Data.UserData.DTOs
 {
     public class UserDTO
     {

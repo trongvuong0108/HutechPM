@@ -1,13 +1,9 @@
-﻿using DevExpress.XtraRichEdit.Fields;
-using HutechPM.UI.Frm;
+﻿using DevExpress.XtraEditors;
+using DevExpress.XtraReports.Design;
+using HutechPM.Data.Common;
+using HutechPM.Data.UserData;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HutechPM.UI.Uc
@@ -43,34 +39,28 @@ namespace HutechPM.UI.Uc
 
         private void labelForget_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("aa");
-        }
-
-        private void uc_Login_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void pictureBoxIconLock_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBoxIconLock_MouseDown(object sender, MouseEventArgs e)
-        {
-            textBoxPassword.UseSystemPasswordChar = false;
-        }
-
-        private void pictureBoxIconLock_MouseUp(object sender, MouseEventArgs e)
-        {
-            textBoxPassword.UseSystemPasswordChar = true;
         }
 
 
         private void linkLabelCreateAccount_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
+        }
+
+        private void buttonLogin_Click(object sender, EventArgs e)
+        {
+            string userName = textBoxUser.Text;
+            string password = textBoxPassword.Text;
+            using (HutechNoteDbContext dbContext = new HutechNoteDbContext())
+            {
+                UserRepository userRepository = new UserRepository(dbContext);
+                UserService userService = new UserService(userRepository);
+                
+                if(userService.login(userName, password))
+                {
+                    XtraMessageBox.Show("Login successful");
+                }
+            }
         }
     }
 }

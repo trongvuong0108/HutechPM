@@ -1,15 +1,7 @@
 ﻿using DevExpress.DataProcessing.InMemoryDataProcessor;
 using HutechNote.Data.Data.ProjectData;
-using HutechPM.Data.Common;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using HutechPM.Data.Entities;
 using DevExpress.XtraGrid.Views.Grid;
@@ -114,7 +106,6 @@ namespace HutechPM.UI.Components
         private void button1_Click(object sender, EventArgs e)
         {
             gridViewProjects.AddNewRow();
-
             gridViewProjects.SetRowCellValue(1, "projectName", "111");
             gridViewProjects.SetRowCellValue(1, "owner", "2");
             gridViewProjects.SetRowCellValue(1, "dateStart", DateTime.Now);

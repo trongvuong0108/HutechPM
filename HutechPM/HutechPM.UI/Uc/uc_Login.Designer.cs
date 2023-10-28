@@ -50,10 +50,9 @@
             textBoxPassword.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
             textBoxPassword.Location = new System.Drawing.Point(98, 218);
             textBoxPassword.Name = "textBoxPassword";
-            textBoxPassword.Size = new System.Drawing.Size(558, 28);
+            textBoxPassword.Size = new System.Drawing.Size(558, 19);
             textBoxPassword.TabIndex = 33;
             textBoxPassword.UseSystemPasswordChar = true;
-            textBoxPassword.Click += textBoxPassword_Click;
             // 
             // pictureBoxIconLock
             // 
@@ -66,8 +65,6 @@
             pictureBoxIconLock.TabIndex = 32;
             pictureBoxIconLock.TabStop = false;
             pictureBoxIconLock.UseWaitCursor = true;
-            pictureBoxIconLock.MouseDown += pictureBoxIconLock_MouseDown;
-            pictureBoxIconLock.MouseUp += pictureBoxIconLock_MouseUp;
             // 
             // pictureBoxPasswork
             // 
@@ -96,9 +93,8 @@
             textBoxUser.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
             textBoxUser.Location = new System.Drawing.Point(98, 118);
             textBoxUser.Name = "textBoxUser";
-            textBoxUser.Size = new System.Drawing.Size(558, 32);
+            textBoxUser.Size = new System.Drawing.Size(558, 22);
             textBoxUser.TabIndex = 29;
-            textBoxUser.Click += textBoxUser_Click;
             // 
             // pictureBoxUser
             // 
@@ -113,7 +109,7 @@
             // 
             labelForget.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             labelForget.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            labelForget.Location = new System.Drawing.Point(252, 286);
+            labelForget.Location = new System.Drawing.Point(255, 284);
             labelForget.Name = "labelForget";
             labelForget.Size = new System.Drawing.Size(182, 37);
             labelForget.TabIndex = 27;
@@ -133,6 +129,7 @@
             buttonLogin.TabIndex = 26;
             buttonLogin.Text = "LOGIN";
             buttonLogin.UseVisualStyleBackColor = false;
+            buttonLogin.Click += buttonLogin_Click;
             // 
             // label6
             // 
@@ -141,7 +138,7 @@
             label6.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
             label6.Location = new System.Drawing.Point(8, 23);
             label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(325, 37);
+            label6.Size = new System.Drawing.Size(219, 26);
             label6.TabIndex = 25;
             label6.Text = "Login to your account";
             // 
@@ -159,7 +156,6 @@
             Controls.Add(label6);
             Name = "uc_Login";
             Size = new System.Drawing.Size(711, 423);
-            Load += uc_Login_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBoxIconLock).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxPasswork).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxIconUser).EndInit();
