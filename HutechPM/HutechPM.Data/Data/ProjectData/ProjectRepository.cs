@@ -6,7 +6,7 @@ namespace HutechPM.Data.Data.ProjectData
 {
     public class ProjectRepository
     {
-        public HutechNoteDbContext _dbContext;
+        public HutechNoteDbContext _dbContext { set; get; }
 
         public ProjectRepository(HutechNoteDbContext dbContext) 
         { 

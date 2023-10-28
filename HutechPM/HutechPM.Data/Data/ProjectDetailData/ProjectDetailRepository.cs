@@ -11,7 +11,7 @@ namespace HutechPM.Data.Data.ProjectDetailData
 {
     public class ProjectDetailRepository
     {
-        public HutechNoteDbContext _dbContext;
+        private readonly HutechNoteDbContext _dbContext;
 
         public ProjectDetailRepository(HutechNoteDbContext dbContext)
         {

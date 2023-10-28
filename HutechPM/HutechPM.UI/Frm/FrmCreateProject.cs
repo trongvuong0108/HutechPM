@@ -14,17 +14,26 @@ using HutechNote.Data.Data.ProjectData;
 using HutechPM.Data.Data.ProjectDetailData;
 using HutechPM.Data.UserData;
 using HutechPM.Data.Common;
+using DevExpress.XtraEditors;
+using Microsoft.EntityFrameworkCore;
 
 namespace HutechPM.UI.Frm
 {
     public partial class FrmCreateProject : Form
     {
+        HutechNoteDbContext dbContext;
+        ProjectService projectService;
+        ProjectDetailService projectDetailService;
         public FrmCreateProject()
         {
             InitializeComponent();
+            dbContext = new HutechNoteDbContext();
+            projectService = new ProjectService(dbContext);
+            projectDetailService = new ProjectDetailService(dbContext);
         }
-        ProjectService projectService = new ProjectService();
-        ProjectDetailService projectDetailService = new ProjectDetailService();
+
+        //SingleTon design pattern -> Dependency Injection
+         
         private void FrmCreateProject_Load(object sender, EventArgs e)
         {
 
@@ -42,22 +51,24 @@ namespace HutechPM.UI.Frm
             project.dateStart = DateTime.Now;
             project.isActive = true;
 
-            //projectService.AddProject(project);
+            projectService.AddProject(project);
 
             ProjectDetail projectDetail = new ProjectDetail();
             projectDetail.projectDetailId = Guid.NewGuid();
             projectDetail.project = project;
-            Guid guiduser = new Guid("fb04052b-6b39-4c01-ae26-1fa9b4706b5e");
+            Guid guiduser = new Guid("d639a5b0-3946-45ee-bfa7-fc52deb8821a");
             using (HutechNoteDbContext _dbContext = new HutechNoteDbContext())
             {
                 UserService userService = new UserService(_dbContext);
                 var users = userService.GetAllUsers();
-                foreach (User user in users)
+                User userNeedFind = users.Where(user => user.userId.ToString().Equals(guiduser.ToString(), StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+                if (userNeedFind != null)
                 {
-                    if (user.userId.ToString().Equals(guiduser.ToString(), StringComparison.OrdinalIgnoreCase))
-                    {
-                        projectDetail.user = user;
-                    }
+                    projectDetail.user_id = userNeedFind.userId;
+                }
+                else
+                {
+                    XtraMessageBox.Show("Dell tạo dc condilon oi");
                 }
             }
             projectDetail.timeJoin = DateTime.Now;
@@ -70,6 +81,7 @@ namespace HutechPM.UI.Frm
         {
             ProjectDetail projectDetail = new ProjectDetail();
             projectDetail.projectDetailId = new Guid();
+            Guid guiduser = new Guid("d639a5b0-3946-45ee-bfa7-fc52deb8821a");
             //foreach(User user in listUSer())
             //{
             //    if(user.email == textBoxProjectMenbers.Text)
@@ -77,7 +89,6 @@ namespace HutechPM.UI.Frm
             //        projectDetail.user.userId = user.userId;
             //    }
             //}
-            Guid guiduser = new Guid("97aa4a7d - 88c2 - 4c52 - 87cc - 1a3db1f124a0");
             projectDetail.user.userId = guiduser;
 
 

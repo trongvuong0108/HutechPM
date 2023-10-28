@@ -1,6 +1,7 @@
 ﻿using HutechPM.Data.Common;
 using HutechPM.Data.Data.ProjectTaskData;
 using HutechPM.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,8 @@ namespace HutechPM.Data.Data.ProjectDetailData
 {
     public class ProjectDetailService
     {
-        HutechNoteDbContext _dbContext = new HutechNoteDbContext();
         public ProjectDetailRepository projectDetailRepository;
-        public ProjectDetailService()
+        public ProjectDetailService(HutechNoteDbContext _dbContext)
         {
             this.projectDetailRepository = new ProjectDetailRepository(_dbContext);
         }
