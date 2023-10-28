@@ -1,12 +1,5 @@
 ﻿using HutechPM.Data.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using HutechPM.Data.Entities;
-using HutechPM.Data.Data.ProjectData.DTO;
-using HutechPM.Data.Data.User;
 using Microsoft.EntityFrameworkCore;
 
 namespace HutechPM.Data.Data.ProjectData

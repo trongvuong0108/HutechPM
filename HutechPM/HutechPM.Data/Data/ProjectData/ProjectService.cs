@@ -1,10 +1,8 @@
-﻿using HutechNote.Data.Data.User.DTOs;
-using HutechPM.Data.Common;
+﻿using HutechPM.Data.Common;
 using HutechPM.Data.Data.ProjectData;
 using HutechPM.Data.Data.ProjectData.DTO;
 using HutechPM.Data.Data.ProjectDetailData;
 using HutechPM.Data.Data.ProjectTaskData;
-using HutechPM.Data.Data.User.DTOs;
 using HutechPM.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -57,10 +55,6 @@ namespace HutechNote.Data.Data.ProjectData
             return ProjectDTOs;
 
         } 
-        public Project FindProjectid(Guid projectid)
-        {
-            return ;
-        }
        
 
     }

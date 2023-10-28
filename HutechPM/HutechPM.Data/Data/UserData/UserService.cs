@@ -1,18 +1,18 @@
-﻿using HutechNote.Data.Data.User.DTOs;
+﻿using HutechNote.Data.Data.UserData.DTOs;
 using HutechPM.Data.Common;
-using HutechPM.Data.Data.User.DTOs;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using HutechPM.Data.Data.UserData.DTOs;
 
-namespace HutechNote.Data.Data.User
+namespace HutechPM.Data.UserData
 {
-    public class ProjectService
+    public class UserService
     {
-        
+        private readonly UserRepository userRepository;
+        public UserService(UserRepository userRepository) { this.userRepository = userRepository; }
+        public bool login(string username, string password)
+        {
+            return userRepository.getAllUser().Any(x => x.userName.Equals(username) && x.password.Equals(password));
+        }
+
         public List<UserDTO> GetAllUsers() {
             return new List<UserDTO>();
         }

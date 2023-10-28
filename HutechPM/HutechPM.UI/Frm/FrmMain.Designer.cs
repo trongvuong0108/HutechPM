@@ -55,9 +55,9 @@ namespace HutechNote.UI.Frm
             // fluentDesignFormContainerMain
             // 
             fluentDesignFormContainerMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            fluentDesignFormContainerMain.Location = new Point(263, 46);
+            fluentDesignFormContainerMain.Location = new Point(263, 31);
             fluentDesignFormContainerMain.Name = "fluentDesignFormContainerMain";
-            fluentDesignFormContainerMain.Size = new Size(1335, 853);
+            fluentDesignFormContainerMain.Size = new Size(1335, 868);
             fluentDesignFormContainerMain.TabIndex = 0;
             fluentDesignFormContainerMain.Click += fluentDesignFormContainerMain_Click;
             // 
@@ -65,10 +65,10 @@ namespace HutechNote.UI.Frm
             // 
             accordionControl1.Dock = System.Windows.Forms.DockStyle.Left;
             accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { accordionControlElement4, accordionControlElement1, accordionControlElementTasks, accordionControlElement3 });
-            accordionControl1.Location = new Point(0, 46);
+            accordionControl1.Location = new Point(0, 31);
             accordionControl1.Name = "accordionControl1";
             accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
-            accordionControl1.Size = new Size(263, 853);
+            accordionControl1.Size = new Size(263, 868);
             accordionControl1.TabIndex = 1;
             accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 
@@ -104,7 +104,7 @@ namespace HutechNote.UI.Frm
             fluentDesignFormControl1.Location = new Point(0, 0);
             fluentDesignFormControl1.Manager = fluentFormDefaultManager1;
             fluentDesignFormControl1.Name = "fluentDesignFormControl1";
-            fluentDesignFormControl1.Size = new Size(1598, 46);
+            fluentDesignFormControl1.Size = new Size(1598, 31);
             fluentDesignFormControl1.TabIndex = 2;
             fluentDesignFormControl1.TabStop = false;
             fluentDesignFormControl1.Click += fluentDesignFormControl1_Click;
@@ -157,7 +157,7 @@ namespace HutechNote.UI.Frm
             // FrmMain
             // 
             Appearance.Options.UseFont = true;
-            AutoScaleDimensions = new SizeF(9F, 19F);
+            AutoScaleDimensions = new SizeF(6F, 14F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new Size(1598, 899);
             ControlContainer = fluentDesignFormContainerMain;

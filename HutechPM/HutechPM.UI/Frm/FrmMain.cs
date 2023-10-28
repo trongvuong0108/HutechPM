@@ -1,6 +1,5 @@
 ﻿using DevExpress.XtraBars;
 using DevExpress.XtraBars.Navigation;
-using HutechNote.Data.Data.ProjectData;
 using HutechPM.UI.Components;
 using HutechPM.UI.Uc;
 using System;

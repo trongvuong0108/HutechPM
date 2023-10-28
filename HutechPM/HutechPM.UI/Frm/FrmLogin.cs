@@ -65,5 +65,10 @@ namespace HutechPM.UI.Frm
                 labelCreate.Text = "Create New Account ?";
             }
         }
+
+        private void panelFormSignup_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
