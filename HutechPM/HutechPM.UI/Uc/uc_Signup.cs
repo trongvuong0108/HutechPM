@@ -1,4 +1,8 @@
-﻿using System;
+﻿using DevExpress.XtraEditors;
+using HutechNote.Data.Data.UserData.DTOs;
+using HutechPM.Data.Common;
+using HutechPM.Data.UserData;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace HutechPM.UI.Uc
 {
@@ -36,6 +41,37 @@ namespace HutechPM.UI.Uc
             {
                 textBoxPassword.UseSystemPasswordChar = true;
                 textBoxConfirmPass.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void registerBtn_Click(object sender, EventArgs e)
+        { 
+            UserDTO userDTO = new UserDTO()
+            {
+                userName = textBoxUsername.Text.Trim(),
+                password = textBoxPassword.Text.Trim(),
+                email = textBoxEmail.Text.Trim(),
+                phone = textBoxPhone.Text.Trim(),
+                fullName = textBoxFullname.Text.Trim(),
+                address = textBoxAddress.Text.Trim(),
+            };
+            using (HutechNoteDbContext dbContext = new HutechNoteDbContext())
+            {
+                UserService userService = new UserService(dbContext);
+                ActionBaseResult result = userService.CreateUser(userDTO);
+                if(result.Success)
+                {
+                    XtraMessageBox.Show("SignUp successful");
+                }
+                else
+                {
+                    XtraMessageBox.Show("Sign up Fail!! Exception: " + result.Message);
+                }
             }
         }
     }
