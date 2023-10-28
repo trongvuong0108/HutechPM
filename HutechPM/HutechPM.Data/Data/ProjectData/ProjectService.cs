@@ -54,8 +54,12 @@ namespace HutechNote.Data.Data.ProjectData
             }
             return ProjectDTOs;
 
-        } 
-       
+        }
+        public void AddProject(Project project)
+        {
+            projectRepository.AddProject(project);
+            projectRepository.SaveChanges();
+        }
 
     }
 }

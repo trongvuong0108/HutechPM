@@ -17,6 +17,12 @@ namespace HutechPM.Data.Data.ProjectDetailData
         {
             this.projectDetailRepository = new ProjectDetailRepository(_dbContext);
         }
-   
+        public void AddProjectDetail(ProjectDetail projectDetail)
+        {
+            projectDetailRepository.AddProjectDetail(projectDetail);
+            projectDetailRepository.SaveChanges();
+        }
+        
+
     }
 }

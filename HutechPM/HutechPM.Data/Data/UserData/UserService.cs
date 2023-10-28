@@ -13,9 +13,9 @@ namespace HutechPM.Data.UserData
         {
             return userRepository.getAllUser().Any(x => x.userName.Equals(username) && x.password.Equals(password));
         }
-
-        public List<UserDTO> GetAllUsers() {
-            return new List<UserDTO>();
+        public List<User> GetAllUsers() 
+        {
+            return userRepository.getAllUser();
         }
 
         public UserDTO GetUser(string id) 

@@ -19,7 +19,15 @@ namespace HutechPM.Data.Data.ProjectDetailData
         }
         public List<ProjectDetail> getAllProjectDetail()
         {
-            return _dbContext.projectDetails.ToList();
+            return _dbContext.projectDetails.Include(p =>p.user).ToList();
+        }
+        public void AddProjectDetail(ProjectDetail projectDetail)
+        {
+            _dbContext.projectDetails.Add(projectDetail);
+        }
+        public void SaveChanges()
+        {
+            _dbContext.SaveChanges();
         }
     }
 }

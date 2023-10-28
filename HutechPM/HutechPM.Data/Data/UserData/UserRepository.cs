@@ -8,9 +8,10 @@ namespace HutechPM.Data.UserData
         private readonly HutechNoteDbContext _dbContext;
 
         public UserRepository(HutechNoteDbContext dbContext) { _dbContext = dbContext; }
-        public IEnumerable<User> getAllUser()
+
+        public List<User> getAllUser()
         {
-            return _dbContext.users;
+            return _dbContext.users.ToList();
         }
         public ActionBaseResult createUser(User user)
         {
@@ -31,4 +32,6 @@ namespace HutechPM.Data.UserData
             
         }
     }
+        
+    
 }
