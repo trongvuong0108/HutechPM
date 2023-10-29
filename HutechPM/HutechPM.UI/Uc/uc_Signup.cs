@@ -2,6 +2,7 @@
 using HutechNote.Data.Data.UserData.DTOs;
 using HutechPM.Data.Common;
 using HutechPM.Data.UserData;
+using HutechPM.UI.FRM;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -49,8 +50,9 @@ namespace HutechPM.UI.Uc
 
         }
 
-        private void registerBtn_Click(object sender, EventArgs e)
-        { 
+        private async void registerBtn_Click(object sender, EventArgs e)
+        {
+            FrmSplashScreen frmSplashScreen = new FrmSplashScreen();
             UserDTO userDTO = new UserDTO()
             {
                 userName = textBoxUsername.Text.Trim(),
@@ -63,8 +65,10 @@ namespace HutechPM.UI.Uc
             using (HutechNoteDbContext dbContext = new HutechNoteDbContext())
             {
                 UserService userService = new UserService(dbContext);
-                ActionBaseResult result = userService.CreateUser(userDTO);
-                if(result.Success)
+                frmSplashScreen.Show();
+                ActionBaseResult result = await userService.CreateUser(userDTO);
+                frmSplashScreen.Close();
+                if (result.Success)
                 {
                     XtraMessageBox.Show("SignUp successful");
                 }

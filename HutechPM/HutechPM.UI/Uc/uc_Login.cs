@@ -3,7 +3,9 @@ using DevExpress.XtraReports.Design;
 using HutechNote.UI.Frm;
 using HutechPM.Data.Common;
 using HutechPM.Data.UserData;
+using HutechPM.UI.Common;
 using HutechPM.UI.Frm;
+using HutechPM.UI.FRM;
 using System;
 using System.Drawing;
 using System.Text.RegularExpressions;
@@ -60,7 +62,7 @@ namespace HutechPM.UI.Uc
             else
                 return (false);
         }
-        private void buttonLogin_Click(object sender, EventArgs e)
+        private async void buttonLogin_Click(object sender, EventArgs e)
         {
             
             string userName = textBoxUser.Text;
@@ -68,8 +70,12 @@ namespace HutechPM.UI.Uc
           
             using (HutechNoteDbContext dbContext = new HutechNoteDbContext())
             {
+                FrmSplashScreen FrmSplashScreen = new FrmSplashScreen();
                 UserService userService = new UserService(dbContext);
-                if (userService.login(userName, password))
+                FrmSplashScreen.Show();
+                bool result = await userService.login(userName, password);
+                FrmSplashScreen.Close();
+                if (result)
                 {
                     XtraMessageBox.Show("Login successful");
                     using FrmMain frmMain = new FrmMain(userName);

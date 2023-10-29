@@ -19,23 +19,25 @@ namespace HutechPM.Data.Data.ProjectTaskData
         {
             this.projectTaskRepository = new ProjectTaskRepository(_dbContext);
         }
-        public List<ProjectTask> getAllProjectTask()
+
+        public async Task<List<ProjectTask>> getAllProjectTask()
         {
-            return projectTaskRepository.GetProjectTask();
+            return await projectTaskRepository.GetProjectTask();
         }
-        public void AddProjectTask(ProjectTask projectTask)
+
+        public async Task<ActionBaseResult> AddProjectTask(ProjectTask projectTask)
         {
-            projectTaskRepository.AddProjectTask(projectTask);
-            projectTaskRepository.SaveChanges();
+            return await projectTaskRepository.AddProjectTask(projectTask);
         }
-        public void upadteProjectTask(ProjectTask projectTask)
+
+        public async Task<ActionBaseResult> upadteProjectTask(ProjectTask projectTask)
         {
-            projectTaskRepository.upadteProjectTask(projectTask);
-            projectTaskRepository.SaveChanges();
+            return await projectTaskRepository.upadteProjectTask(projectTask);
         }
-        public ProjectTask findProjectTaskId(Guid projectTaskId)
+
+        public async Task<ProjectTask> findProjectTaskId(Guid projectTaskId)
         {
-            return projectTaskRepository.findProjectTaskId(projectTaskId);
+            return await projectTaskRepository.findProjectTaskId(projectTaskId);
         }
 
     }

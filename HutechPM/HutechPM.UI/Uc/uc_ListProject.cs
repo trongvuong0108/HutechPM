@@ -43,14 +43,14 @@ namespace HutechPM.UI.Components
             this.UserName = userName;
         }
 
-        private void uc_ListProject_Load(object sender, EventArgs e)
+        private async void uc_ListProject_Load(object sender, EventArgs e)
         {
             //test
             MessageBox.Show(UserName);
 
-            ListProject = projectService.getAllProject();
-            ListProjectTask = projectTaskService.getAllProjectTask();
-            listProjectDTO = projectService.getAllProjectsDTO();
+            ListProject = await projectService.getAllProject();
+            ListProjectTask = await projectTaskService.getAllProjectTask();
+            listProjectDTO = await projectService.getAllProjectsDTO();
             BindingSource bindingSourceProject = new BindingSource();
             bindingSourceProject.DataSource = listProjectDTO;
             gridControlProjects.DataSource = bindingSourceProject;

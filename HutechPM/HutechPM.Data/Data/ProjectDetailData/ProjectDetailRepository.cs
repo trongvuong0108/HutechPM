@@ -17,18 +17,27 @@ namespace HutechPM.Data.Data.ProjectDetailData
         {
             this._dbContext = dbContext;
         }
-        public List<ProjectDetail> getAllProjectDetail()
+        public async Task<List<ProjectDetail>> getAllProjectDetail()
         {
-            return _dbContext.projectDetails.Include(p =>p.user).ToList();
+            return await _dbContext.projectDetails.Include(p =>p.user).ToListAsync();
         }
-        public void AddProjectDetail(ProjectDetail projectDetail)
+        public async Task<ActionBaseResult> AddProjectDetail(ProjectDetail projectDetail)
         {
-            _dbContext.projectDetails.Add(projectDetail);
-        }
-       
-        public void SaveChanges()
-        {
-            _dbContext.SaveChanges();
+             
+            using (var transaction = _dbContext.Database.BeginTransaction())
+            {
+                try
+                {
+                    await _dbContext.projectDetails.AddAsync(projectDetail);
+                    await _dbContext.SaveChangesAsync();
+                    return new ActionBaseResult() { Success = true, Message = "Add project Successful" };
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    return new ActionBaseResult() { Success = false, Message = e.Message };
+                }
+            }
         }
     }
 }

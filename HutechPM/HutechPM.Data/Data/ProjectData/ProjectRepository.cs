@@ -12,29 +12,41 @@ namespace HutechPM.Data.Data.ProjectData
         { 
             this._dbContext = dbContext; 
         }
-        public List<Project> GetProject()
+        public async Task<List<Project>> GetProject()
         {
-            return _dbContext.projects.ToList();
+            return await _dbContext.projects.ToListAsync();
         }
 
-        public List<ProjectTask> GetProjectTask()
+        public async Task<List<ProjectTask>> GetProjectTask()
         {
-            return _dbContext.projectTasks.Include(x => x.projectDetail.project).Include(x => x.projectDetail.user).ToList(); 
+            return await _dbContext.projectTasks.Include(x => x.projectDetail.project).Include(x => x.projectDetail.user).ToListAsync(); 
         }
 
-        public ProjectDetail findProjectOfOwner(Project project)
+        public async Task<ProjectDetail> findProjectOfOwner(Project project)
         {
-            return _dbContext.projectDetails.Include(p => p.projectTasks).Include(p => p.user).FirstOrDefault(p => p.project.projectId == project.projectId && p.projectRole == projectRole.ProjectManager);
+            List<ProjectDetail> projectDetails = await _dbContext.projectDetails
+                                                    .Include(p => p.projectTasks)
+                                                    .Include(p => p.user).ToListAsync();
+            return projectDetails.FirstOrDefault(p => p.project.projectId == project.projectId && p.projectRole == projectRole.ProjectManager);
         }
 
-        public void AddProject(Project project)
+        public async Task<ActionBaseResult> AddProject(Project project)
         {
-            _dbContext.projects.Add(project);
-        }
-
-        public void SaveChanges()
-        {
-            _dbContext.SaveChanges();
+            
+            using (var transaction = _dbContext.Database.BeginTransaction())
+            {
+                try
+                {
+                    await _dbContext.projects.AddAsync(project);
+                    await _dbContext.SaveChangesAsync();
+                    return new ActionBaseResult() { Success = true, Message = "Add project Successful" };
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    return new ActionBaseResult() { Success = false, Message = e.Message };
+                }
+            }
         }
     }
 }

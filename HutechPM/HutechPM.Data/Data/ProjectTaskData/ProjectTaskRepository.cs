@@ -17,29 +17,54 @@ namespace HutechPM.Data.Data.ProjectTaskData
         {
             this._dbContext = dbContext;
         }
-        public List<ProjectTask> GetProjectTask()
+        public async Task<List<ProjectTask>> GetProjectTask()
         {
-            return _dbContext.projectTasks.Include(x => x.projectDetail.project).Include(x => x.projectDetail.user).ToList();
+            return await _dbContext.projectTasks
+                .Include(x => x.projectDetail.project)
+                .Include(x => x.projectDetail.user)
+                .ToListAsync();
         }
 
-        public void AddProjectTask(ProjectTask projectTask)
+        public async Task<ActionBaseResult> AddProjectTask(ProjectTask projectTask)
         {
-            _dbContext.projectTasks.Add(projectTask);
-        }
-        public void upadteProjectTask(ProjectTask projectTask)
-        {
-            _dbContext.projectTasks.Update(projectTask);
-        }
-        public void SaveChanges()
-        {
-            _dbContext.SaveChanges();
+            using (var transaction = _dbContext.Database.BeginTransaction())
+            {
+                try
+                {
+                    await _dbContext.projectTasks.AddAsync(projectTask);
+                    await _dbContext.SaveChangesAsync();
+                    return new ActionBaseResult() { Success = true, Message = "Add task Successful" };
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    return new ActionBaseResult() { Success = false, Message = e.Message };
+                }
+            }
         }
 
-        public ProjectTask findProjectTaskId(Guid projectTaskId)
+        public async Task<ActionBaseResult> upadteProjectTask(ProjectTask projectTask)
         {
-            ProjectTask projectNeedFind =_dbContext.projectTasks.FirstOrDefault(x => x.projectTaskid == projectTaskId);
-            //ProjectTask projectNeedFind = _dbContext.projectTasks.Where(x => x.projectTaskid.ToString().Equals(projectTaskId.ToString(), StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
-            return projectNeedFind;
+            using (var transaction = _dbContext.Database.BeginTransaction())
+            {
+                try
+                {
+                    _dbContext.projectTasks.Update(projectTask);
+                    await _dbContext.SaveChangesAsync();
+                    return new ActionBaseResult() { Success = true, Message = "Add task Successful" };
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    return new ActionBaseResult() { Success = false, Message = e.Message };
+                }
+            }
+        }
+
+        public async Task<ProjectTask> findProjectTaskId(Guid projectTaskId)
+        {
+            List<ProjectTask> projectTasks = await GetProjectTask();
+            return projectTasks.FirstOrDefault(x => x.projectTaskid == projectTaskId);
         }
 
     }

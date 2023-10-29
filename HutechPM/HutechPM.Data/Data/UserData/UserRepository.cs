@@ -1,5 +1,6 @@
 ﻿using HutechPM.Data.Common;
 using HutechPM.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace HutechPM.Data.UserData
 {
@@ -9,18 +10,18 @@ namespace HutechPM.Data.UserData
 
         public UserRepository(HutechNoteDbContext dbContext) { _dbContext = dbContext; }
 
-        public List<User> getAllUser()
+        public async Task<List<User>> getAllUser()
         {
-            return _dbContext.users.ToList();
+            return await _dbContext.users.ToListAsync();
         }
-        public ActionBaseResult createUser(User user)
+        public async Task<ActionBaseResult> createUser(User user)
         {
             using (var transaction = _dbContext.Database.BeginTransaction())
             {
                 try
                 {
-                    _dbContext.users.Add(user);
-                    _dbContext.SaveChanges();
+                    await _dbContext.users.AddAsync(user);
+                    await _dbContext.SaveChangesAsync();
                     return new ActionBaseResult() { Success = true, Message = "SignUp Successful" };
                 }
                 catch (Exception e)

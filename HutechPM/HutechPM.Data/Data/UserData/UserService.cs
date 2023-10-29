@@ -8,39 +8,27 @@ namespace HutechPM.Data.UserData
     public class UserService
     {
         private readonly UserRepository userRepository;
+
+
         public UserService(HutechNoteDbContext context) { this.userRepository = new UserRepository(context); }
 
-        public bool login(string username, string password)
-        {
-            return userRepository.getAllUser().Any(x => x.userName.Equals(username) && x.password.Equals(password));
-        }
-        
 
-        public List<User> GetAllUsers() 
+        public async Task<List<User>> GetAllUsers()
         {
-            return userRepository.getAllUser();
+            return await userRepository.getAllUser();
         }
 
-        public UserDTO GetUser(string id) 
+        public async Task<bool> login(string username, string password)
         {
-            return new UserDTO();
+            var users = await userRepository.getAllUser();
+            return users.Any(x => x.userName.Equals(username) && x.password.Equals(password));
         }
 
-        public List<UserDTO> GetUsersByProject()
-        {
-            return new List<UserDTO>();
-        }
-
-        public List<UserDTO> GetUserByName(string kw)
-        {
-            return new List<UserDTO>();
-        }
-
-        public ActionBaseResult CreateUser(UserDTO userDTO)
+        public async Task<ActionBaseResult> CreateUser(UserDTO userDTO)
         {
             User user = new User(new Guid(), userDTO.userName, userDTO.password, userDTO.email, userDTO.phone, userDTO.fullName, userDTO.address);
-            userRepository.createUser(user);
-            return new ActionBaseResult();
+            ActionBaseResult result =  await userRepository.createUser(user);
+            return result;
         }
     }
 }
