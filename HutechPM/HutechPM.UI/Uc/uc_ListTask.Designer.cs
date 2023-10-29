@@ -62,10 +62,10 @@
             delete = new DevExpress.XtraGrid.Columns.GridColumn();
             uploadFile = new DevExpress.XtraGrid.Columns.GridColumn();
             taskId = new DevExpress.XtraGrid.Columns.GridColumn();
+            projectRole = new DevExpress.XtraGrid.Columns.GridColumn();
             projectTaskBindingSource = new System.Windows.Forms.BindingSource(components);
             buttonSelectDelete = new System.Windows.Forms.Button();
             buttonCreate = new System.Windows.Forms.Button();
-            projectRole = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)ItemButtonUpdate).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ItemButtonDelete).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ItemButtonuploadFile).BeginInit();
@@ -103,10 +103,10 @@
             // 
             gridControlGridTask.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             gridControlGridTask.DataSource = projectTaskBindingSource1;
-            gridControlGridTask.Location = new System.Drawing.Point(0, 153);
+            gridControlGridTask.Location = new System.Drawing.Point(3, 151);
             gridControlGridTask.MainView = gridViewTask;
             gridControlGridTask.Name = "gridControlGridTask";
-            gridControlGridTask.Size = new System.Drawing.Size(1383, 475);
+            gridControlGridTask.Size = new System.Drawing.Size(1383, 526);
             gridControlGridTask.TabIndex = 0;
             gridControlGridTask.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridViewTask });
             gridControlGridTask.Click += gridControlGridTask_Click;
@@ -231,6 +231,14 @@
             taskId.Name = "taskId";
             taskId.Width = 112;
             // 
+            // projectRole
+            // 
+            projectRole.Caption = "ProjectRole";
+            projectRole.FieldName = "projectDetail.projectRole";
+            projectRole.MinWidth = 30;
+            projectRole.Name = "projectRole";
+            projectRole.Width = 112;
+            // 
             // projectTaskBindingSource
             // 
             projectTaskBindingSource.DataSource = typeof(Data.Entities.ProjectTask);
@@ -265,23 +273,14 @@
             buttonCreate.UseVisualStyleBackColor = false;
             buttonCreate.Click += buttonCreate_Click;
             // 
-            // projectRole
-            // 
-            projectRole.Caption = "ProjectRole";
-            projectRole.FieldName = "projectDetail.projectRole";
-            projectRole.MinWidth = 30;
-            projectRole.Name = "projectRole";
-            projectRole.Width = 112;
-            // 
             // uc_ListTask
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            AutoSize = true;
             Controls.Add(buttonCreate);
             Controls.Add(buttonSelectDelete);
             Controls.Add(gridControlGridTask);
             Name = "uc_ListTask";
-            Size = new System.Drawing.Size(1383, 631);
+            Size = new System.Drawing.Size(1383, 677);
             Load += uc_ListTask_Load;
             ((System.ComponentModel.ISupportInitialize)ItemButtonUpdate).EndInit();
             ((System.ComponentModel.ISupportInitialize)ItemButtonDelete).EndInit();

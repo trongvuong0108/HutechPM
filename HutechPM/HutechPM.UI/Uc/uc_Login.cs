@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraReports.Design;
+using DevExpress.XtraScheduler;
 using HutechNote.UI.Frm;
 using HutechPM.Data.Common;
 using HutechPM.Data.Entities;
@@ -93,7 +94,8 @@ namespace HutechPM.UI.Uc
 
         private void uc_Login_Load(object sender, EventArgs e)
         {
-
+            textBoxUser.Text = "admin";
+            textBoxPassword.Text = "Password@1234";
         }
     }
 }

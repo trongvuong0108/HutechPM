@@ -19,7 +19,8 @@ namespace HutechPM.Data.Data.ProjectDetailData
         }
         public async Task<List<ProjectDetail>> getAllProjectDetail()
         {
-            return await _dbContext.projectDetails.Include(p =>p.user).ToListAsync();
+            return await _dbContext.projectDetails.Include(p =>p.user).Include(p=>p.project).ToListAsync();
+          
         }
         public async Task<ActionBaseResult> AddProjectDetail(ProjectDetail projectDetail)
         {

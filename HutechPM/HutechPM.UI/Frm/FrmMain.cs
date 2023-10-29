@@ -21,18 +21,19 @@ namespace HutechNote.UI.Frm
 
         uc_ListProject uc_ListProject;
         uc_ListTask uc_ListTask;
-        public User UserName { set; get; }
+        public User UserLogin { set; get; }
 
         public FrmMain()
         {
-            InitializeComponent();
+            //InitializeComponent();
         }
+
         public delegate void userNameLogin(User userName);
 
-        public FrmMain(User userName)
+        public FrmMain(User userLogin)
         {
             InitializeComponent();
-            this.UserName = userName;
+            this.UserLogin = userLogin;
         }
 
         private void fluentDesignFormContainerMain_Click(object sender, EventArgs e)
@@ -44,35 +45,35 @@ namespace HutechNote.UI.Frm
             //frmCreateProject.Show();
 
 
-            //if (uc_ListProject == null)
-            //{
-            //    uc_ListProject = new uc_ListProject();
-            //    uc_ListProject.Dock = DockStyle.Fill;
-            //    //userNameLogin userNameLogin = new userNameLogin(uc_ListProject.getUserLoginInUcListProject);
-            //     //userNameLogin(UserName); 
-
-            //     fluentDesignFormContainerMain.Controls.Add(uc_ListProject);
-            //    uc_ListProject.BringToFront();
-            //}
-            //else
-            //{
-            //    uc_ListProject.BringToFront();
-            //}
-
-            if (uc_ListTask == null)
+            if (uc_ListProject == null)
             {
-                uc_ListTask = new uc_ListTask();
-                uc_ListTask.Dock = DockStyle.Fill;
-                userNameLogin userNameLogin = new userNameLogin(uc_ListTask.getUserLoginInUcListTask(UserName);
-                userNameLogin(UserName);
+                uc_ListProject = new uc_ListProject();
+                uc_ListProject.Dock = DockStyle.Fill;
+                userNameLogin userNameLogin = new userNameLogin(uc_ListProject.getUserLoginInUcListProject);
+                userNameLogin(UserLogin);
 
-                fluentDesignFormContainerMain.Controls.Add(uc_ListTask);
-                uc_ListTask.BringToFront();
+                fluentDesignFormContainerMain.Controls.Add(uc_ListProject);
+                uc_ListProject.BringToFront();
             }
             else
             {
-                uc_ListTask.BringToFront();
+                uc_ListProject.BringToFront();
             }
+
+            //if (uc_ListTask == null)
+            //{
+            //    uc_ListTask = new uc_ListTask();
+            //    uc_ListTask.Dock = DockStyle.Fill;
+            //    userNameLogin userNameLogin = new userNameLogin(uc_ListTask.getUserLoginInUcListTask);
+            //    userNameLogin(UserLogin);
+
+            //    fluentDesignFormContainerMain.Controls.Add(uc_ListTask);
+            //    uc_ListTask.BringToFront();
+            //}
+            //else
+            //{
+            //    uc_ListTask.BringToFront();
+            //}
         }
 
         private void fluentDesignFormControl1_Click(object sender, EventArgs e)

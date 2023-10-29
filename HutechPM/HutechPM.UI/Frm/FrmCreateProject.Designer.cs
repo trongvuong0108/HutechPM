@@ -30,7 +30,6 @@
         {
             label9 = new System.Windows.Forms.Label();
             label11 = new System.Windows.Forms.Label();
-            textBoxProjectMenbers = new System.Windows.Forms.TextBox();
             label15 = new System.Windows.Forms.Label();
             label8 = new System.Windows.Forms.Label();
             label6 = new System.Windows.Forms.Label();
@@ -48,8 +47,8 @@
             panelCreateProject1 = new System.Windows.Forms.Panel();
             label7 = new System.Windows.Forms.Label();
             panelCreateProject2 = new System.Windows.Forms.Panel();
+            checkedListBoxInviteUser = new System.Windows.Forms.CheckedListBox();
             label12 = new System.Windows.Forms.Label();
-            panelCreateHide = new System.Windows.Forms.Panel();
             pictureBox1 = new System.Windows.Forms.PictureBox();
             buttonExit = new System.Windows.Forms.Button();
             label3 = new System.Windows.Forms.Label();
@@ -72,20 +71,11 @@
             // 
             label11.AutoSize = true;
             label11.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label11.Location = new System.Drawing.Point(40, 229);
+            label11.Location = new System.Drawing.Point(40, 370);
             label11.Name = "label11";
             label11.Size = new System.Drawing.Size(497, 28);
             label11.TabIndex = 40;
             label11.Text = "This is the name of your company, team or organization";
-            // 
-            // textBoxProjectMenbers
-            // 
-            textBoxProjectMenbers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            textBoxProjectMenbers.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            textBoxProjectMenbers.Location = new System.Drawing.Point(40, 187);
-            textBoxProjectMenbers.Name = "textBoxProjectMenbers";
-            textBoxProjectMenbers.Size = new System.Drawing.Size(617, 39);
-            textBoxProjectMenbers.TabIndex = 34;
             // 
             // label15
             // 
@@ -179,7 +169,7 @@
             linkLabelLater.AutoSize = true;
             linkLabelLater.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             linkLabelLater.LinkColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            linkLabelLater.Location = new System.Drawing.Point(256, 395);
+            linkLabelLater.Location = new System.Drawing.Point(256, 536);
             linkLabelLater.Name = "linkLabelLater";
             linkLabelLater.Size = new System.Drawing.Size(172, 32);
             linkLabelLater.TabIndex = 44;
@@ -196,7 +186,7 @@
             buttonInvite.FlatAppearance.BorderSize = 0;
             buttonInvite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             buttonInvite.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            buttonInvite.Location = new System.Drawing.Point(40, 294);
+            buttonInvite.Location = new System.Drawing.Point(40, 435);
             buttonInvite.Name = "buttonInvite";
             buttonInvite.Size = new System.Drawing.Size(617, 72);
             buttonInvite.TabIndex = 43;
@@ -258,7 +248,7 @@
             panelCreateProject1.Controls.Add(textBoxProjectname);
             panelCreateProject1.Controls.Add(label2);
             panelCreateProject1.Controls.Add(label1);
-            panelCreateProject1.Location = new System.Drawing.Point(130, 137);
+            panelCreateProject1.Location = new System.Drawing.Point(135, 135);
             panelCreateProject1.Name = "panelCreateProject1";
             panelCreateProject1.Size = new System.Drawing.Size(700, 592);
             panelCreateProject1.TabIndex = 47;
@@ -278,20 +268,30 @@
             // 
             panelCreateProject2.Anchor = System.Windows.Forms.AnchorStyles.None;
             panelCreateProject2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            panelCreateProject2.Controls.Add(checkedListBoxInviteUser);
             panelCreateProject2.Controls.Add(label12);
             panelCreateProject2.Controls.Add(label10);
             panelCreateProject2.Controls.Add(linkLabelLater);
             panelCreateProject2.Controls.Add(buttonInvite);
             panelCreateProject2.Controls.Add(label9);
             panelCreateProject2.Controls.Add(label11);
-            panelCreateProject2.Controls.Add(textBoxProjectMenbers);
             panelCreateProject2.Controls.Add(label14);
             panelCreateProject2.Controls.Add(label15);
-            panelCreateProject2.Location = new System.Drawing.Point(130, 137);
+            panelCreateProject2.Location = new System.Drawing.Point(135, 135);
             panelCreateProject2.Name = "panelCreateProject2";
-            panelCreateProject2.Size = new System.Drawing.Size(700, 470);
+            panelCreateProject2.Size = new System.Drawing.Size(700, 592);
             panelCreateProject2.TabIndex = 48;
             panelCreateProject2.Paint += panelCreateProject2_Paint;
+            // 
+            // checkedListBoxInviteUser
+            // 
+            checkedListBoxInviteUser.CheckOnClick = true;
+            checkedListBoxInviteUser.FormattingEnabled = true;
+            checkedListBoxInviteUser.Location = new System.Drawing.Point(40, 190);
+            checkedListBoxInviteUser.Name = "checkedListBoxInviteUser";
+            checkedListBoxInviteUser.Size = new System.Drawing.Size(617, 172);
+            checkedListBoxInviteUser.TabIndex = 47;
+            checkedListBoxInviteUser.ItemCheck += checkedListBoxInviteUser_ItemCheck;
             // 
             // label12
             // 
@@ -302,13 +302,6 @@
             label12.Size = new System.Drawing.Size(89, 28);
             label12.TabIndex = 46;
             label12.Text = "Optional";
-            // 
-            // panelCreateHide
-            // 
-            panelCreateHide.Location = new System.Drawing.Point(82, 608);
-            panelCreateHide.Name = "panelCreateHide";
-            panelCreateHide.Size = new System.Drawing.Size(789, 142);
-            panelCreateHide.TabIndex = 49;
             // 
             // pictureBox1
             // 
@@ -347,14 +340,13 @@
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(920, 774);
+            ClientSize = new System.Drawing.Size(923, 774);
             Controls.Add(label3);
             Controls.Add(buttonExit);
             Controls.Add(pictureBox1);
             Controls.Add(panelCreateProject1);
             Controls.Add(label7);
             Controls.Add(panelCreateProject2);
-            Controls.Add(panelCreateHide);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             MinimizeBox = false;
             Name = "FrmCreateProject";
@@ -374,7 +366,6 @@
 
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBoxProjectMenbers;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label6;
@@ -392,10 +383,10 @@
         private System.Windows.Forms.Panel panelCreateProject1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panelCreateProject2;
-        private System.Windows.Forms.Panel panelCreateHide;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button buttonExit;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.CheckedListBox checkedListBoxInviteUser;
     }
 }

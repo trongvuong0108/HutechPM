@@ -20,7 +20,7 @@ namespace HutechNote.UI
 
             var services = new ServiceCollection();
             services.AddApplication();
-            Application.Run(new FrmMain());
+            Application.Run(new FrmLogin());
         }
     }
 }

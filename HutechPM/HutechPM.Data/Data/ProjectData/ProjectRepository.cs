@@ -38,7 +38,7 @@ namespace HutechPM.Data.Data.ProjectData
                 try
                 {
                     await _dbContext.projects.AddAsync(project);
-                    await _dbContext.SaveChangesAsync();
+                     _dbContext.SaveChanges();
                     return new ActionBaseResult() { Success = true, Message = "Add project Successful" };
                 }
                 catch (Exception e)

@@ -59,6 +59,7 @@ namespace HutechNote.Data.Data.ProjectData
         public async Task<ActionBaseResult> AddProject(Project project)
         {
             return await projectRepository.AddProject(project);
+
         }
 
     }

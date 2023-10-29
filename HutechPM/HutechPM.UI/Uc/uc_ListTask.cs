@@ -1,4 +1,5 @@
-﻿using HutechNote.Data.Data.ProjectData;
+﻿using DevExpress.XtraGrid.Views.Grid;
+using HutechNote.Data.Data.ProjectData;
 using HutechPM.Data.Common;
 using HutechPM.Data.Data.ProjectData.DTO;
 using HutechPM.Data.Data.ProjectDetailData;
@@ -36,14 +37,17 @@ namespace HutechPM.UI.Uc
             projectTaskService = new ProjectTaskService(_dbContext);
             projectDetailService = new ProjectDetailService(_dbContext);
         }
-        public projectRole userNameProjectRole { get; set; }
-        public User UserName { get; set; }
-        public void getUserLoginInUcListTask(User userName)
+        public projectRole userProjectRole { get; set; }
+        public User UserLogin { get; set; }
+
+        public void getUserLoginInUcListTask(User userlogin)
         {
-            this.UserName = userName;
+            this.UserLogin = userlogin;
         }
         private async void uc_ListTask_Load(object sender, EventArgs e)
         {
+            ListProject = await projectService.getAllProject();
+
             ListProjectTask = await projectTaskService.getAllProjectTask();
             BindingSource bindingSourceProject = new BindingSource();
             bindingSourceProject.DataSource = ListProjectTask;
@@ -53,12 +57,10 @@ namespace HutechPM.UI.Uc
             ItemButtonDelete.Click += ItemButtonDelete_Click;
             ItemButtonuploadFile.Click += ItemButtonuploadFile_Click;
         }
-        
-
         private void ItemButtonUpdate_Click(object sender, EventArgs e)
         {
             string projectTaskid = gridViewTask.GetFocusedRowCellValue("projectTaskid").ToString();
-            string projectRole = null;
+
             string projectName = gridViewTask.GetFocusedRowCellValue("projectDetail.project.projectName").ToString();
             string taskName = gridViewTask.GetFocusedRowCellValue("name").ToString();
             string description;
@@ -74,7 +76,7 @@ namespace HutechPM.UI.Uc
             string estimate = gridViewTask.GetFocusedRowCellValue("estimate").ToString();
             string remaining = gridViewTask.GetFocusedRowCellValue("remaining").ToString();
             string status = gridViewTask.GetFocusedRowCellValue("taskStatus").ToString();
-            using (FrmTask frmTask = new FrmTask(projectName, projectRole, projectTaskid, taskName, description, owner, estimate, remaining, status))
+            using (FrmTask frmTask = new FrmTask(projectName, userProjectRole, projectTaskid, taskName, description, owner, estimate, remaining, status))
             {
                 if (frmTask.ShowDialog() == DialogResult.OK)
                 {
@@ -94,21 +96,25 @@ namespace HutechPM.UI.Uc
         }
 
 
-        private void buttonCreate_Click(object sender, EventArgs e)
+        private async void buttonCreate_Click(object sender, EventArgs e)
         {
             string projectName = null;
-            foreach()
-            string projectRole = null;
+            foreach (ProjectDetail projectDetail in await projectDetailService.getAllProjectDetail())
+            {
+                if (projectDetail.user.userId == UserLogin.userId)
+                {
+                    userProjectRole = projectDetail.projectRole;
+                }
+            }
             string projectTaskid = null;
             string taskName = null;
             string description = null;
-            string owner = null;
+            string owner = UserLogin.userName;
             string estimate = null;
             string remaining = null;
             string status = "In_Process";
-            FrmTask frmTask = new FrmTask(projectName, projectRole,projectTaskid, taskName, description, owner, estimate, remaining, status);
+            FrmTask frmTask = new FrmTask(projectName, userProjectRole, projectTaskid, taskName, description, owner, estimate, remaining, status);
             frmTask.Show();
-
         }
 
 
@@ -117,6 +123,15 @@ namespace HutechPM.UI.Uc
 
         }
 
+        private void gridView1_MasterRowEmpty(object sender, MasterRowEmptyEventArgs e)
+        {
+            GridView view = sender as GridView;
+            Project project = view.GetRow(e.RowHandle) as Project;
+            if (project != null)
+            {
+                e.IsEmpty = !ListProjectTask.Any(p => p.projectDetail.project.projectId == project.projectId);
+            }
+        }
 
     }
 }
