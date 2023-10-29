@@ -49,7 +49,7 @@ namespace HutechPM.UI.Frm
             MessageBox.Show(UserName);
         }
 
-        private void buttonContinue_Click(object sender, EventArgs e)
+        private async void buttonContinue_Click(object sender, EventArgs e)
         {
             panelCreateProject2.BringToFront();
             panelCreateHide.BringToFront();
@@ -72,7 +72,7 @@ namespace HutechPM.UI.Frm
             using (HutechNoteDbContext _dbContext = new HutechNoteDbContext())
             {
                 UserService userService = new UserService(_dbContext);
-                var users = userService.GetAllUsers();
+                var users = await userService.GetAllUsers();
                 foreach (User user in users)
                 {
                     if(user.userName == UserName)
@@ -97,7 +97,7 @@ namespace HutechPM.UI.Frm
 
             projectDetailService.AddProjectDetail(projectDetail);
         }
-        private void buttonInvite_Click(object sender, EventArgs e)
+        private async void buttonInvite_Click(object sender, EventArgs e)
         {
             ProjectDetail projectDetail = new ProjectDetail();
             projectDetail.projectDetailId = new Guid();
@@ -115,7 +115,7 @@ namespace HutechPM.UI.Frm
             projectDetail.timeJoin = DateTime.Now;
             projectDetail.timeLeft = DateTime.Now;
             projectDetail.projectRole = projectRole.ProjectMember;
-            foreach (Data.Entities.Project project in projectService.getAllProject())
+            foreach (Data.Entities.Project project in await projectService.getAllProject())
             {
                 if (project.projectName == textBoxProjectname.Text)
                 {

@@ -23,25 +23,26 @@ namespace HutechNote.Data.Data.ProjectData
             this.projectRepository = new ProjectRepository(_dbContext);
         }
 
-        public List<Project> getAllProject()
+        public async Task<List<Project>> getAllProject()
         {
-            return projectRepository.GetProject();
+            return await projectRepository.GetProject();
         }
-        public List<ProjectDTO> getAllProjectsDTO()
+        public async Task<List<ProjectDTO>> getAllProjectsDTO()
         {
             List<ProjectDTO> ProjectDTOs = new List<ProjectDTO>();
-            foreach (Project project in projectRepository.GetProject())
+            List<Project> projects = await projectRepository.GetProject();
+            foreach (Project project in projects)
             {
                 ProjectDTO projectDTO = new ProjectDTO();
                 projectDTO.projectName = project.projectName;
-                ProjectDetail findUserRole = projectRepository.findProjectOfOwner(project);
+                ProjectDetail findUserRole = await projectRepository.findProjectOfOwner(project);
                 if (findUserRole != null)
                 {
                     projectDTO.owner = findUserRole.user.userName;
                 }
                 projectDTO.dateStart = project.dateStart;
                 int count = 0;
-                foreach (ProjectTask projectTask in projectRepository.GetProjectTask())
+                foreach (ProjectTask projectTask in await projectRepository.GetProjectTask())
                 {
                     if (projectTask.projectDetail.project.projectId == project.projectId)
                     {
@@ -55,10 +56,9 @@ namespace HutechNote.Data.Data.ProjectData
             return ProjectDTOs;
 
         }
-        public void AddProject(Project project)
+        public async Task<ActionBaseResult> AddProject(Project project)
         {
-            projectRepository.AddProject(project);
-            projectRepository.SaveChanges();
+            return await projectRepository.AddProject(project);
         }
 
     }

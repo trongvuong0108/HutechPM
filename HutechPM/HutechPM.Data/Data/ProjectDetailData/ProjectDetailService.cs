@@ -21,11 +21,9 @@ namespace HutechPM.Data.Data.ProjectDetailData
         {
             return projectDetailRepository.getAllProjectDetail();
         }
-        public void AddProjectDetail(ProjectDetail projectDetail)
+        public async Task<ActionBaseResult> AddProjectDetail(ProjectDetail projectDetail)
         {
-            projectDetailRepository.AddProjectDetail(projectDetail);
-            projectDetailRepository.SaveChanges();
+            return await projectDetailRepository.AddProjectDetail(projectDetail);
         }
-    
     }
 }

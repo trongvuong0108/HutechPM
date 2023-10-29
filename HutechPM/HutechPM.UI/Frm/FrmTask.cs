@@ -85,7 +85,7 @@ namespace HutechPM.UI.Frm
             listTaskStatus.Add(ProjectTask.TaskStatus.Completed);
             listTaskStatus.Add(ProjectTask.TaskStatus.On_Hold);
         }
-        private void listComboBoxOwner()
+        private async void listComboBoxOwner()
         {
             foreach(ProjectDetail projectDetail in projectDetailService.getAllProjectDetail())
             {
@@ -106,7 +106,7 @@ namespace HutechPM.UI.Frm
             comboBoxStatus.Items.Add(ProjectTask.TaskStatus.On_Hold);
 
         }
-        private void listComboBoxProjectName()
+        private async void listComboBoxProjectName()
         {
             foreach (ProjectDetail projectDetail in projectDetailService.getAllProjectDetail())
             {
@@ -125,13 +125,14 @@ namespace HutechPM.UI.Frm
         {
             this.Close();
         }
-        private void buttonSave_Click(object sender, EventArgs e)
+
+        private async void buttonSave_Click(object sender, EventArgs e)
         {
 
             if (projectTaskId != null)
             {
                 Guid guidprojectTaskId = new Guid(projectTaskId);
-                ProjectTask projectTask = projectTaskService.findProjectTaskId(guidprojectTaskId);
+                ProjectTask projectTask = await projectTaskService.findProjectTaskId(guidprojectTaskId);
                 projectTask.name = textBoxTaskName.Text;
                 projectTask.description = textBoxDescription.Text;
                 projectTask.estimate = int.Parse(textBoxEstimate.Text);
@@ -150,14 +151,14 @@ namespace HutechPM.UI.Frm
             {/*
                 ProjectDetail projectDetail = new ProjectDetail();
                 projectDetail.projectDetailId = Guid.NewGuid();
-                foreach (Data.Entities.User user in userService.GetAllUsers())
+                foreach (Data.Entities.User user in await userService.GetAllUsers())
                 {
                     user.userName = comboBoxOwner.Text;
                     projectDetail.user_id = user.userId;
                 }
                 projectDetail.timeJoin = DateTime.Now;
                 projectDetail.timeLeft = DateTime.Now;
-                foreach (Project project in projectService.getAllProject())
+                foreach (Project project in await projectService.getAllProject())
                 {
                     if (project.projectName == comboBoxProjectName.Text)
                     {

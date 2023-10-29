@@ -36,9 +36,14 @@ namespace HutechPM.UI.Uc
             projectTaskService = new ProjectTaskService(_dbContext);
             projectDetailService = new ProjectDetailService(_dbContext);
         }
-        private void uc_ListTask_Load(object sender, EventArgs e)
+        public string userNameLogin { get; set; }
+        public void getUserLoginInUcListProject(string userNameLogin)
         {
-            ListProjectTask = projectTaskService.getAllProjectTask();
+            this.userNameLogin = userNameLogin;
+        }
+        private async void uc_ListTask_Load(object sender, EventArgs e)
+        {
+            ListProjectTask = await projectTaskService.getAllProjectTask();
             BindingSource bindingSourceProject = new BindingSource();
             bindingSourceProject.DataSource = ListProjectTask;
             gridControlGridTask.DataSource = bindingSourceProject;
