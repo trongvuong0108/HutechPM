@@ -36,11 +36,6 @@ namespace HutechPM.UI.Uc
             projectTaskService = new ProjectTaskService(_dbContext);
             projectDetailService = new ProjectDetailService(_dbContext);
         }
-        public string userNameLogin { get; set; }
-        public void getUserLoginInUcListProject(string userNameLogin)
-        {
-            this.userNameLogin = userNameLogin;
-        }
         private void uc_ListTask_Load(object sender, EventArgs e)
         {
             ListProjectTask = projectTaskService.getAllProjectTask();
@@ -58,6 +53,7 @@ namespace HutechPM.UI.Uc
         {
             string projectTaskid = gridViewTask.GetFocusedRowCellValue("projectTaskid").ToString();
             string projectName = gridViewTask.GetFocusedRowCellValue("projectDetail.project.projectName").ToString();
+            string projectRole = gridViewTask.GetFocusedRowCellValue("projectDetail.projectRole").ToString();
             string taskName = gridViewTask.GetFocusedRowCellValue("name").ToString();
             string description;
             if (gridViewTask.GetFocusedRowCellValue("description") == null)
@@ -72,7 +68,7 @@ namespace HutechPM.UI.Uc
             string estimate = gridViewTask.GetFocusedRowCellValue("estimate").ToString();
             string remaining = gridViewTask.GetFocusedRowCellValue("remaining").ToString();
             string status = gridViewTask.GetFocusedRowCellValue("taskStatus").ToString();
-            using (FrmTask frmTask = new FrmTask(projectName, projectTaskid, taskName, description, owner, estimate, remaining, status))
+            using (FrmTask frmTask = new FrmTask(projectName, projectRole, projectTaskid, taskName, description, owner, estimate, remaining, status))
             {
                 if (frmTask.ShowDialog() == DialogResult.OK)
                 {
@@ -94,16 +90,16 @@ namespace HutechPM.UI.Uc
 
         private void buttonCreate_Click(object sender, EventArgs e)
         {
-            string projectName = "";
-            string projectTaskid ="";
-            string taskName = "";
-            string description = "";
-           // userNameLogin = "admin";
-            string owner = "admin";
-            string estimate = "";
-            string remaining = "";
+            string projectName = null;
+            string projectRole = null;
+            string projectTaskid = null;
+            string taskName = null;
+            string description = null;
+            string owner = null;
+            string estimate = null;
+            string remaining = null;
             string status = "In_Process";
-            FrmTask frmTask = new FrmTask(projectName, projectTaskid, taskName, description, owner, estimate, remaining, status);
+            FrmTask frmTask = new FrmTask(projectName, projectRole,projectTaskid, taskName, description, owner, estimate, remaining, status);
             frmTask.Show();
 
         }

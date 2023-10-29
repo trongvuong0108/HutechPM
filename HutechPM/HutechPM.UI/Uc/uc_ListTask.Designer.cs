@@ -65,6 +65,7 @@
             projectTaskBindingSource = new System.Windows.Forms.BindingSource(components);
             buttonSelectDelete = new System.Windows.Forms.Button();
             buttonCreate = new System.Windows.Forms.Button();
+            projectRole = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)ItemButtonUpdate).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ItemButtonDelete).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ItemButtonuploadFile).BeginInit();
@@ -116,7 +117,7 @@
             // 
             // gridViewTask
             // 
-            gridViewTask.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { projectName, taskName, owner, description, estimate, remaining, taskStatus, update, delete, uploadFile, taskId });
+            gridViewTask.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { projectName, taskName, owner, description, estimate, remaining, taskStatus, update, delete, uploadFile, taskId, projectRole });
             gridViewTask.GridControl = gridControlGridTask;
             gridViewTask.Name = "gridViewTask";
             gridViewTask.OptionsFind.AlwaysVisible = true;
@@ -264,6 +265,14 @@
             buttonCreate.UseVisualStyleBackColor = false;
             buttonCreate.Click += buttonCreate_Click;
             // 
+            // projectRole
+            // 
+            projectRole.Caption = "ProjectRole";
+            projectRole.FieldName = "projectDetail.projectRole";
+            projectRole.MinWidth = 30;
+            projectRole.Name = "projectRole";
+            projectRole.Width = 112;
+            // 
             // uc_ListTask
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -307,5 +316,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit ItemButtonDelete;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit ItemButtonuploadFile;
         private DevExpress.XtraGrid.Columns.GridColumn taskId;
+        private DevExpress.XtraGrid.Columns.GridColumn projectRole;
     }
 }

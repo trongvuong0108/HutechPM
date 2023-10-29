@@ -18,6 +18,7 @@ using static DevExpress.XtraEditors.Mask.MaskSettings;
 using HutechNote.Data.Data.ProjectData;
 using HutechPM.UI.Uc;
 using HutechPM.Data.Data.ProjectDetailData;
+using DevExpress.DataProcessing.InMemoryDataProcessor;
 
 namespace HutechPM.UI.Frm
 {
@@ -33,6 +34,7 @@ namespace HutechPM.UI.Frm
 
         }
         public string ProjectName { get; set; }
+        public string ProjectRole { get; set; }
         public string projectTaskId { get; set; }
         public string TaskName { get; set; }
         public string Description { get; set; }
@@ -40,7 +42,7 @@ namespace HutechPM.UI.Frm
         public string Estimate { get; set; }
         public string Remaining { get; set; }
         public string Status { get; set; }
-        public FrmTask(string projectName, string projectTaskId, string taskName, string description, string owner, string estimate, string remaining, string status)
+        public FrmTask(string projectName, string ProjectRole, string projectTaskId, string taskName, string description, string owner, string estimate, string remaining, string status)
         {
             InitializeComponent();
             _dbContext = new HutechNoteDbContext();
@@ -49,6 +51,7 @@ namespace HutechPM.UI.Frm
             projectDetailService = new ProjectDetailService(_dbContext);
             projectTaskService = new ProjectTaskService(_dbContext);
             this.ProjectName = projectName;
+            this.ProjectRole = ProjectRole;
             this.projectTaskId = projectTaskId;
             this.TaskName = taskName;
             this.Description = description;
@@ -60,6 +63,14 @@ namespace HutechPM.UI.Frm
         }
         private void FrmTask_Load(object sender, EventArgs e)
         {
+            if(projectTaskId != null)
+            {
+                comboBoxProjectName.Enabled = false;
+            }
+            else
+            {
+                comboBoxProjectName.Enabled = true;
+            }
             listComboBoxOwner();
             listComboBoxStatus();
             listComboBoxProjectName();
@@ -76,10 +87,13 @@ namespace HutechPM.UI.Frm
         }
         private void listComboBoxOwner()
         {
-            List<Data.Entities.User> users = userService.GetAllUsers();
-            this.comboBoxOwner.DataSource = users;
-            this.comboBoxOwner.DisplayMember = "userName";
-            this.comboBoxOwner.ValueMember = "userId";
+            foreach(ProjectDetail projectDetail in projectDetailService.getAllProjectDetail())
+            {
+                if(projectDetail.project.projectName == ProjectName)
+                {
+                    this.comboBoxOwner.Items.Add(projectDetail.user.userName);
+                }
+            }
         }
         List<ProjectTask.TaskStatus> listTaskStatus = new List<ProjectTask.TaskStatus>();
 
@@ -94,21 +108,27 @@ namespace HutechPM.UI.Frm
         }
         private void listComboBoxProjectName()
         {
-            List<Project> projectName = projectService.getAllProject();
+            foreach (ProjectDetail projectDetail in projectDetailService.getAllProjectDetail())
+            {
+                if (projectDetail.user.userName == Owner)
+                {
+                    this.comboBoxOwner.Items.Add(projectDetail.project.projectName);
+                }
+            }
+            /*List<Data.Entities.Project> projectName = projectService.getAllProject();
             this.comboBoxProjectName.DataSource = projectName;
             this.comboBoxProjectName.DisplayMember = "projectName";
-            this.comboBoxProjectName.ValueMember = "projectId";
+            this.comboBoxProjectName.ValueMember = "projectId";*/
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void buttonSave_Click(object sender, EventArgs e)
         {
 
-            if (projectTaskId != "")
+            if (projectTaskId != null)
             {
                 Guid guidprojectTaskId = new Guid(projectTaskId);
                 ProjectTask projectTask = projectTaskService.findProjectTaskId(guidprojectTaskId);
@@ -127,7 +147,7 @@ namespace HutechPM.UI.Frm
                 MessageBox.Show("update thanh cong");
             }
             else
-            {
+            {/*
                 ProjectDetail projectDetail = new ProjectDetail();
                 projectDetail.projectDetailId = Guid.NewGuid();
                 foreach (Data.Entities.User user in userService.GetAllUsers())
@@ -144,7 +164,7 @@ namespace HutechPM.UI.Frm
                         projectDetail.project = project;
                     }
                 }
-                projectDetailService.AddProjectDetail(projectDetail);
+                projectDetailService.AddProjectDetail(projectDetail);*/
 
                 ProjectTask projectTask = new ProjectTask();
                 projectTask.projectTaskid = Guid.NewGuid();
@@ -159,7 +179,13 @@ namespace HutechPM.UI.Frm
                         projectTask.taskStatus = task;
                     }
                 }
-                projectTask.projectDetail = projectDetail;
+                foreach(ProjectDetail projectDetail in projectDetailService.getAllProjectDetail())
+                {
+                    if(projectDetail.user.userName == Owner && projectDetail.project.projectName == ProjectName)
+                    {
+                        projectTask.projectDetail = projectDetail;
+                    }
+                }
                 projectTaskService.AddProjectTask(projectTask);
             }
         }

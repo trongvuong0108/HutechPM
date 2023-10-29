@@ -38,7 +38,7 @@ namespace HutechNote.UI.Frm
             accordionControlElement4 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             accordionControlElementTasks = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            accordionControlElement3 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            accordionControlElementEmployees = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
             barLargeButtonItem1 = new BarLargeButtonItem();
             barButtonItem1 = new BarButtonItem();
@@ -47,6 +47,10 @@ namespace HutechNote.UI.Frm
             accordionControlElement5 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             accordionControlElementProject = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             accordionControlElement6 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            accordionControlElementAccount = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            accordionControlElementMyprofile = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            accordionControlElementChangePassword = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            accordionControlElementLogout = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             ((System.ComponentModel.ISupportInitialize)accordionControl1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)fluentDesignFormControl1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)fluentFormDefaultManager1).BeginInit();
@@ -55,32 +59,32 @@ namespace HutechNote.UI.Frm
             // fluentDesignFormContainerMain
             // 
             fluentDesignFormContainerMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            fluentDesignFormContainerMain.Location = new Point(263, 46);
+            fluentDesignFormContainerMain.Location = new Point(257, 46);
             fluentDesignFormContainerMain.Name = "fluentDesignFormContainerMain";
-            fluentDesignFormContainerMain.Size = new Size(1335, 853);
+            fluentDesignFormContainerMain.Size = new Size(1341, 853);
             fluentDesignFormContainerMain.TabIndex = 0;
             fluentDesignFormContainerMain.Click += fluentDesignFormContainerMain_Click;
             // 
             // accordionControl1
             // 
             accordionControl1.Dock = System.Windows.Forms.DockStyle.Left;
-            accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { accordionControlElement4, accordionControlElement1, accordionControlElementTasks, accordionControlElement3 });
+            accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { accordionControlElement4, accordionControlElement1, accordionControlElementTasks, accordionControlElementEmployees, accordionControlElementAccount });
             accordionControl1.Location = new Point(0, 46);
             accordionControl1.Name = "accordionControl1";
             accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
-            accordionControl1.Size = new Size(263, 853);
+            accordionControl1.Size = new Size(257, 853);
             accordionControl1.TabIndex = 1;
             accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 
             // accordionControlElement4
             // 
-            accordionControlElement4.Expanded = true;
             accordionControlElement4.ImageOptions.Image = (Image)resources.GetObject("accordionControlElement4.ImageOptions.Image");
             accordionControlElement4.Name = "accordionControlElement4";
             accordionControlElement4.Text = "Home";
             // 
             // accordionControlElement1
             // 
+            accordionControlElement1.Expanded = true;
             accordionControlElement1.ImageOptions.Image = (Image)resources.GetObject("accordionControlElement1.ImageOptions.Image");
             accordionControlElement1.Name = "accordionControlElement1";
             accordionControlElement1.Text = "Project";
@@ -91,11 +95,12 @@ namespace HutechNote.UI.Frm
             accordionControlElementTasks.Name = "accordionControlElementTasks";
             accordionControlElementTasks.Text = "Tasks";
             // 
-            // accordionControlElement3
+            // accordionControlElementEmployees
             // 
-            accordionControlElement3.ImageOptions.Image = (Image)resources.GetObject("accordionControlElement3.ImageOptions.Image");
-            accordionControlElement3.Name = "accordionControlElement3";
-            accordionControlElement3.Text = "User";
+            accordionControlElementEmployees.Expanded = true;
+            accordionControlElementEmployees.ImageOptions.Image = (Image)resources.GetObject("accordionControlElement3.ImageOptions.Image");
+            accordionControlElementEmployees.Name = "accordionControlElementEmployees";
+            accordionControlElementEmployees.Text = "Employees";
             // 
             // fluentDesignFormControl1
             // 
@@ -154,6 +159,32 @@ namespace HutechNote.UI.Frm
             accordionControlElement6.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             accordionControlElement6.Text = "Element";
             // 
+            // accordionControlElementAccount
+            // 
+            accordionControlElementAccount.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { accordionControlElementMyprofile, accordionControlElementChangePassword, accordionControlElementLogout });
+            accordionControlElementAccount.Expanded = true;
+            accordionControlElementAccount.ImageOptions.Image = (Image)resources.GetObject("accordionControlElementAccount.ImageOptions.Image");
+            accordionControlElementAccount.Name = "accordionControlElementAccount";
+            accordionControlElementAccount.Text = "Account";
+            // 
+            // accordionControlElementMyprofile
+            // 
+            accordionControlElementMyprofile.Name = "accordionControlElementMyprofile";
+            accordionControlElementMyprofile.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            accordionControlElementMyprofile.Text = "My Profile";
+            // 
+            // accordionControlElementChangePassword
+            // 
+            accordionControlElementChangePassword.Name = "accordionControlElementChangePassword";
+            accordionControlElementChangePassword.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            accordionControlElementChangePassword.Text = "Change Password";
+            // 
+            // accordionControlElementLogout
+            // 
+            accordionControlElementLogout.Name = "accordionControlElementLogout";
+            accordionControlElementLogout.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            accordionControlElementLogout.Text = "Log out";
+            // 
             // FrmMain
             // 
             Appearance.Options.UseFont = true;
@@ -186,7 +217,7 @@ namespace HutechNote.UI.Frm
         private DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl fluentDesignFormControl1;
         private DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager fluentFormDefaultManager1;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement2;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement3;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElementEmployees;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement4;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement5;
         private BarLargeButtonItem barLargeButtonItem1;
@@ -195,6 +226,10 @@ namespace HutechNote.UI.Frm
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElementProject;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement6;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElementTasks;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElementAccount;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElementMyprofile;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElementChangePassword;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElementLogout;
     }
 }
 
