@@ -16,27 +16,37 @@ using HutechPM.Data.UserData;
 using HutechPM.Data.Common;
 using DevExpress.XtraEditors;
 using Microsoft.EntityFrameworkCore;
+using HutechNote.UI.Frm;
 
 namespace HutechPM.UI.Frm
 {
     public partial class FrmCreateProject : Form
     {
-        HutechNoteDbContext dbContext;
+        HutechNoteDbContext _dbContext;
         ProjectService projectService;
         ProjectDetailService projectDetailService;
+        UserService userService;
         public FrmCreateProject()
         {
             InitializeComponent();
-            dbContext = new HutechNoteDbContext();
-            projectService = new ProjectService(dbContext);
-            projectDetailService = new ProjectDetailService(dbContext);
+
+        }
+        public string UserName { set; get; }
+        public FrmCreateProject(string userName)
+        {
+            InitializeComponent();
+            _dbContext = new HutechNoteDbContext();
+            projectService = new ProjectService(_dbContext);
+            projectDetailService = new ProjectDetailService(_dbContext);
+            userService = new UserService(_dbContext);
+            this.UserName = userName;
         }
 
         //SingleTon design pattern -> Dependency Injection
-         
+       
         private void FrmCreateProject_Load(object sender, EventArgs e)
         {
-
+            MessageBox.Show(UserName);
         }
 
         private void buttonContinue_Click(object sender, EventArgs e)
@@ -47,6 +57,7 @@ namespace HutechPM.UI.Frm
             Data.Entities.Project project = new Data.Entities.Project();
             project.projectId = Guid.NewGuid();
             project.projectName = textBoxProjectname.Text;
+            
             project.description = textBoxDescription.Text;
             project.dateStart = DateTime.Now;
             project.isActive = true;
@@ -56,12 +67,20 @@ namespace HutechPM.UI.Frm
             ProjectDetail projectDetail = new ProjectDetail();
             projectDetail.projectDetailId = Guid.NewGuid();
             projectDetail.project = project;
-            Guid guiduser = new Guid("d639a5b0-3946-45ee-bfa7-fc52deb8821a");
+
+            Guid userIdLogin = Guid.NewGuid();
             using (HutechNoteDbContext _dbContext = new HutechNoteDbContext())
             {
                 UserService userService = new UserService(_dbContext);
                 var users = userService.GetAllUsers();
-                User userNeedFind = users.Where(user => user.userId.ToString().Equals(guiduser.ToString(), StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+                foreach (User user in users)
+                {
+                    if(user.userName == UserName)
+                    {
+                        userIdLogin = user.userId;
+                    }
+                }
+                User userNeedFind = users.Where(user => user.userId.ToString().Equals(userIdLogin.ToString(), StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
                 if (userNeedFind != null)
                 {
                     projectDetail.user_id = userNeedFind.userId;
@@ -71,10 +90,11 @@ namespace HutechPM.UI.Frm
                     XtraMessageBox.Show("Dell tạo dc condilon oi");
                 }
             }
+
             projectDetail.timeJoin = DateTime.Now;
             projectDetail.timeLeft = DateTime.Now;
-            projectDetail.projectRole = projectRole.ProjectMember;
-            
+            projectDetail.projectRole = projectRole.ProjectManager;
+
             projectDetailService.AddProjectDetail(projectDetail);
         }
         private void buttonInvite_Click(object sender, EventArgs e)
@@ -95,9 +115,9 @@ namespace HutechPM.UI.Frm
             projectDetail.timeJoin = DateTime.Now;
             projectDetail.timeLeft = DateTime.Now;
             projectDetail.projectRole = projectRole.ProjectMember;
-            foreach(Data.Entities.Project project in projectService.getAllProject())
+            foreach (Data.Entities.Project project in projectService.getAllProject())
             {
-                if(project.projectName == textBoxProjectname.Text)
+                if (project.projectName == textBoxProjectname.Text)
                 {
                     projectDetail.project.projectId = project.projectId;
                 }

@@ -24,5 +24,6 @@ namespace HutechPM.Data.Data.ProjectDetailData
         }
         
 
+
     }
 }

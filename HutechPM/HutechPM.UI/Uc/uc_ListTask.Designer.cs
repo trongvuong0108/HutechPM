@@ -45,10 +45,12 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
+            ItemButtonUpdate = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            ItemButtonDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            ItemButtonuploadFile = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             gridControlGridTask = new DevExpress.XtraGrid.GridControl();
-            gridViewTask = new DevExpress.XtraGrid.Views.Grid.GridView();
-            projectTaskBindingSource = new System.Windows.Forms.BindingSource(components);
             projectTaskBindingSource1 = new System.Windows.Forms.BindingSource(components);
+            gridViewTask = new DevExpress.XtraGrid.Views.Grid.GridView();
             projectName = new DevExpress.XtraGrid.Columns.GridColumn();
             taskName = new DevExpress.XtraGrid.Columns.GridColumn();
             owner = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -59,43 +61,65 @@
             update = new DevExpress.XtraGrid.Columns.GridColumn();
             delete = new DevExpress.XtraGrid.Columns.GridColumn();
             uploadFile = new DevExpress.XtraGrid.Columns.GridColumn();
-            ItemButtonUpdate = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            ItemButtonDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            ItemButtonuploadFile = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            ((System.ComponentModel.ISupportInitialize)gridControlGridTask).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)gridViewTask).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)projectTaskBindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)projectTaskBindingSource1).BeginInit();
+            taskId = new DevExpress.XtraGrid.Columns.GridColumn();
+            projectTaskBindingSource = new System.Windows.Forms.BindingSource(components);
+            buttonSelectDelete = new System.Windows.Forms.Button();
+            buttonCreate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)ItemButtonUpdate).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ItemButtonDelete).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ItemButtonuploadFile).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridControlGridTask).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)projectTaskBindingSource1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridViewTask).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)projectTaskBindingSource).BeginInit();
             SuspendLayout();
+            // 
+            // ItemButtonUpdate
+            // 
+            ItemButtonUpdate.AutoHeight = false;
+            editorButtonImageOptions1.Image = (System.Drawing.Image)resources.GetObject("editorButtonImageOptions1.Image");
+            ItemButtonUpdate.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default) });
+            ItemButtonUpdate.Name = "ItemButtonUpdate";
+            ItemButtonUpdate.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            // 
+            // ItemButtonDelete
+            // 
+            ItemButtonDelete.AutoHeight = false;
+            editorButtonImageOptions2.Image = (System.Drawing.Image)resources.GetObject("editorButtonImageOptions2.Image");
+            ItemButtonDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default) });
+            ItemButtonDelete.Name = "ItemButtonDelete";
+            ItemButtonDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            // 
+            // ItemButtonuploadFile
+            // 
+            ItemButtonuploadFile.AutoHeight = false;
+            editorButtonImageOptions3.Image = (System.Drawing.Image)resources.GetObject("editorButtonImageOptions3.Image");
+            ItemButtonuploadFile.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default) });
+            ItemButtonuploadFile.Name = "ItemButtonuploadFile";
+            ItemButtonuploadFile.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
             // gridControlGridTask
             // 
-            gridControlGridTask.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            gridControlGridTask.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             gridControlGridTask.DataSource = projectTaskBindingSource1;
-            gridControlGridTask.Location = new System.Drawing.Point(3, 67);
+            gridControlGridTask.Location = new System.Drawing.Point(0, 153);
             gridControlGridTask.MainView = gridViewTask;
             gridControlGridTask.Name = "gridControlGridTask";
-            gridControlGridTask.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { ItemButtonUpdate, ItemButtonDelete, ItemButtonuploadFile });
-            gridControlGridTask.Size = new System.Drawing.Size(1427, 712);
+            gridControlGridTask.Size = new System.Drawing.Size(1383, 475);
             gridControlGridTask.TabIndex = 0;
             gridControlGridTask.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridViewTask });
-            // 
-            // gridViewTask
-            // 
-            gridViewTask.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { projectName, taskName, owner, description, estimate, remaining, taskStatus, update, delete, uploadFile });
-            gridViewTask.GridControl = gridControlGridTask;
-            gridViewTask.Name = "gridViewTask";
-            // 
-            // projectTaskBindingSource
-            // 
-            projectTaskBindingSource.DataSource = typeof(Data.Entities.ProjectTask);
+            gridControlGridTask.Click += gridControlGridTask_Click;
             // 
             // projectTaskBindingSource1
             // 
             projectTaskBindingSource1.DataSource = typeof(Data.Entities.ProjectTask);
+            // 
+            // gridViewTask
+            // 
+            gridViewTask.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { projectName, taskName, owner, description, estimate, remaining, taskStatus, update, delete, uploadFile, taskId });
+            gridViewTask.GridControl = gridControlGridTask;
+            gridViewTask.Name = "gridViewTask";
+            gridViewTask.OptionsFind.AlwaysVisible = true;
             // 
             // projectName
             // 
@@ -198,46 +222,67 @@
             uploadFile.VisibleIndex = 9;
             uploadFile.Width = 50;
             // 
-            // ItemButtonUpdate
+            // taskId
             // 
-            ItemButtonUpdate.AutoHeight = false;
-            editorButtonImageOptions1.Image = (System.Drawing.Image)resources.GetObject("editorButtonImageOptions1.Image");
-            ItemButtonUpdate.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default) });
-            ItemButtonUpdate.Name = "ItemButtonUpdate";
-            ItemButtonUpdate.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            taskId.Caption = "TaskId";
+            taskId.FieldName = "projectTaskid";
+            taskId.MinWidth = 30;
+            taskId.Name = "taskId";
+            taskId.Width = 112;
             // 
-            // ItemButtonDelete
+            // projectTaskBindingSource
             // 
-            ItemButtonDelete.AutoHeight = false;
-            editorButtonImageOptions2.Image = (System.Drawing.Image)resources.GetObject("editorButtonImageOptions2.Image");
-            ItemButtonDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default) });
-            ItemButtonDelete.Name = "ItemButtonDelete";
-            ItemButtonDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            projectTaskBindingSource.DataSource = typeof(Data.Entities.ProjectTask);
             // 
-            // ItemButtonuploadFile
+            // buttonSelectDelete
             // 
-            ItemButtonuploadFile.AutoHeight = false;
-            editorButtonImageOptions3.Image = (System.Drawing.Image)resources.GetObject("editorButtonImageOptions3.Image");
-            ItemButtonuploadFile.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default) });
-            ItemButtonuploadFile.Name = "ItemButtonuploadFile";
-            ItemButtonuploadFile.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            buttonSelectDelete.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            buttonSelectDelete.AutoSize = true;
+            buttonSelectDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            buttonSelectDelete.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            buttonSelectDelete.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
+            buttonSelectDelete.Location = new System.Drawing.Point(1179, 65);
+            buttonSelectDelete.Name = "buttonSelectDelete";
+            buttonSelectDelete.Size = new System.Drawing.Size(140, 50);
+            buttonSelectDelete.TabIndex = 3;
+            buttonSelectDelete.Text = "Delete";
+            buttonSelectDelete.UseVisualStyleBackColor = true;
+            // 
+            // buttonCreate
+            // 
+            buttonCreate.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            buttonCreate.AutoSize = true;
+            buttonCreate.BackColor = System.Drawing.Color.White;
+            buttonCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            buttonCreate.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            buttonCreate.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
+            buttonCreate.Location = new System.Drawing.Point(970, 65);
+            buttonCreate.Name = "buttonCreate";
+            buttonCreate.Size = new System.Drawing.Size(140, 50);
+            buttonCreate.TabIndex = 4;
+            buttonCreate.Text = "Create";
+            buttonCreate.UseVisualStyleBackColor = false;
+            buttonCreate.Click += buttonCreate_Click;
             // 
             // uc_ListTask
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            AutoSize = true;
+            Controls.Add(buttonCreate);
+            Controls.Add(buttonSelectDelete);
             Controls.Add(gridControlGridTask);
             Name = "uc_ListTask";
-            Size = new System.Drawing.Size(1430, 779);
+            Size = new System.Drawing.Size(1383, 631);
             Load += uc_ListTask_Load;
-            ((System.ComponentModel.ISupportInitialize)gridControlGridTask).EndInit();
-            ((System.ComponentModel.ISupportInitialize)gridViewTask).EndInit();
-            ((System.ComponentModel.ISupportInitialize)projectTaskBindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)projectTaskBindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)ItemButtonUpdate).EndInit();
             ((System.ComponentModel.ISupportInitialize)ItemButtonDelete).EndInit();
             ((System.ComponentModel.ISupportInitialize)ItemButtonuploadFile).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridControlGridTask).EndInit();
+            ((System.ComponentModel.ISupportInitialize)projectTaskBindingSource1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridViewTask).EndInit();
+            ((System.ComponentModel.ISupportInitialize)projectTaskBindingSource).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -253,11 +298,14 @@
         private DevExpress.XtraGrid.Columns.GridColumn remaining;
         private DevExpress.XtraGrid.Columns.GridColumn taskStatus;
         private DevExpress.XtraGrid.Columns.GridColumn update;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit ItemButtonUpdate;
         private DevExpress.XtraGrid.Columns.GridColumn delete;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit ItemButtonDelete;
         private DevExpress.XtraGrid.Columns.GridColumn uploadFile;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit ItemButtonuploadFile;
         private System.Windows.Forms.BindingSource projectTaskBindingSource;
+        private System.Windows.Forms.Button buttonSelectDelete;
+        private System.Windows.Forms.Button buttonCreate;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit ItemButtonUpdate;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit ItemButtonDelete;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit ItemButtonuploadFile;
+        private DevExpress.XtraGrid.Columns.GridColumn taskId;
     }
 }

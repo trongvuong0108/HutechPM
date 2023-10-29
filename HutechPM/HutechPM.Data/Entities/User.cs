@@ -62,5 +62,10 @@ namespace HutechPM.Data.Entities
             this.address = address;
             this.avatar = CommonConstanst.DEFAULT_AVT;
         }
+
+        public override string ToString()
+        {
+            return userName;
+        }
     }
 }

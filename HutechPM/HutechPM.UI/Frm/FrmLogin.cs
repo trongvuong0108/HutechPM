@@ -26,19 +26,15 @@ namespace HutechPM.UI.Frm
             uc_Login = new uc_Login();
             uc_Login.Dock = DockStyle.Fill;
             panelFormLogin.Controls.Add(uc_Login);
-            //uc_Login.BringToFront();
-
         }
         private void buttonExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
         private void buttonLogin_Click(object sender, EventArgs e)
         {
 
         }
-
         private void buttonSignup_Click(object sender, EventArgs e)
         {
 
@@ -65,7 +61,6 @@ namespace HutechPM.UI.Frm
                 labelCreate.Text = "Create New Account ?";
             }
         }
-
         private void panelFormSignup_Paint(object sender, PaintEventArgs e)
         {
 

@@ -45,6 +45,9 @@
             textBoxRemaining = new System.Windows.Forms.TextBox();
             comboBoxStatus = new System.Windows.Forms.ComboBox();
             label7 = new System.Windows.Forms.Label();
+            buttonExit = new System.Windows.Forms.Button();
+            label9 = new System.Windows.Forms.Label();
+            comboBoxProjectName = new System.Windows.Forms.ComboBox();
             buttonSave = new System.Windows.Forms.Button();
             buttonCancel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -56,7 +59,7 @@
             buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             buttonSave.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             buttonSave.ForeColor = System.Drawing.Color.Transparent;
-            buttonSave.Location = new System.Drawing.Point(443, 629);
+            buttonSave.Location = new System.Drawing.Point(478, 694);
             buttonSave.Name = "buttonSave";
             buttonSave.Size = new System.Drawing.Size(112, 50);
             buttonSave.TabIndex = 33;
@@ -70,7 +73,7 @@
             buttonCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             buttonCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             buttonCancel.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            buttonCancel.Location = new System.Drawing.Point(292, 630);
+            buttonCancel.Location = new System.Drawing.Point(316, 696);
             buttonCancel.Name = "buttonCancel";
             buttonCancel.Size = new System.Drawing.Size(110, 48);
             buttonCancel.TabIndex = 46;
@@ -104,7 +107,8 @@
             // 
             label6.AutoSize = true;
             label6.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label6.Location = new System.Drawing.Point(74, 468);
+            label6.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
+            label6.Location = new System.Drawing.Point(35, 537);
             label6.Name = "label6";
             label6.Size = new System.Drawing.Size(123, 30);
             label6.TabIndex = 38;
@@ -114,7 +118,8 @@
             // 
             label3.AutoSize = true;
             label3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label3.Location = new System.Drawing.Point(74, 552);
+            label3.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
+            label3.Location = new System.Drawing.Point(35, 622);
             label3.Name = "label3";
             label3.Size = new System.Drawing.Size(79, 30);
             label3.TabIndex = 35;
@@ -122,18 +127,20 @@
             // 
             // textBoxDescription
             // 
+            textBoxDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             textBoxDescription.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            textBoxDescription.Location = new System.Drawing.Point(221, 179);
+            textBoxDescription.Location = new System.Drawing.Point(190, 251);
             textBoxDescription.Multiline = true;
             textBoxDescription.Name = "textBoxDescription";
-            textBoxDescription.Size = new System.Drawing.Size(328, 68);
+            textBoxDescription.Size = new System.Drawing.Size(400, 75);
             textBoxDescription.TabIndex = 30;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label5.Location = new System.Drawing.Point(74, 179);
+            label5.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
+            label5.Location = new System.Drawing.Point(35, 251);
             label5.Name = "label5";
             label5.Size = new System.Drawing.Size(122, 30);
             label5.TabIndex = 29;
@@ -143,24 +150,28 @@
             // 
             comboBoxOwner.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             comboBoxOwner.FormattingEnabled = true;
-            comboBoxOwner.Location = new System.Drawing.Point(221, 286);
+            comboBoxOwner.Location = new System.Drawing.Point(190, 356);
             comboBoxOwner.Name = "comboBoxOwner";
-            comboBoxOwner.Size = new System.Drawing.Size(328, 38);
+            comboBoxOwner.Size = new System.Drawing.Size(400, 38);
             comboBoxOwner.TabIndex = 28;
+            comboBoxOwner.SelectedIndexChanged += comboBoxOwner_SelectedIndexChanged;
             // 
             // textBoxTaskName
             // 
+            textBoxTaskName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             textBoxTaskName.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            textBoxTaskName.Location = new System.Drawing.Point(221, 98);
+            textBoxTaskName.Location = new System.Drawing.Point(190, 172);
             textBoxTaskName.Name = "textBoxTaskName";
-            textBoxTaskName.Size = new System.Drawing.Size(330, 37);
+            textBoxTaskName.Size = new System.Drawing.Size(400, 37);
             textBoxTaskName.TabIndex = 27;
+            textBoxTaskName.TextChanged += textBoxTaskName_TextChanged;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label4.Location = new System.Drawing.Point(74, 286);
+            label4.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
+            label4.Location = new System.Drawing.Point(35, 359);
             label4.Name = "label4";
             label4.Size = new System.Drawing.Size(87, 30);
             label4.TabIndex = 26;
@@ -170,7 +181,8 @@
             // 
             label2.AutoSize = true;
             label2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label2.Location = new System.Drawing.Point(74, 101);
+            label2.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
+            label2.Location = new System.Drawing.Point(35, 179);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(123, 30);
             label2.TabIndex = 25;
@@ -179,52 +191,94 @@
             // label1
             // 
             label1.BackColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            label1.Location = new System.Drawing.Point(-1, -2);
+            label1.Location = new System.Drawing.Point(0, 0);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(658, 59);
             label1.TabIndex = 24;
             // 
             // textBoxEstimate
             // 
+            textBoxEstimate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             textBoxEstimate.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            textBoxEstimate.Location = new System.Drawing.Point(221, 378);
+            textBoxEstimate.Location = new System.Drawing.Point(190, 445);
             textBoxEstimate.Name = "textBoxEstimate";
-            textBoxEstimate.Size = new System.Drawing.Size(331, 37);
+            textBoxEstimate.Size = new System.Drawing.Size(400, 37);
             textBoxEstimate.TabIndex = 42;
             // 
             // textBoxRemaining
             // 
+            textBoxRemaining.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             textBoxRemaining.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            textBoxRemaining.Location = new System.Drawing.Point(221, 461);
+            textBoxRemaining.Location = new System.Drawing.Point(190, 535);
             textBoxRemaining.Name = "textBoxRemaining";
-            textBoxRemaining.Size = new System.Drawing.Size(331, 37);
+            textBoxRemaining.Size = new System.Drawing.Size(400, 37);
             textBoxRemaining.TabIndex = 43;
             // 
             // comboBoxStatus
             // 
             comboBoxStatus.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             comboBoxStatus.FormattingEnabled = true;
-            comboBoxStatus.Location = new System.Drawing.Point(221, 544);
+            comboBoxStatus.Location = new System.Drawing.Point(190, 619);
             comboBoxStatus.Name = "comboBoxStatus";
-            comboBoxStatus.Size = new System.Drawing.Size(334, 38);
+            comboBoxStatus.Size = new System.Drawing.Size(400, 38);
             comboBoxStatus.TabIndex = 44;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label7.Location = new System.Drawing.Point(74, 378);
+            label7.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
+            label7.Location = new System.Drawing.Point(35, 447);
             label7.Name = "label7";
             label7.Size = new System.Drawing.Size(103, 30);
             label7.TabIndex = 45;
             label7.Text = "Estimate*";
             label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // buttonExit
+            // 
+            buttonExit.BackColor = System.Drawing.Color.FromArgb(41, 128, 185);
+            buttonExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            buttonExit.FlatAppearance.BorderSize = 0;
+            buttonExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            buttonExit.Font = new System.Drawing.Font("Verdana", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            buttonExit.ForeColor = System.Drawing.Color.White;
+            buttonExit.Location = new System.Drawing.Point(602, 0);
+            buttonExit.Name = "buttonExit";
+            buttonExit.Size = new System.Drawing.Size(56, 59);
+            buttonExit.TabIndex = 47;
+            buttonExit.Text = "X";
+            buttonExit.UseVisualStyleBackColor = false;
+            buttonExit.Click += buttonExit_Click;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label9.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
+            label9.Location = new System.Drawing.Point(35, 100);
+            label9.Name = "label9";
+            label9.Size = new System.Drawing.Size(149, 30);
+            label9.TabIndex = 48;
+            label9.Text = "Project name*";
+            // 
+            // comboBoxProjectName
+            // 
+            comboBoxProjectName.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            comboBoxProjectName.FormattingEnabled = true;
+            comboBoxProjectName.Location = new System.Drawing.Point(190, 92);
+            comboBoxProjectName.Name = "comboBoxProjectName";
+            comboBoxProjectName.Size = new System.Drawing.Size(400, 38);
+            comboBoxProjectName.TabIndex = 49;
+            // 
             // FrmTask
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(657, 714);
+            ClientSize = new System.Drawing.Size(658, 775);
+            Controls.Add(comboBoxProjectName);
+            Controls.Add(label9);
+            Controls.Add(buttonExit);
             Controls.Add(buttonCancel);
             Controls.Add(label7);
             Controls.Add(comboBoxStatus);
@@ -244,6 +298,7 @@
             Controls.Add(label1);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             Name = "FrmTask";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "FrmTask";
             Load += FrmTask_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -272,5 +327,8 @@
         private System.Windows.Forms.TextBox textBoxRemaining;
         private System.Windows.Forms.ComboBox comboBoxStatus;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button buttonExit;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox comboBoxProjectName;
     }
 }

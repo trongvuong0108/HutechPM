@@ -51,23 +51,21 @@
             quantityTask = new DevExpress.XtraGrid.Columns.GridColumn();
             isActive = new DevExpress.XtraGrid.Columns.GridColumn();
             update = new DevExpress.XtraGrid.Columns.GridColumn();
-            buttonUpdate = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            ItemButtonUpdate = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             delete = new DevExpress.XtraGrid.Columns.GridColumn();
-            buttonDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            ItemButtonDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             projectDetailBindingSource = new System.Windows.Forms.BindingSource(components);
             projectTaskBindingSource = new System.Windows.Forms.BindingSource(components);
-            buttonUpdatee = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             buttonCreate = new System.Windows.Forms.Button();
             buttonSelectDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)xtraTabbedMdiManager1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridControlProjects).BeginInit();
             ((System.ComponentModel.ISupportInitialize)projectBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridViewProjects).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)buttonUpdate).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)buttonDelete).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ItemButtonUpdate).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ItemButtonDelete).BeginInit();
             ((System.ComponentModel.ISupportInitialize)projectDetailBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)projectTaskBindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)buttonUpdatee).BeginInit();
             SuspendLayout();
             // 
             // xtraTabbedMdiManager1
@@ -78,11 +76,11 @@
             // 
             gridControlProjects.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             gridControlProjects.DataSource = projectBindingSource;
-            gridControlProjects.Location = new System.Drawing.Point(-3, 169);
+            gridControlProjects.Location = new System.Drawing.Point(-3, 132);
             gridControlProjects.MainView = gridViewProjects;
             gridControlProjects.Name = "gridControlProjects";
-            gridControlProjects.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { buttonUpdate, buttonDelete });
-            gridControlProjects.Size = new System.Drawing.Size(1364, 793);
+            gridControlProjects.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { ItemButtonUpdate, ItemButtonDelete });
+            gridControlProjects.Size = new System.Drawing.Size(1368, 830);
             gridControlProjects.TabIndex = 0;
             gridControlProjects.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridViewProjects });
             gridControlProjects.Click += gridControlProjects_Click;
@@ -96,6 +94,7 @@
             gridViewProjects.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { projectName, owner, description, datestart, quantityTask, isActive, update, delete });
             gridViewProjects.GridControl = gridControlProjects;
             gridViewProjects.Name = "gridViewProjects";
+            gridViewProjects.OptionsFind.AlwaysVisible = true;
             gridViewProjects.OptionsSelection.MultiSelect = true;
             gridViewProjects.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             gridViewProjects.InitNewRow += gridViewProjects_InitNewRow;
@@ -142,12 +141,12 @@
             // 
             // quantityTask
             // 
-            quantityTask.Caption = "Quantity Task";
+            quantityTask.Caption = "Quantity Tasks";
             quantityTask.FieldName = "quantityTask";
             quantityTask.MinWidth = 30;
             quantityTask.Name = "quantityTask";
             quantityTask.Visible = true;
-            quantityTask.VisibleIndex = 5;
+            quantityTask.VisibleIndex = 6;
             quantityTask.Width = 112;
             // 
             // isActive
@@ -157,12 +156,12 @@
             isActive.MinWidth = 30;
             isActive.Name = "isActive";
             isActive.Visible = true;
-            isActive.VisibleIndex = 6;
+            isActive.VisibleIndex = 5;
             isActive.Width = 112;
             // 
             // update
             // 
-            update.ColumnEdit = buttonUpdate;
+            update.ColumnEdit = ItemButtonUpdate;
             update.MaxWidth = 50;
             update.MinWidth = 30;
             update.Name = "update";
@@ -170,17 +169,17 @@
             update.VisibleIndex = 7;
             update.Width = 50;
             // 
-            // buttonUpdate
+            // ItemButtonUpdate
             // 
-            buttonUpdate.AutoHeight = false;
+            ItemButtonUpdate.AutoHeight = false;
             editorButtonImageOptions1.Image = (System.Drawing.Image)resources.GetObject("editorButtonImageOptions1.Image");
-            buttonUpdate.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default) });
-            buttonUpdate.Name = "buttonUpdate";
-            buttonUpdate.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            ItemButtonUpdate.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default) });
+            ItemButtonUpdate.Name = "ItemButtonUpdate";
+            ItemButtonUpdate.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
             // delete
             // 
-            delete.ColumnEdit = buttonDelete;
+            delete.ColumnEdit = ItemButtonDelete;
             delete.MaxWidth = 50;
             delete.MinWidth = 30;
             delete.Name = "delete";
@@ -188,13 +187,13 @@
             delete.VisibleIndex = 8;
             delete.Width = 50;
             // 
-            // buttonDelete
+            // ItemButtonDelete
             // 
-            buttonDelete.AutoHeight = false;
+            ItemButtonDelete.AutoHeight = false;
             editorButtonImageOptions2.Image = (System.Drawing.Image)resources.GetObject("editorButtonImageOptions2.Image");
-            buttonDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default) });
-            buttonDelete.Name = "buttonDelete";
-            buttonDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            ItemButtonDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default) });
+            ItemButtonDelete.Name = "ItemButtonDelete";
+            ItemButtonDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
             // projectDetailBindingSource
             // 
@@ -204,52 +203,52 @@
             // 
             projectTaskBindingSource.DataSource = typeof(Data.Entities.ProjectTask);
             // 
-            // buttonUpdatee
-            // 
-            buttonUpdatee.AutoHeight = false;
-            buttonUpdatee.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton() });
-            buttonUpdatee.Name = "buttonUpdatee";
-            // 
             // buttonCreate
             // 
             buttonCreate.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            buttonCreate.Location = new System.Drawing.Point(1039, 81);
+            buttonCreate.BackColor = System.Drawing.Color.White;
+            buttonCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            buttonCreate.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            buttonCreate.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
+            buttonCreate.Location = new System.Drawing.Point(976, 59);
             buttonCreate.Name = "buttonCreate";
-            buttonCreate.Size = new System.Drawing.Size(109, 45);
+            buttonCreate.Size = new System.Drawing.Size(140, 50);
             buttonCreate.TabIndex = 1;
             buttonCreate.Text = "Create";
-            buttonCreate.UseVisualStyleBackColor = true;
+            buttonCreate.UseVisualStyleBackColor = false;
             buttonCreate.Click += buttonCreate_Click;
             // 
             // buttonSelectDelete
             // 
             buttonSelectDelete.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            buttonSelectDelete.Location = new System.Drawing.Point(1201, 81);
+            buttonSelectDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            buttonSelectDelete.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            buttonSelectDelete.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
+            buttonSelectDelete.Location = new System.Drawing.Point(1178, 59);
             buttonSelectDelete.Name = "buttonSelectDelete";
-            buttonSelectDelete.Size = new System.Drawing.Size(110, 45);
+            buttonSelectDelete.Size = new System.Drawing.Size(140, 50);
             buttonSelectDelete.TabIndex = 2;
             buttonSelectDelete.Text = "Delete";
             buttonSelectDelete.UseVisualStyleBackColor = true;
             // 
             // uc_ListProject
             // 
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             AutoSize = true;
             Controls.Add(buttonSelectDelete);
             Controls.Add(buttonCreate);
             Controls.Add(gridControlProjects);
             Name = "uc_ListProject";
-            Size = new System.Drawing.Size(1361, 965);
+            Size = new System.Drawing.Size(1365, 965);
             Load += uc_ListProject_Load;
             ((System.ComponentModel.ISupportInitialize)xtraTabbedMdiManager1).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridControlProjects).EndInit();
             ((System.ComponentModel.ISupportInitialize)projectBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridViewProjects).EndInit();
-            ((System.ComponentModel.ISupportInitialize)buttonUpdate).EndInit();
-            ((System.ComponentModel.ISupportInitialize)buttonDelete).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ItemButtonUpdate).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ItemButtonDelete).EndInit();
             ((System.ComponentModel.ISupportInitialize)projectDetailBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)projectTaskBindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)buttonUpdatee).EndInit();
             ResumeLayout(false);
         }
 
@@ -266,13 +265,12 @@
         private DevExpress.XtraGrid.Columns.GridColumn description;
         private DevExpress.XtraGrid.Columns.GridColumn datestart;
         private DevExpress.XtraGrid.Columns.GridColumn quantityTask;
-        private DevExpress.XtraGrid.Columns.GridColumn isActive;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit buttonUpdatee;
-        private DevExpress.XtraGrid.Columns.GridColumn update;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit buttonUpdate;
-        private DevExpress.XtraGrid.Columns.GridColumn delete;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit buttonDelete;
         private System.Windows.Forms.Button buttonCreate;
         private System.Windows.Forms.Button buttonSelectDelete;
+        private DevExpress.XtraGrid.Columns.GridColumn isActive;
+        private DevExpress.XtraGrid.Columns.GridColumn update;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit ItemButtonUpdate;
+        private DevExpress.XtraGrid.Columns.GridColumn delete;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit ItemButtonDelete;
     }
 }

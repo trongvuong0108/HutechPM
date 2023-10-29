@@ -24,7 +24,7 @@ namespace HutechPM.Data.Entities
         [NotNull]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid projectTaskid { set; get; }
-        [Column("name")]
+        [Column("taskName")]
         public string name { set; get; }
         [Column("description")]
         public string description { set; get; }

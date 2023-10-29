@@ -31,24 +31,33 @@ namespace HutechPM.UI.Components
             InitializeComponent();
             _dbContext = new HutechNoteDbContext();
             projectService = new ProjectService(_dbContext);
-            projectTaskService = new ProjectTaskService();
+            projectTaskService = new ProjectTaskService(_dbContext);
             projectDetailService = new ProjectDetailService(_dbContext);
+
         }
 
+        public string UserName { get; set; }
+
+        public void getUserLoginInUcListProject(string userName)
+        {
+            this.UserName = userName;
+        }
 
         private void uc_ListProject_Load(object sender, EventArgs e)
         {
+            //test
+            MessageBox.Show(UserName);
+
             ListProject = projectService.getAllProject();
             ListProjectTask = projectTaskService.getAllProjectTask();
             listProjectDTO = projectService.getAllProjectsDTO();
             BindingSource bindingSourceProject = new BindingSource();
             bindingSourceProject.DataSource = listProjectDTO;
             gridControlProjects.DataSource = bindingSourceProject;
-            buttonUpdate.Click += ButtonUpdate_Click;
-            buttonDelete.Click += ButtonDelete_Click;
+            ItemButtonUpdate.Click += ItemButtonUpdate_Click;
+            ItemButtonDelete.Click += ItemButtonDelete_Click;
         }
-
-        private void ButtonUpdate_Click(object sender, EventArgs e)
+        private void ItemButtonUpdate_Click(object sender, EventArgs e)
         {
             string projectName = gridViewProjects.GetFocusedRowCellValue("projectName").ToString();
             string description;
@@ -77,13 +86,13 @@ namespace HutechPM.UI.Components
             {
                 if (frmProject.ShowDialog() == DialogResult.OK)
                 {
-                    frmProject.projectName = projectName;
+                    // frmProject.projectName = projectName;
                 }
             }
         }
-        private void ButtonDelete_Click(object sender, EventArgs e)
+        private void ItemButtonDelete_Click(object sender, EventArgs e)
         {
-
+            throw new NotImplementedException();
         }
 
 
@@ -123,8 +132,14 @@ namespace HutechPM.UI.Components
 
         private void buttonCreate_Click(object sender, EventArgs e)
         {
-            FrmCreateProject frmCreateProject = new FrmCreateProject();
-            frmCreateProject.Show();
+            using (FrmCreateProject frmCreateProject = new FrmCreateProject(UserName))
+            {
+                if (frmCreateProject.ShowDialog() == DialogResult.OK)
+                {
+
+                }
+            }
+
         }
     }
 }

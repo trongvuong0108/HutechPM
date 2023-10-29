@@ -9,10 +9,13 @@ namespace HutechPM.Data.UserData
     {
         private readonly UserRepository userRepository;
         public UserService(HutechNoteDbContext context) { this.userRepository = new UserRepository(context); }
+
         public bool login(string username, string password)
         {
             return userRepository.getAllUser().Any(x => x.userName.Equals(username) && x.password.Equals(password));
         }
+        
+
         public List<User> GetAllUsers() 
         {
             return userRepository.getAllUser();

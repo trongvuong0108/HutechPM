@@ -22,6 +22,7 @@ namespace HutechNote.Data.Data.ProjectData
         {
             this.projectRepository = new ProjectRepository(_dbContext);
         }
+
         public List<Project> getAllProject()
         {
             return projectRepository.GetProject();

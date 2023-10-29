@@ -24,8 +24,16 @@ namespace HutechPM.Data.Entities
         public string description { set; get; }
         [Column("date_start")]
         public DateTime dateStart { set; get; }
+
+        [Column("date_end")]
+        public DateTime dateEnd { set; get; }
+
         [Column("is_active")]
         public bool isActive { set; get; }
         public ICollection<ProjectDetail> ApplicationProjectDetails { set; get; }
+        public override string ToString()
+        {
+            return projectName;
+        }
     }
 }

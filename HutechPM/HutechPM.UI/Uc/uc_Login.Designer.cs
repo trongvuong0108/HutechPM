@@ -50,7 +50,7 @@
             textBoxPassword.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
             textBoxPassword.Location = new System.Drawing.Point(98, 218);
             textBoxPassword.Name = "textBoxPassword";
-            textBoxPassword.Size = new System.Drawing.Size(558, 19);
+            textBoxPassword.Size = new System.Drawing.Size(558, 28);
             textBoxPassword.TabIndex = 33;
             textBoxPassword.UseSystemPasswordChar = true;
             // 
@@ -93,7 +93,7 @@
             textBoxUser.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
             textBoxUser.Location = new System.Drawing.Point(98, 118);
             textBoxUser.Name = "textBoxUser";
-            textBoxUser.Size = new System.Drawing.Size(558, 22);
+            textBoxUser.Size = new System.Drawing.Size(558, 32);
             textBoxUser.TabIndex = 29;
             // 
             // pictureBoxUser
@@ -138,7 +138,7 @@
             label6.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
             label6.Location = new System.Drawing.Point(8, 23);
             label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(219, 26);
+            label6.Size = new System.Drawing.Size(325, 37);
             label6.TabIndex = 25;
             label6.Text = "Login to your account";
             // 
@@ -156,6 +156,7 @@
             Controls.Add(label6);
             Name = "uc_Login";
             Size = new System.Drawing.Size(711, 423);
+            Load += uc_Login_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBoxIconLock).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxPasswork).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxIconUser).EndInit();
