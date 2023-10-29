@@ -2,6 +2,7 @@
 using DevExpress.XtraReports.Design;
 using HutechNote.UI.Frm;
 using HutechPM.Data.Common;
+using HutechPM.Data.Entities;
 using HutechPM.Data.UserData;
 using HutechPM.UI.Common;
 using HutechPM.UI.Frm;
@@ -73,9 +74,10 @@ namespace HutechPM.UI.Uc
             {
 
                 UserService userService = new UserService(dbContext);
-                bool result = await userService.login(userName, password);
+                
+                User currentUser = await userService.getUser(userName, password);
                 FrmSplashScreen.Close();
-                if (result)
+                if (currentUser != null)
                 {
                     XtraMessageBox.Show("Login successful");
                     using FrmMain frmMain = new FrmMain(userName);
