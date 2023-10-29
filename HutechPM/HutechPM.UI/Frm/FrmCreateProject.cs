@@ -31,8 +31,8 @@ namespace HutechPM.UI.Frm
             InitializeComponent();
 
         }
-        public string UserName { set; get; }
-        public FrmCreateProject(string userName)
+        public User UserName { set; get; }
+        public FrmCreateProject(User userName)
         {
             InitializeComponent();
             _dbContext = new HutechNoteDbContext();
@@ -46,7 +46,7 @@ namespace HutechPM.UI.Frm
        
         private void FrmCreateProject_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(UserName);
+            MessageBox.Show(UserName.userName);
         }
 
         private async void buttonContinue_Click(object sender, EventArgs e)

@@ -36,17 +36,16 @@ namespace HutechPM.UI.Components
 
         }
 
-        public string UserName { get; set; }
+        public User UserName { get; set; }
 
-        public void getUserLoginInUcListProject(string userName)
+        public void getUserLoginInUcListProject(User userName)
         {
             this.UserName = userName;
         }
 
         private async void uc_ListProject_Load(object sender, EventArgs e)
         {
-            //test
-            MessageBox.Show(UserName);
+            MessageBox.Show(UserName.userName);
 
             ListProject = await projectService.getAllProject();
             ListProjectTask = await projectTaskService.getAllProjectTask();

@@ -36,10 +36,11 @@ namespace HutechPM.UI.Uc
             projectTaskService = new ProjectTaskService(_dbContext);
             projectDetailService = new ProjectDetailService(_dbContext);
         }
-        public string userNameLogin { get; set; }
-        public void getUserLoginInUcListProject(string userNameLogin)
+        public projectRole userNameProjectRole { get; set; }
+        public User UserName { get; set; }
+        public void getUserLoginInUcListTask(User userName)
         {
-            this.userNameLogin = userNameLogin;
+            this.UserName = userName;
         }
         private async void uc_ListTask_Load(object sender, EventArgs e)
         {
@@ -52,13 +53,13 @@ namespace HutechPM.UI.Uc
             ItemButtonDelete.Click += ItemButtonDelete_Click;
             ItemButtonuploadFile.Click += ItemButtonuploadFile_Click;
         }
-
+        
 
         private void ItemButtonUpdate_Click(object sender, EventArgs e)
         {
             string projectTaskid = gridViewTask.GetFocusedRowCellValue("projectTaskid").ToString();
+            string projectRole = null;
             string projectName = gridViewTask.GetFocusedRowCellValue("projectDetail.project.projectName").ToString();
-            string projectRole = gridViewTask.GetFocusedRowCellValue("projectDetail.projectRole").ToString();
             string taskName = gridViewTask.GetFocusedRowCellValue("name").ToString();
             string description;
             if (gridViewTask.GetFocusedRowCellValue("description") == null)
@@ -96,6 +97,7 @@ namespace HutechPM.UI.Uc
         private void buttonCreate_Click(object sender, EventArgs e)
         {
             string projectName = null;
+            foreach()
             string projectRole = null;
             string projectTaskid = null;
             string taskName = null;

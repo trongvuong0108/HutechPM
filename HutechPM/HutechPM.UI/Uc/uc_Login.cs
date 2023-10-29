@@ -80,7 +80,7 @@ namespace HutechPM.UI.Uc
                 if (currentUser != null)
                 {
                     XtraMessageBox.Show("Login successful");
-                    using FrmMain frmMain = new FrmMain(userName);
+                    using FrmMain frmMain = new FrmMain(currentUser);
                     if (frmMain.ShowDialog() == DialogResult.OK)
                     {
                         ((Form)this.TopLevelControl).Close();

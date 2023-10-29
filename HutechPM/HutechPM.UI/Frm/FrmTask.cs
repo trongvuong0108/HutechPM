@@ -182,7 +182,8 @@ namespace HutechPM.UI.Frm
                 }
                 foreach(ProjectDetail projectDetail in await projectDetailService.getAllProjectDetail())
                 {
-                    if(projectDetail.user.userName == Owner && projectDetail.project.projectName == ProjectName)
+
+                    if(projectDetail.user.userName == Owner && projectDetail.projectRole == ProjectRole)
                     {
                         projectTask.projectDetail = projectDetail;
                     }

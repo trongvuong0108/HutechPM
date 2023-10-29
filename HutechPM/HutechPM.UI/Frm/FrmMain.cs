@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraBars;
 using DevExpress.XtraBars.Navigation;
+using HutechPM.Data.Entities;
 using HutechPM.UI.Components;
 using HutechPM.UI.Frm;
 using HutechPM.UI.Uc;
@@ -20,17 +21,17 @@ namespace HutechNote.UI.Frm
 
         uc_ListProject uc_ListProject;
         uc_ListTask uc_ListTask;
-        public string UserName { set; get; }
+        public User UserName { set; get; }
 
         public FrmMain()
         {
             InitializeComponent();
         }
-        public delegate void userNameLogin(string userName);
+        public delegate void userNameLogin(User userName);
 
-        public FrmMain(string userName)
+        public FrmMain(User userName)
         {
-            //InitializeComponent();
+            InitializeComponent();
             this.UserName = userName;
         }
 
@@ -62,6 +63,9 @@ namespace HutechNote.UI.Frm
             {
                 uc_ListTask = new uc_ListTask();
                 uc_ListTask.Dock = DockStyle.Fill;
+                userNameLogin userNameLogin = new userNameLogin(uc_ListTask.getUserLoginInUcListTask(UserName);
+                userNameLogin(UserName);
+
                 fluentDesignFormContainerMain.Controls.Add(uc_ListTask);
                 uc_ListTask.BringToFront();
             }
