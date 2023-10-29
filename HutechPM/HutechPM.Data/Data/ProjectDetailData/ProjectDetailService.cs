@@ -17,9 +17,9 @@ namespace HutechPM.Data.Data.ProjectDetailData
         {
             this.projectDetailRepository = new ProjectDetailRepository(_dbContext);
         }
-        public List<ProjectDetail> getAllProjectDetail()
+        public async Task<List<ProjectDetail>> getAllProjectDetail()
         {
-            return projectDetailRepository.getAllProjectDetail();
+            return await projectDetailRepository.getAllProjectDetail();
         }
         public async Task<ActionBaseResult> AddProjectDetail(ProjectDetail projectDetail)
         {

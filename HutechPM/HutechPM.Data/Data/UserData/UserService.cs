@@ -24,6 +24,7 @@ namespace HutechPM.Data.UserData
             return users.Any(x => x.userName.Equals(username) && x.password.Equals(password));
         }
 
+
         public async Task<ActionBaseResult> CreateUser(UserDTO userDTO)
         {
             User user = new User(new Guid(), userDTO.userName, userDTO.password, userDTO.email, userDTO.phone, userDTO.fullName, userDTO.address);

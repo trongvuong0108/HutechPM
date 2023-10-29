@@ -64,15 +64,15 @@ namespace HutechPM.UI.Uc
         }
         private async void buttonLogin_Click(object sender, EventArgs e)
         {
-            
+            FrmSplashScreen FrmSplashScreen = new FrmSplashScreen();
+            FrmSplashScreen.Show();
             string userName = textBoxUser.Text;
             string password = textBoxPassword.Text;
           
             using (HutechNoteDbContext dbContext = new HutechNoteDbContext())
             {
-                FrmSplashScreen FrmSplashScreen = new FrmSplashScreen();
+
                 UserService userService = new UserService(dbContext);
-                FrmSplashScreen.Show();
                 bool result = await userService.login(userName, password);
                 FrmSplashScreen.Close();
                 if (result)

@@ -87,7 +87,7 @@ namespace HutechPM.UI.Frm
         }
         private async void listComboBoxOwner()
         {
-            foreach(ProjectDetail projectDetail in projectDetailService.getAllProjectDetail())
+            foreach(ProjectDetail projectDetail in await projectDetailService.getAllProjectDetail())
             {
                 if(projectDetail.project.projectName == ProjectName)
                 {
@@ -108,7 +108,7 @@ namespace HutechPM.UI.Frm
         }
         private async void listComboBoxProjectName()
         {
-            foreach (ProjectDetail projectDetail in projectDetailService.getAllProjectDetail())
+            foreach (ProjectDetail projectDetail in await projectDetailService.getAllProjectDetail())
             {
                 if (projectDetail.user.userName == Owner)
                 {
@@ -180,7 +180,7 @@ namespace HutechPM.UI.Frm
                         projectTask.taskStatus = task;
                     }
                 }
-                foreach(ProjectDetail projectDetail in projectDetailService.getAllProjectDetail())
+                foreach(ProjectDetail projectDetail in await projectDetailService.getAllProjectDetail())
                 {
                     if(projectDetail.user.userName == Owner && projectDetail.project.projectName == ProjectName)
                     {

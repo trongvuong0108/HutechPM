@@ -39,6 +39,10 @@ namespace HutechNote.UI.Frm
             accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             accordionControlElementTasks = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             accordionControlElementEmployees = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            accordionControlElementAccount = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            accordionControlElementMyprofile = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            accordionControlElementChangePassword = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            accordionControlElementLogout = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
             barLargeButtonItem1 = new BarLargeButtonItem();
             barButtonItem1 = new BarButtonItem();
@@ -47,10 +51,6 @@ namespace HutechNote.UI.Frm
             accordionControlElement5 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             accordionControlElementProject = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             accordionControlElement6 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            accordionControlElementAccount = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            accordionControlElementMyprofile = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            accordionControlElementChangePassword = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            accordionControlElementLogout = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             ((System.ComponentModel.ISupportInitialize)accordionControl1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)fluentDesignFormControl1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)fluentFormDefaultManager1).BeginInit();
@@ -97,10 +97,35 @@ namespace HutechNote.UI.Frm
             // 
             // accordionControlElementEmployees
             // 
-            accordionControlElementEmployees.Expanded = true;
-            accordionControlElementEmployees.ImageOptions.Image = (Image)resources.GetObject("accordionControlElement3.ImageOptions.Image");
+            accordionControlElementEmployees.ImageOptions.Image = (Image)resources.GetObject("accordionControlElementEmployees.ImageOptions.Image");
             accordionControlElementEmployees.Name = "accordionControlElementEmployees";
             accordionControlElementEmployees.Text = "Employees";
+            // 
+            // accordionControlElementAccount
+            // 
+            accordionControlElementAccount.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { accordionControlElementMyprofile, accordionControlElementChangePassword, accordionControlElementLogout });
+            accordionControlElementAccount.Expanded = true;
+            accordionControlElementAccount.ImageOptions.Image = (Image)resources.GetObject("accordionControlElementAccount.ImageOptions.Image");
+            accordionControlElementAccount.Name = "accordionControlElementAccount";
+            accordionControlElementAccount.Text = "Account";
+            // 
+            // accordionControlElementMyprofile
+            // 
+            accordionControlElementMyprofile.Name = "accordionControlElementMyprofile";
+            accordionControlElementMyprofile.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            accordionControlElementMyprofile.Text = "My Profile";
+            // 
+            // accordionControlElementChangePassword
+            // 
+            accordionControlElementChangePassword.Name = "accordionControlElementChangePassword";
+            accordionControlElementChangePassword.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            accordionControlElementChangePassword.Text = "Change Password";
+            // 
+            // accordionControlElementLogout
+            // 
+            accordionControlElementLogout.Name = "accordionControlElementLogout";
+            accordionControlElementLogout.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            accordionControlElementLogout.Text = "Log out";
             // 
             // fluentDesignFormControl1
             // 
@@ -158,32 +183,6 @@ namespace HutechNote.UI.Frm
             accordionControlElement6.Name = "accordionControlElement6";
             accordionControlElement6.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             accordionControlElement6.Text = "Element";
-            // 
-            // accordionControlElementAccount
-            // 
-            accordionControlElementAccount.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] { accordionControlElementMyprofile, accordionControlElementChangePassword, accordionControlElementLogout });
-            accordionControlElementAccount.Expanded = true;
-            accordionControlElementAccount.ImageOptions.Image = (Image)resources.GetObject("accordionControlElementAccount.ImageOptions.Image");
-            accordionControlElementAccount.Name = "accordionControlElementAccount";
-            accordionControlElementAccount.Text = "Account";
-            // 
-            // accordionControlElementMyprofile
-            // 
-            accordionControlElementMyprofile.Name = "accordionControlElementMyprofile";
-            accordionControlElementMyprofile.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            accordionControlElementMyprofile.Text = "My Profile";
-            // 
-            // accordionControlElementChangePassword
-            // 
-            accordionControlElementChangePassword.Name = "accordionControlElementChangePassword";
-            accordionControlElementChangePassword.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            accordionControlElementChangePassword.Text = "Change Password";
-            // 
-            // accordionControlElementLogout
-            // 
-            accordionControlElementLogout.Name = "accordionControlElementLogout";
-            accordionControlElementLogout.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            accordionControlElementLogout.Text = "Log out";
             // 
             // FrmMain
             // 
