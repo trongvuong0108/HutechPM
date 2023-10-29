@@ -23,6 +23,10 @@ namespace HutechPM.Data.UserData
             var users = await userRepository.getAllUser();
             return users.Any(x => x.userName.Equals(username) && x.password.Equals(password));
         }
+        public async Task<User> getUser(string username, string password)
+        {
+            var users = await userRepository.getAllUser();
+            return users.FirstOrDefault(x => x.userName.Equals(username) && x.password.Equals(password));        }
 
         public async Task<ActionBaseResult> CreateUser(UserDTO userDTO)
         {
