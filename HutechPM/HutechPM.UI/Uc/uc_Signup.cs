@@ -18,9 +18,11 @@ namespace HutechPM.UI.Uc
 {
     public partial class uc_Signup : UserControl
     {
+        FrmLoader frmLoader;
         public uc_Signup()
         {
             InitializeComponent();
+            frmLoader = new FrmLoader();
         }
         private void pictureBoxRight_Click(object sender, EventArgs e)
         {
@@ -52,7 +54,7 @@ namespace HutechPM.UI.Uc
 
         private async void registerBtn_Click(object sender, EventArgs e)
         {
-            FrmSplashScreen frmSplashScreen = new FrmSplashScreen();
+            frmLoader.Show();
             UserDTO userDTO = new UserDTO()
             {
                 userName = textBoxUsername.Text.Trim(),
@@ -65,9 +67,8 @@ namespace HutechPM.UI.Uc
             using (HutechNoteDbContext dbContext = new HutechNoteDbContext())
             {
                 UserService userService = new UserService(dbContext);
-                frmSplashScreen.Show();
                 ActionBaseResult result = await userService.CreateUser(userDTO);
-                frmSplashScreen.Close();
+                frmLoader.Close();
                 if (result.Success)
                 {
                     XtraMessageBox.Show("SignUp successful");
