@@ -16,9 +16,11 @@ namespace HutechPM.UI.Uc
 {
     public partial class uc_Login : UserControl
     {
+        FrmLoader frmLoader;
         public uc_Login()
         {
             InitializeComponent();
+            frmLoader = new FrmLoader();
         }
 
         private void textBoxUser_Click(object sender, EventArgs e)
@@ -65,17 +67,14 @@ namespace HutechPM.UI.Uc
         }
         private async void buttonLogin_Click(object sender, EventArgs e)
         {
-            
+            frmLoader.Show();
             string userName = textBoxUser.Text;
             string password = textBoxPassword.Text;
-          
             using (HutechNoteDbContext dbContext = new HutechNoteDbContext())
             {
-                FrmSplashScreen FrmSplashScreen = new FrmSplashScreen();
                 UserService userService = new UserService(dbContext);
-                FrmSplashScreen.Show();
                 User currentUser = await userService.getUser(userName, password);
-                FrmSplashScreen.Close();
+                frmLoader.Close();
                 if (currentUser != null)
                 {
                     XtraMessageBox.Show("Login successful");
