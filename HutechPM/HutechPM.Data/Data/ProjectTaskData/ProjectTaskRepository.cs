@@ -33,6 +33,7 @@ namespace HutechPM.Data.Data.ProjectTaskData
                 {
                     await _dbContext.projectTasks.AddAsync(projectTask);
                     await _dbContext.SaveChangesAsync();
+                    await transaction.CommitAsync();
                     return new ActionBaseResult() { Success = true, Message = "Add task Successful" };
                 }
                 catch (Exception e)
@@ -51,6 +52,7 @@ namespace HutechPM.Data.Data.ProjectTaskData
                 {
                     _dbContext.projectTasks.Update(projectTask);
                     await _dbContext.SaveChangesAsync();
+                    await transaction.CommitAsync();
                     return new ActionBaseResult() { Success = true, Message = "Add task Successful" };
                 }
                 catch (Exception e)
@@ -60,7 +62,24 @@ namespace HutechPM.Data.Data.ProjectTaskData
                 }
             }
         }
-
+        public async Task<ActionBaseResult> DeleteProjectTask(ProjectTask projectTask)
+        {
+            using (var transaction = _dbContext.Database.BeginTransaction())
+            {
+                try
+                {
+                    _dbContext.projectTasks.Remove(projectTask);
+                    await _dbContext.SaveChangesAsync();
+                    await transaction.CommitAsync();
+                    return new ActionBaseResult() { Success = true, Message = "Add project Successful" };
+                }
+                catch (Exception e)
+                {
+                    await transaction.RollbackAsync();
+                    return new ActionBaseResult() { Success = false, Message = e.Message };
+                }
+            }
+        }
         public async Task<ProjectTask> findProjectTaskId(Guid projectTaskId)
         {
             List<ProjectTask> projectTasks = await GetProjectTask();

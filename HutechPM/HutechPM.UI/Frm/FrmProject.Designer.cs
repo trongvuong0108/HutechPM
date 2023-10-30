@@ -37,9 +37,9 @@
             radioButtonFalse = new System.Windows.Forms.RadioButton();
             radioButtonTrue = new System.Windows.Forms.RadioButton();
             label3 = new System.Windows.Forms.Label();
-            dateTimePickerEnddate = new System.Windows.Forms.DateTimePicker();
+            dateTimePickerEndDate = new System.Windows.Forms.DateTimePicker();
             label6 = new System.Windows.Forms.Label();
-            dateTimePickerStartdate = new System.Windows.Forms.DateTimePicker();
+            dateTimePickerStartDate = new System.Windows.Forms.DateTimePicker();
             label7 = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
             comboBoxOwner = new System.Windows.Forms.ComboBox();
@@ -64,6 +64,7 @@
             buttonSave.TabIndex = 34;
             buttonSave.Text = "Save";
             buttonSave.UseVisualStyleBackColor = false;
+            buttonSave.Click += buttonSave_Click;
             // 
             // buttonCancel
             // 
@@ -77,6 +78,7 @@
             buttonCancel.TabIndex = 47;
             buttonCancel.Text = "Cancel";
             buttonCancel.UseVisualStyleBackColor = false;
+            buttonCancel.Click += buttonCancel_Click;
             // 
             // label1
             // 
@@ -123,6 +125,7 @@
             buttonExit.TabIndex = 24;
             buttonExit.Text = "X";
             buttonExit.UseVisualStyleBackColor = false;
+            buttonExit.Click += buttonExit_Click;
             // 
             // radioButtonFalse
             // 
@@ -158,18 +161,17 @@
             label3.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
             label3.Location = new System.Drawing.Point(37, 560);
             label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(96, 30);
+            label3.Size = new System.Drawing.Size(106, 30);
             label3.TabIndex = 16;
-            label3.Text = "Is Active";
-            label3.Click += label3_Click;
+            label3.Text = "Is Active*";
             // 
-            // dateTimePickerEnddate
+            // dateTimePickerEndDate
             // 
-            dateTimePickerEnddate.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dateTimePickerEnddate.Location = new System.Drawing.Point(200, 480);
-            dateTimePickerEnddate.Name = "dateTimePickerEnddate";
-            dateTimePickerEnddate.Size = new System.Drawing.Size(400, 37);
-            dateTimePickerEnddate.TabIndex = 20;
+            dateTimePickerEndDate.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dateTimePickerEndDate.Location = new System.Drawing.Point(200, 480);
+            dateTimePickerEndDate.Name = "dateTimePickerEndDate";
+            dateTimePickerEndDate.Size = new System.Drawing.Size(400, 37);
+            dateTimePickerEndDate.TabIndex = 20;
             // 
             // label6
             // 
@@ -178,17 +180,18 @@
             label6.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
             label6.Location = new System.Drawing.Point(37, 480);
             label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(100, 30);
+            label6.Size = new System.Drawing.Size(110, 30);
             label6.TabIndex = 19;
-            label6.Text = "End date";
+            label6.Text = "End date*";
             // 
-            // dateTimePickerStartdate
+            // dateTimePickerStartDate
             // 
-            dateTimePickerStartdate.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dateTimePickerStartdate.Location = new System.Drawing.Point(200, 390);
-            dateTimePickerStartdate.Name = "dateTimePickerStartdate";
-            dateTimePickerStartdate.Size = new System.Drawing.Size(400, 37);
-            dateTimePickerStartdate.TabIndex = 13;
+            dateTimePickerStartDate.Enabled = false;
+            dateTimePickerStartDate.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dateTimePickerStartDate.Location = new System.Drawing.Point(200, 390);
+            dateTimePickerStartDate.Name = "dateTimePickerStartDate";
+            dateTimePickerStartDate.Size = new System.Drawing.Size(400, 37);
+            dateTimePickerStartDate.TabIndex = 13;
             // 
             // label7
             // 
@@ -197,9 +200,9 @@
             label7.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
             label7.Location = new System.Drawing.Point(37, 391);
             label7.Name = "label7";
-            label7.Size = new System.Drawing.Size(110, 30);
+            label7.Size = new System.Drawing.Size(120, 30);
             label7.TabIndex = 12;
-            label7.Text = "Start date";
+            label7.Text = "Start date*";
             // 
             // label4
             // 
@@ -214,13 +217,13 @@
             // 
             // comboBoxOwner
             // 
+            comboBoxOwner.Enabled = false;
             comboBoxOwner.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             comboBoxOwner.FormattingEnabled = true;
             comboBoxOwner.Location = new System.Drawing.Point(200, 306);
             comboBoxOwner.Name = "comboBoxOwner";
             comboBoxOwner.Size = new System.Drawing.Size(400, 38);
             comboBoxOwner.TabIndex = 6;
-            comboBoxOwner.SelectedIndexChanged += comboBoxOwner_SelectedIndexChanged;
             // 
             // textBoxDescription
             // 
@@ -239,9 +242,9 @@
             label5.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
             label5.Location = new System.Drawing.Point(37, 192);
             label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(127, 30);
+            label5.Size = new System.Drawing.Size(137, 30);
             label5.TabIndex = 8;
-            label5.Text = "Description";
+            label5.Text = "Description*";
             // 
             // label2
             // 
@@ -265,20 +268,20 @@
             // 
             // FrmProject
             // 
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            AutoScroll = true;
+            AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(658, 723);
             Controls.Add(buttonCancel);
             Controls.Add(buttonSave);
             Controls.Add(buttonExit);
             Controls.Add(pictureBox1);
             Controls.Add(label8);
-            Controls.Add(dateTimePickerEnddate);
+            Controls.Add(dateTimePickerEndDate);
             Controls.Add(label6);
             Controls.Add(radioButtonFalse);
             Controls.Add(radioButtonTrue);
             Controls.Add(label3);
-            Controls.Add(dateTimePickerStartdate);
+            Controls.Add(dateTimePickerStartDate);
             Controls.Add(label7);
             Controls.Add(textBoxDescription);
             Controls.Add(label5);
@@ -308,9 +311,9 @@
         private System.Windows.Forms.RadioButton radioButtonFalse;
         private System.Windows.Forms.RadioButton radioButtonTrue;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker dateTimePickerEnddate;
+        private System.Windows.Forms.DateTimePicker dateTimePickerEndDate;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DateTimePicker dateTimePickerStartdate;
+        private System.Windows.Forms.DateTimePicker dateTimePickerStartDate;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBoxOwner;

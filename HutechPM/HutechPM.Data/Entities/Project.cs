@@ -19,8 +19,10 @@ namespace HutechPM.Data.Entities
         public Guid projectId { set; get; }
         [Column("project_name")]
         [NotNull]
+
         public string projectName { set; get; }
         [Column("description")]
+        [AllowNull]
         public string description { set; get; }
         [Column("date_start")]
         public DateTime dateStart { set; get; }

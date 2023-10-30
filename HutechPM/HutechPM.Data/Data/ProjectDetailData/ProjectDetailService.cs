@@ -25,5 +25,14 @@ namespace HutechPM.Data.Data.ProjectDetailData
         {
             return await projectDetailRepository.AddProjectDetail(projectDetail);
         }
+        public async Task<ActionBaseResult> DeleteProjectDetail(ProjectDetail projectDetail)
+        {
+            return await projectDetailRepository.DeleteProjectDetail(projectDetail);
+        }
+
+        public async Task<List<ProjectDetail>> getAllProjectDetailByUser(User user)
+        {
+            return await projectDetailRepository.getAllProjectDetailByUser(user);
+        }
     }
 }

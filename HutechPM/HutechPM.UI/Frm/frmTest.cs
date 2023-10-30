@@ -28,8 +28,10 @@ namespace HutechPM.UI.Frm
             openFileDialog.ShowDialog();
             foreach (String file in openFileDialog.FileNames)
             {
-                var res = await fileUpload.uploadFile(file,file);
-                try
+                var res = await fileUpload.uploadFile(file, file);
+                MessageBox.Show(res);
+
+                /*try
                 {
                     Process process = new Process();
                     process.StartInfo.UseShellExecute = true;
@@ -40,8 +42,13 @@ namespace HutechPM.UI.Frm
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message.ToString());
-                }
+                }*/
             }
+        }
+
+        private void frmTest_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

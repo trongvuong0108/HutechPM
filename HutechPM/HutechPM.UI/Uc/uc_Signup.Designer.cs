@@ -78,10 +78,9 @@
             registerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             registerBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             registerBtn.ForeColor = System.Drawing.Color.White;
-            registerBtn.Location = new System.Drawing.Point(184, 325);
-            registerBtn.Margin = new System.Windows.Forms.Padding(2);
+            registerBtn.Location = new System.Drawing.Point(230, 541);
             registerBtn.Name = "registerBtn";
-            registerBtn.Size = new System.Drawing.Size(168, 30);
+            registerBtn.Size = new System.Drawing.Size(290, 50);
             registerBtn.TabIndex = 48;
             registerBtn.Text = "Register";
             registerBtn.UseVisualStyleBackColor = false;
@@ -92,10 +91,9 @@
             label6.AutoSize = true;
             label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             label6.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            label6.Location = new System.Drawing.Point(1, 10);
-            label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label6.Location = new System.Drawing.Point(1, 17);
             label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(86, 26);
+            label6.Size = new System.Drawing.Size(126, 37);
             label6.TabIndex = 47;
             label6.Text = "Sign up";
             // 
@@ -117,10 +115,9 @@
             panelSignupFirst.Controls.Add(checkBoxShowpassword);
             panelSignupFirst.Controls.Add(label10);
             panelSignupFirst.Controls.Add(textBoxUsername);
-            panelSignupFirst.Location = new System.Drawing.Point(14, 44);
-            panelSignupFirst.Margin = new System.Windows.Forms.Padding(2);
+            panelSignupFirst.Location = new System.Drawing.Point(20, 73);
             panelSignupFirst.Name = "panelSignupFirst";
-            panelSignupFirst.Size = new System.Drawing.Size(512, 277);
+            panelSignupFirst.Size = new System.Drawing.Size(731, 462);
             panelSignupFirst.TabIndex = 58;
             // 
             // textBoxEmail
@@ -129,10 +126,9 @@
             textBoxEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
             textBoxEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             textBoxEmail.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            textBoxEmail.Location = new System.Drawing.Point(29, 78);
-            textBoxEmail.Margin = new System.Windows.Forms.Padding(2);
+            textBoxEmail.Location = new System.Drawing.Point(41, 130);
             textBoxEmail.Name = "textBoxEmail";
-            textBoxEmail.Size = new System.Drawing.Size(343, 19);
+            textBoxEmail.Size = new System.Drawing.Size(490, 28);
             textBoxEmail.TabIndex = 83;
             // 
             // textBoxPassword
@@ -141,20 +137,18 @@
             textBoxPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             textBoxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             textBoxPassword.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            textBoxPassword.Location = new System.Drawing.Point(29, 135);
-            textBoxPassword.Margin = new System.Windows.Forms.Padding(2);
+            textBoxPassword.Location = new System.Drawing.Point(41, 225);
             textBoxPassword.Name = "textBoxPassword";
-            textBoxPassword.Size = new System.Drawing.Size(343, 19);
+            textBoxPassword.Size = new System.Drawing.Size(490, 28);
             textBoxPassword.TabIndex = 82;
             textBoxPassword.UseSystemPasswordChar = true;
             // 
             // pictureBoxRight
             // 
             pictureBoxRight.Image = Properties.Resources.rightarrow;
-            pictureBoxRight.Location = new System.Drawing.Point(232, 234);
-            pictureBoxRight.Margin = new System.Windows.Forms.Padding(2);
+            pictureBoxRight.Location = new System.Drawing.Point(331, 390);
             pictureBoxRight.Name = "pictureBoxRight";
-            pictureBoxRight.Size = new System.Drawing.Size(43, 37);
+            pictureBoxRight.Size = new System.Drawing.Size(61, 62);
             pictureBoxRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             pictureBoxRight.TabIndex = 81;
             pictureBoxRight.TabStop = false;
@@ -164,10 +158,9 @@
             // 
             label12.BackColor = System.Drawing.Color.FromArgb(42, 128, 185);
             label12.ForeColor = System.Drawing.Color.FromArgb(42, 128, 185);
-            label12.Location = new System.Drawing.Point(17, 221);
-            label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label12.Location = new System.Drawing.Point(24, 368);
             label12.Name = "label12";
-            label12.Size = new System.Drawing.Size(468, 1);
+            label12.Size = new System.Drawing.Size(669, 2);
             label12.TabIndex = 79;
             // 
             // textBoxConfirmPass
@@ -176,10 +169,9 @@
             textBoxConfirmPass.BorderStyle = System.Windows.Forms.BorderStyle.None;
             textBoxConfirmPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             textBoxConfirmPass.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            textBoxConfirmPass.Location = new System.Drawing.Point(29, 194);
-            textBoxConfirmPass.Margin = new System.Windows.Forms.Padding(2);
+            textBoxConfirmPass.Location = new System.Drawing.Point(41, 323);
             textBoxConfirmPass.Name = "textBoxConfirmPass";
-            textBoxConfirmPass.Size = new System.Drawing.Size(343, 19);
+            textBoxConfirmPass.Size = new System.Drawing.Size(490, 28);
             textBoxConfirmPass.TabIndex = 78;
             textBoxConfirmPass.UseSystemPasswordChar = true;
             // 
@@ -188,10 +180,9 @@
             label13.AutoSize = true;
             label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             label13.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            label13.Location = new System.Drawing.Point(12, 173);
-            label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label13.Location = new System.Drawing.Point(17, 288);
             label13.Name = "label13";
-            label13.Size = new System.Drawing.Size(153, 20);
+            label13.Size = new System.Drawing.Size(226, 29);
             label13.TabIndex = 77;
             label13.Text = "Confirm Password";
             label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -200,10 +191,9 @@
             // 
             label11.BackColor = System.Drawing.Color.FromArgb(42, 128, 185);
             label11.ForeColor = System.Drawing.Color.FromArgb(42, 128, 185);
-            label11.Location = new System.Drawing.Point(17, 164);
-            label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label11.Location = new System.Drawing.Point(24, 273);
             label11.Name = "label11";
-            label11.Size = new System.Drawing.Size(468, 1);
+            label11.Size = new System.Drawing.Size(669, 2);
             label11.TabIndex = 76;
             // 
             // label14
@@ -211,10 +201,9 @@
             label14.AutoSize = true;
             label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             label14.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            label14.Location = new System.Drawing.Point(12, 116);
-            label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label14.Location = new System.Drawing.Point(17, 193);
             label14.Name = "label14";
-            label14.Size = new System.Drawing.Size(86, 20);
+            label14.Size = new System.Drawing.Size(128, 29);
             label14.TabIndex = 74;
             label14.Text = "Password";
             label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -223,10 +212,9 @@
             // 
             label7.BackColor = System.Drawing.Color.FromArgb(42, 128, 185);
             label7.ForeColor = System.Drawing.Color.FromArgb(42, 128, 185);
-            label7.Location = new System.Drawing.Point(17, 107);
-            label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label7.Location = new System.Drawing.Point(24, 178);
             label7.Name = "label7";
-            label7.Size = new System.Drawing.Size(468, 1);
+            label7.Size = new System.Drawing.Size(669, 2);
             label7.TabIndex = 73;
             // 
             // label9
@@ -234,10 +222,9 @@
             label9.AutoSize = true;
             label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             label9.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            label9.Location = new System.Drawing.Point(12, 59);
-            label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label9.Location = new System.Drawing.Point(17, 98);
             label9.Name = "label9";
-            label9.Size = new System.Drawing.Size(53, 20);
+            label9.Size = new System.Drawing.Size(79, 29);
             label9.TabIndex = 71;
             label9.Text = "Email";
             label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -246,10 +233,9 @@
             // 
             label8.BackColor = System.Drawing.Color.FromArgb(42, 128, 185);
             label8.ForeColor = System.Drawing.Color.FromArgb(42, 128, 185);
-            label8.Location = new System.Drawing.Point(17, 50);
-            label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label8.Location = new System.Drawing.Point(24, 83);
             label8.Name = "label8";
-            label8.Size = new System.Drawing.Size(468, 1);
+            label8.Size = new System.Drawing.Size(669, 2);
             label8.TabIndex = 70;
             // 
             // checkBoxShowpassword
@@ -257,10 +243,9 @@
             checkBoxShowpassword.AutoSize = true;
             checkBoxShowpassword.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             checkBoxShowpassword.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            checkBoxShowpassword.Location = new System.Drawing.Point(364, 234);
-            checkBoxShowpassword.Margin = new System.Windows.Forms.Padding(2);
+            checkBoxShowpassword.Location = new System.Drawing.Point(520, 390);
             checkBoxShowpassword.Name = "checkBoxShowpassword";
-            checkBoxShowpassword.Size = new System.Drawing.Size(123, 23);
+            checkBoxShowpassword.Size = new System.Drawing.Size(172, 32);
             checkBoxShowpassword.TabIndex = 66;
             checkBoxShowpassword.Text = "Show Password";
             checkBoxShowpassword.UseVisualStyleBackColor = true;
@@ -271,10 +256,9 @@
             label10.AutoSize = true;
             label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             label10.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            label10.Location = new System.Drawing.Point(12, 2);
-            label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label10.Location = new System.Drawing.Point(17, 3);
             label10.Name = "label10";
-            label10.Size = new System.Drawing.Size(91, 20);
+            label10.Size = new System.Drawing.Size(132, 29);
             label10.TabIndex = 58;
             label10.Text = "Username";
             label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -285,10 +269,9 @@
             textBoxUsername.BorderStyle = System.Windows.Forms.BorderStyle.None;
             textBoxUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             textBoxUsername.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            textBoxUsername.Location = new System.Drawing.Point(29, 23);
-            textBoxUsername.Margin = new System.Windows.Forms.Padding(2);
+            textBoxUsername.Location = new System.Drawing.Point(41, 38);
             textBoxUsername.Name = "textBoxUsername";
-            textBoxUsername.Size = new System.Drawing.Size(343, 19);
+            textBoxUsername.Size = new System.Drawing.Size(490, 28);
             textBoxUsername.TabIndex = 59;
             // 
             // panelSignupLast
@@ -312,32 +295,30 @@
             panelSignupLast.Controls.Add(label16);
             panelSignupLast.Controls.Add(label17);
             panelSignupLast.Controls.Add(textBoxFullname);
-            panelSignupLast.Location = new System.Drawing.Point(14, 44);
-            panelSignupLast.Margin = new System.Windows.Forms.Padding(2);
+            panelSignupLast.Location = new System.Drawing.Point(20, 73);
             panelSignupLast.Name = "panelSignupLast";
-            panelSignupLast.Size = new System.Drawing.Size(512, 277);
+            panelSignupLast.Size = new System.Drawing.Size(731, 462);
             panelSignupLast.TabIndex = 82;
             // 
             // buttonFileAvatar
             // 
             buttonFileAvatar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             buttonFileAvatar.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            buttonFileAvatar.Location = new System.Drawing.Point(312, 196);
-            buttonFileAvatar.Margin = new System.Windows.Forms.Padding(2);
+            buttonFileAvatar.Location = new System.Drawing.Point(446, 327);
             buttonFileAvatar.Name = "buttonFileAvatar";
-            buttonFileAvatar.Size = new System.Drawing.Size(38, 29);
+            buttonFileAvatar.Size = new System.Drawing.Size(54, 48);
             buttonFileAvatar.TabIndex = 86;
             buttonFileAvatar.Text = "...";
             buttonFileAvatar.UseVisualStyleBackColor = true;
+            buttonFileAvatar.Click += buttonFileAvatar_Click;
             // 
             // pictureBoxAvatar
             // 
             pictureBoxAvatar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            pictureBoxAvatar.Location = new System.Drawing.Point(392, 178);
-            pictureBoxAvatar.Margin = new System.Windows.Forms.Padding(2);
+            pictureBoxAvatar.Location = new System.Drawing.Point(560, 297);
             pictureBoxAvatar.Name = "pictureBoxAvatar";
-            pictureBoxAvatar.Size = new System.Drawing.Size(93, 76);
-            pictureBoxAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            pictureBoxAvatar.Size = new System.Drawing.Size(132, 125);
+            pictureBoxAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             pictureBoxAvatar.TabIndex = 85;
             pictureBoxAvatar.TabStop = false;
             // 
@@ -346,10 +327,9 @@
             label1.AutoSize = true;
             label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             label1.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            label1.Location = new System.Drawing.Point(303, 173);
-            label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label1.Location = new System.Drawing.Point(433, 288);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(61, 20);
+            label1.Size = new System.Drawing.Size(85, 29);
             label1.TabIndex = 84;
             label1.Text = "Avatar";
             label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -359,10 +339,9 @@
             radioButtonFemale.AutoSize = true;
             radioButtonFemale.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             radioButtonFemale.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            radioButtonFemale.Location = new System.Drawing.Point(92, 205);
-            radioButtonFemale.Margin = new System.Windows.Forms.Padding(2);
+            radioButtonFemale.Location = new System.Drawing.Point(131, 342);
             radioButtonFemale.Name = "radioButtonFemale";
-            radioButtonFemale.Size = new System.Drawing.Size(80, 24);
+            radioButtonFemale.Size = new System.Drawing.Size(120, 33);
             radioButtonFemale.TabIndex = 83;
             radioButtonFemale.TabStop = true;
             radioButtonFemale.Text = "Female";
@@ -373,10 +352,9 @@
             radioButtonMale.AutoSize = true;
             radioButtonMale.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             radioButtonMale.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            radioButtonMale.Location = new System.Drawing.Point(92, 173);
-            radioButtonMale.Margin = new System.Windows.Forms.Padding(2);
+            radioButtonMale.Location = new System.Drawing.Point(131, 288);
             radioButtonMale.Name = "radioButtonMale";
-            radioButtonMale.Size = new System.Drawing.Size(61, 24);
+            radioButtonMale.Size = new System.Drawing.Size(91, 33);
             radioButtonMale.TabIndex = 82;
             radioButtonMale.TabStop = true;
             radioButtonMale.Text = "Male";
@@ -385,10 +363,9 @@
             // pictureBoxLeft
             // 
             pictureBoxLeft.Image = (System.Drawing.Image)resources.GetObject("pictureBoxLeft.Image");
-            pictureBoxLeft.Location = new System.Drawing.Point(224, 234);
-            pictureBoxLeft.Margin = new System.Windows.Forms.Padding(2);
+            pictureBoxLeft.Location = new System.Drawing.Point(320, 390);
             pictureBoxLeft.Name = "pictureBoxLeft";
-            pictureBoxLeft.Size = new System.Drawing.Size(43, 37);
+            pictureBoxLeft.Size = new System.Drawing.Size(61, 62);
             pictureBoxLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             pictureBoxLeft.TabIndex = 81;
             pictureBoxLeft.TabStop = false;
@@ -400,10 +377,9 @@
             textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
             textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             textBox4.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            textBox4.Location = new System.Drawing.Point(29, 194);
-            textBox4.Margin = new System.Windows.Forms.Padding(2);
+            textBox4.Location = new System.Drawing.Point(41, 323);
             textBox4.Name = "textBox4";
-            textBox4.Size = new System.Drawing.Size(343, 19);
+            textBox4.Size = new System.Drawing.Size(490, 28);
             textBox4.TabIndex = 78;
             // 
             // label2
@@ -411,10 +387,9 @@
             label2.AutoSize = true;
             label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             label2.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            label2.Location = new System.Drawing.Point(12, 173);
-            label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label2.Location = new System.Drawing.Point(17, 288);
             label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(69, 20);
+            label2.Size = new System.Drawing.Size(100, 29);
             label2.TabIndex = 77;
             label2.Text = "Gender";
             label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -423,10 +398,9 @@
             // 
             label3.BackColor = System.Drawing.Color.FromArgb(42, 128, 185);
             label3.ForeColor = System.Drawing.Color.FromArgb(42, 128, 185);
-            label3.Location = new System.Drawing.Point(17, 164);
-            label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label3.Location = new System.Drawing.Point(24, 273);
             label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(468, 1);
+            label3.Size = new System.Drawing.Size(669, 2);
             label3.TabIndex = 76;
             // 
             // textBoxAddress
@@ -435,10 +409,9 @@
             textBoxAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
             textBoxAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             textBoxAddress.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            textBoxAddress.Location = new System.Drawing.Point(29, 137);
-            textBoxAddress.Margin = new System.Windows.Forms.Padding(2);
+            textBoxAddress.Location = new System.Drawing.Point(41, 228);
             textBoxAddress.Name = "textBoxAddress";
-            textBoxAddress.Size = new System.Drawing.Size(343, 19);
+            textBoxAddress.Size = new System.Drawing.Size(490, 28);
             textBoxAddress.TabIndex = 75;
             // 
             // label4
@@ -446,10 +419,9 @@
             label4.AutoSize = true;
             label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             label4.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            label4.Location = new System.Drawing.Point(12, 116);
-            label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label4.Location = new System.Drawing.Point(17, 193);
             label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(75, 20);
+            label4.Size = new System.Drawing.Size(109, 29);
             label4.TabIndex = 74;
             label4.Text = "Address";
             label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -458,10 +430,9 @@
             // 
             label5.BackColor = System.Drawing.Color.FromArgb(42, 128, 185);
             label5.ForeColor = System.Drawing.Color.FromArgb(42, 128, 185);
-            label5.Location = new System.Drawing.Point(17, 107);
-            label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label5.Location = new System.Drawing.Point(24, 178);
             label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(468, 1);
+            label5.Size = new System.Drawing.Size(669, 2);
             label5.TabIndex = 73;
             // 
             // textBoxPhone
@@ -470,10 +441,9 @@
             textBoxPhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
             textBoxPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             textBoxPhone.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            textBoxPhone.Location = new System.Drawing.Point(29, 80);
-            textBoxPhone.Margin = new System.Windows.Forms.Padding(2);
+            textBoxPhone.Location = new System.Drawing.Point(41, 133);
             textBoxPhone.Name = "textBoxPhone";
-            textBoxPhone.Size = new System.Drawing.Size(343, 19);
+            textBoxPhone.Size = new System.Drawing.Size(490, 28);
             textBoxPhone.TabIndex = 72;
             // 
             // label15
@@ -481,10 +451,9 @@
             label15.AutoSize = true;
             label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             label15.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            label15.Location = new System.Drawing.Point(12, 59);
-            label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label15.Location = new System.Drawing.Point(17, 98);
             label15.Name = "label15";
-            label15.Size = new System.Drawing.Size(60, 20);
+            label15.Size = new System.Drawing.Size(88, 29);
             label15.TabIndex = 71;
             label15.Text = "Phone";
             label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -493,10 +462,9 @@
             // 
             label16.BackColor = System.Drawing.Color.FromArgb(42, 128, 185);
             label16.ForeColor = System.Drawing.Color.FromArgb(42, 128, 185);
-            label16.Location = new System.Drawing.Point(17, 50);
-            label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label16.Location = new System.Drawing.Point(24, 83);
             label16.Name = "label16";
-            label16.Size = new System.Drawing.Size(468, 1);
+            label16.Size = new System.Drawing.Size(669, 2);
             label16.TabIndex = 70;
             // 
             // label17
@@ -504,10 +472,9 @@
             label17.AutoSize = true;
             label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             label17.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            label17.Location = new System.Drawing.Point(12, 2);
-            label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label17.Location = new System.Drawing.Point(17, 3);
             label17.Name = "label17";
-            label17.Size = new System.Drawing.Size(82, 20);
+            label17.Size = new System.Drawing.Size(121, 29);
             label17.TabIndex = 58;
             label17.Text = "Fullname";
             label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -518,23 +485,22 @@
             textBoxFullname.BorderStyle = System.Windows.Forms.BorderStyle.None;
             textBoxFullname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             textBoxFullname.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            textBoxFullname.Location = new System.Drawing.Point(29, 23);
-            textBoxFullname.Margin = new System.Windows.Forms.Padding(2);
+            textBoxFullname.Location = new System.Drawing.Point(41, 38);
             textBoxFullname.Name = "textBoxFullname";
-            textBoxFullname.Size = new System.Drawing.Size(343, 19);
+            textBoxFullname.Size = new System.Drawing.Size(490, 28);
             textBoxFullname.TabIndex = 59;
             // 
             // uc_Signup
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             Controls.Add(registerBtn);
             Controls.Add(label6);
             Controls.Add(panelSignupFirst);
             Controls.Add(panelSignupLast);
-            Margin = new System.Windows.Forms.Padding(2);
             Name = "uc_Signup";
-            Size = new System.Drawing.Size(558, 362);
+            Size = new System.Drawing.Size(797, 612);
+            Load += uc_Signup_Load;
             panelSignupFirst.ResumeLayout(false);
             panelSignupFirst.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxRight).EndInit();

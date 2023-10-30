@@ -15,6 +15,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace HutechPM.UI.Frm
 {
@@ -22,7 +23,7 @@ namespace HutechPM.UI.Frm
     {
         HutechNoteDbContext _dbContext;
         UserService userService;
-        ProjectTaskService projectTaskService;
+        ProjectService projectService;
         ProjectDetailService projectDetailService;
         List<Project> ListProject;
         List<ProjectTask> ListProjectTask;
@@ -30,35 +31,44 @@ namespace HutechPM.UI.Frm
         public FrmProject()
         {
             InitializeComponent();
-           
+
         }
+        public string projectId { get; set; }
         public string projectName { get; set; }
         public string description { get; set; }
         public string owner { get; set; }
         public string dateStart { get; set; }
+        public string dateEnd { get; set; }
         public bool isActive { get; set; }
-        public FrmProject(string projectName, string description, string owner, string dateStart, bool isActive)
+        public FrmProject(string projectId, string projectName, string description, string owner, string dateStart, string dateEnd, bool isActive)
         {
             InitializeComponent();
             _dbContext = new HutechNoteDbContext();
             userService = new UserService(_dbContext);
+            projectService = new ProjectService(_dbContext);
+            this.projectId = projectId;
             this.projectName = projectName;
             this.description = description;
             this.owner = owner;
             this.dateStart = dateStart;
+            this.dateEnd = dateEnd;
             this.isActive = isActive;
         }
 
-        private void FrmProject_Load(object sender, EventArgs e)
+        private async void FrmProject_Load(object sender, EventArgs e)
         {
-            dateTimePickerStartdate.Format = DateTimePickerFormat.Custom;
-            dateTimePickerStartdate.CustomFormat = "dd/MM/yyyy";
-            comboBoxOwner.DataSource = userService.GetAllUsers();
+            dateTimePickerStartDate.Format = DateTimePickerFormat.Custom;
+            dateTimePickerStartDate.CustomFormat = "dd/MM/yyyy";
+            dateTimePickerEndDate.Format = DateTimePickerFormat.Custom;
+            dateTimePickerEndDate.CustomFormat = "dd/MM/yyyy";
+            comboBoxOwner.DataSource = await userService.GetAllUsers();
             textBoxProjectName.Text = projectName;
             textBoxDescription.Text = description;
             comboBoxOwner.Text = owner;
             string[] dateStartSplit = dateStart.Split(' ');
-            dateTimePickerStartdate.Value = DateTime.ParseExact(dateStartSplit[0], "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            dateTimePickerStartDate.Value = DateTime.ParseExact(dateStartSplit[0], "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            string[] dateEndSplit = dateEnd.Split(' ');
+            dateTimePickerEndDate.Value = DateTime.ParseExact(dateEndSplit[0], "dd/MM/yyyy", CultureInfo.InvariantCulture);
             if (isActive)
             {
                 radioButtonTrue.Checked = true;
@@ -68,29 +78,38 @@ namespace HutechPM.UI.Frm
                 radioButtonFalse.Checked = false;
             }
         }
+
+        private void buttonExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void buttonCancel_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
-        private void buttonSave_Click(object sender, EventArgs e)
+        private async void buttonSave_Click(object sender, EventArgs e)
         {
+            Guid guidprojectId = new Guid(projectId);
+            Project project = await projectService.findProjectId(guidprojectId);
+            project.projectName = textBoxProjectName.Text;
+            project.description = textBoxDescription.Text;
+            project.dateEnd = dateTimePickerEndDate.Value;
 
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBoxOwner_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+            if(radioButtonTrue.Checked)
+            {
+                project.isActive = true;
+            }
+            else
+            { 
+                project.isActive = false;
+            }
+            projectService.UpdateProject(project);
+            MessageBox.Show("update thanh cong");
+        }     
     }
 }
+
+
+

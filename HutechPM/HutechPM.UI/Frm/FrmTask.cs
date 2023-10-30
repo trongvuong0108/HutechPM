@@ -64,7 +64,7 @@ namespace HutechPM.UI.Frm
         }
         private async void FrmTask_Load(object sender, EventArgs e)
         {
-            if(projectTaskId != null)
+            if (projectTaskId != null)
             {
                 comboBoxProjectName.Enabled = false;
             }
@@ -86,10 +86,10 @@ namespace HutechPM.UI.Frm
             listTaskStatus.Add(ProjectTask.TaskStatus.In_Process);
             listTaskStatus.Add(ProjectTask.TaskStatus.Completed);
             listTaskStatus.Add(ProjectTask.TaskStatus.On_Hold);
-            
-            
+
+
         }
-       
+
         List<ProjectTask.TaskStatus> listTaskStatus = new List<ProjectTask.TaskStatus>();
 
 
@@ -144,7 +144,7 @@ namespace HutechPM.UI.Frm
                         projectTask.taskStatus = task;
                     }
                 }
-                projectTaskService.upadteProjectTask(projectTask);
+                await projectTaskService.upadteProjectTask(projectTask);
                 MessageBox.Show("update thanh cong");
             }
             else
@@ -162,14 +162,14 @@ namespace HutechPM.UI.Frm
                         projectTask.taskStatus = task;
                     }
                 }
-                foreach(ProjectDetail projectDetail in await projectDetailService.getAllProjectDetail())
+                foreach (ProjectDetail projectDetail in await projectDetailService.getAllProjectDetail())
                 {
-                    if(projectDetail.user.userName == Owner && projectDetail.projectRole == ProjectRole)
+                    if (projectDetail.user.userName == Owner && projectDetail.projectRole == ProjectRole)
                     {
                         projectTask.projectDetail = projectDetail;
                     }
                 }
-                projectTaskService.AddProjectTask(projectTask);
+                await projectTaskService.AddProjectTask(projectTask);
             }
         }
 

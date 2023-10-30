@@ -27,6 +27,10 @@ namespace HutechNote.Data.Data.ProjectData
         {
             return await projectRepository.GetProject();
         }
+        public async Task<Project> findProjectId(Guid projectId)
+        {
+            return await projectRepository.findProjectId(projectId);
+        }
         public async Task<List<ProjectDTO>> getAllProjectsDTO()
         {
             List<ProjectDTO> ProjectDTOs = new List<ProjectDTO>();
@@ -34,13 +38,16 @@ namespace HutechNote.Data.Data.ProjectData
             foreach (Project project in projects)
             {
                 ProjectDTO projectDTO = new ProjectDTO();
+                projectDTO.projectId = project.projectId;
                 projectDTO.projectName = project.projectName;
+                projectDTO.description = project.description;
                 ProjectDetail findUserRole = await projectRepository.findProjectOfOwner(project);
                 if (findUserRole != null)
                 {
                     projectDTO.owner = findUserRole.user.userName;
                 }
                 projectDTO.dateStart = project.dateStart;
+                projectDTO.dateEnd = project.dateEnd;
                 int count = 0;
                 foreach (ProjectTask projectTask in await projectRepository.GetProjectTask())
                 {
@@ -54,13 +61,18 @@ namespace HutechNote.Data.Data.ProjectData
                 ProjectDTOs.Add(projectDTO);
             }
             return ProjectDTOs;
-
         }
         public async Task<ActionBaseResult> AddProject(Project project)
         {
             return await projectRepository.AddProject(project);
-
         }
-
+        public async Task<ActionBaseResult> UpdateProject(Project project)
+        {
+            return await projectRepository.UpdateProject(project);
+        }
+        public async Task<ActionBaseResult> DeleteProject(Project project)
+        {
+            return await projectRepository.DeleteProject(project);
+        }
     }
 }

@@ -66,6 +66,7 @@
             projectTaskBindingSource = new System.Windows.Forms.BindingSource(components);
             buttonSelectDelete = new System.Windows.Forms.Button();
             buttonCreate = new System.Windows.Forms.Button();
+            buttonUpdate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)ItemButtonUpdate).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ItemButtonDelete).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ItemButtonuploadFile).BeginInit();
@@ -121,6 +122,9 @@
             gridViewTask.GridControl = gridControlGridTask;
             gridViewTask.Name = "gridViewTask";
             gridViewTask.OptionsFind.AlwaysVisible = true;
+            gridViewTask.OptionsSelection.MultiSelect = true;
+            gridViewTask.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            gridViewTask.FocusedRowChanged += gridViewTask_FocusedRowChanged;
             // 
             // projectName
             // 
@@ -130,7 +134,7 @@
             projectName.MinWidth = 30;
             projectName.Name = "projectName";
             projectName.Visible = true;
-            projectName.VisibleIndex = 0;
+            projectName.VisibleIndex = 1;
             projectName.Width = 112;
             // 
             // taskName
@@ -140,7 +144,7 @@
             taskName.MinWidth = 30;
             taskName.Name = "taskName";
             taskName.Visible = true;
-            taskName.VisibleIndex = 1;
+            taskName.VisibleIndex = 2;
             taskName.Width = 112;
             // 
             // owner
@@ -150,7 +154,7 @@
             owner.MinWidth = 30;
             owner.Name = "owner";
             owner.Visible = true;
-            owner.VisibleIndex = 2;
+            owner.VisibleIndex = 3;
             owner.Width = 112;
             // 
             // description
@@ -160,7 +164,7 @@
             description.MinWidth = 30;
             description.Name = "description";
             description.Visible = true;
-            description.VisibleIndex = 3;
+            description.VisibleIndex = 4;
             description.Width = 112;
             // 
             // estimate
@@ -170,7 +174,7 @@
             estimate.MinWidth = 30;
             estimate.Name = "estimate";
             estimate.Visible = true;
-            estimate.VisibleIndex = 4;
+            estimate.VisibleIndex = 5;
             estimate.Width = 112;
             // 
             // remaining
@@ -180,7 +184,7 @@
             remaining.MinWidth = 30;
             remaining.Name = "remaining";
             remaining.Visible = true;
-            remaining.VisibleIndex = 5;
+            remaining.VisibleIndex = 6;
             remaining.Width = 112;
             // 
             // taskStatus
@@ -190,7 +194,7 @@
             taskStatus.MinWidth = 30;
             taskStatus.Name = "taskStatus";
             taskStatus.Visible = true;
-            taskStatus.VisibleIndex = 6;
+            taskStatus.VisibleIndex = 7;
             taskStatus.Width = 50;
             // 
             // update
@@ -200,7 +204,7 @@
             update.MinWidth = 30;
             update.Name = "update";
             update.Visible = true;
-            update.VisibleIndex = 7;
+            update.VisibleIndex = 8;
             update.Width = 50;
             // 
             // delete
@@ -210,7 +214,7 @@
             delete.MinWidth = 30;
             delete.Name = "delete";
             delete.Visible = true;
-            delete.VisibleIndex = 8;
+            delete.VisibleIndex = 9;
             delete.Width = 50;
             // 
             // uploadFile
@@ -220,7 +224,7 @@
             uploadFile.MinWidth = 30;
             uploadFile.Name = "uploadFile";
             uploadFile.Visible = true;
-            uploadFile.VisibleIndex = 9;
+            uploadFile.VisibleIndex = 10;
             uploadFile.Width = 50;
             // 
             // taskId
@@ -256,6 +260,7 @@
             buttonSelectDelete.TabIndex = 3;
             buttonSelectDelete.Text = "Delete";
             buttonSelectDelete.UseVisualStyleBackColor = true;
+            buttonSelectDelete.Click += buttonSelectDelete_Click;
             // 
             // buttonCreate
             // 
@@ -265,7 +270,7 @@
             buttonCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             buttonCreate.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             buttonCreate.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            buttonCreate.Location = new System.Drawing.Point(970, 65);
+            buttonCreate.Location = new System.Drawing.Point(700, 65);
             buttonCreate.Name = "buttonCreate";
             buttonCreate.Size = new System.Drawing.Size(140, 50);
             buttonCreate.TabIndex = 4;
@@ -273,9 +278,26 @@
             buttonCreate.UseVisualStyleBackColor = false;
             buttonCreate.Click += buttonCreate_Click;
             // 
+            // buttonUpdate
+            // 
+            buttonUpdate.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            buttonUpdate.AutoSize = true;
+            buttonUpdate.BackColor = System.Drawing.Color.White;
+            buttonUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            buttonUpdate.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            buttonUpdate.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
+            buttonUpdate.Location = new System.Drawing.Point(941, 66);
+            buttonUpdate.Name = "buttonUpdate";
+            buttonUpdate.Size = new System.Drawing.Size(140, 50);
+            buttonUpdate.TabIndex = 5;
+            buttonUpdate.Text = "update";
+            buttonUpdate.UseVisualStyleBackColor = false;
+            buttonUpdate.Click += buttonUpdate_Click;
+            // 
             // uc_ListTask
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            Controls.Add(buttonUpdate);
             Controls.Add(buttonCreate);
             Controls.Add(buttonSelectDelete);
             Controls.Add(gridControlGridTask);
@@ -316,5 +338,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit ItemButtonuploadFile;
         private DevExpress.XtraGrid.Columns.GridColumn taskId;
         private DevExpress.XtraGrid.Columns.GridColumn projectRole;
+        private System.Windows.Forms.Button buttonUpdate;
     }
 }

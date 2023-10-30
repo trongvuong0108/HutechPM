@@ -4,6 +4,7 @@ using HutechPM.Data.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HutechNote.Data.Migrations
 {
     [DbContext(typeof(HutechNoteDbContext))]
-    partial class TaskManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231030054354_update_database_30102023_v1")]
+    partial class update_database_30102023_v1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,16 +65,6 @@ namespace HutechNote.Data.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("acttachment_id");
 
-                    b.Property<string>("acttachmentName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("acttachment_name");
-
-                    b.Property<string>("acttachmentType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("type");
-
                     b.Property<DateTime>("dateCreate")
                         .HasColumnType("datetime2")
                         .HasColumnName("date_create");
@@ -81,6 +73,11 @@ namespace HutechNote.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("description");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("acttachment_name");
 
                     b.Property<Guid>("taskprojectTaskid")
                         .HasColumnType("uniqueidentifier");

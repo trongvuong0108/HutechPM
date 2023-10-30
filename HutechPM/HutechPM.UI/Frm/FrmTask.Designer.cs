@@ -106,22 +106,22 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label6.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             label6.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
             label6.Location = new System.Drawing.Point(35, 537);
             label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(123, 30);
+            label6.Size = new System.Drawing.Size(129, 30);
             label6.TabIndex = 38;
             label6.Text = "Remaining*";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label3.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             label3.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
             label3.Location = new System.Drawing.Point(35, 622);
             label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(79, 30);
+            label3.Size = new System.Drawing.Size(83, 30);
             label3.TabIndex = 35;
             label3.Text = "Status*";
             // 
@@ -138,11 +138,11 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label5.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             label5.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
             label5.Location = new System.Drawing.Point(35, 251);
             label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(122, 30);
+            label5.Size = new System.Drawing.Size(127, 30);
             label5.TabIndex = 29;
             label5.Text = "Description";
             // 
@@ -169,22 +169,22 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label4.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             label4.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
             label4.Location = new System.Drawing.Point(35, 359);
             label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(87, 30);
+            label4.Size = new System.Drawing.Size(90, 30);
             label4.TabIndex = 26;
             label4.Text = "Owner*";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label2.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             label2.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
             label2.Location = new System.Drawing.Point(35, 179);
             label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(123, 30);
+            label2.Size = new System.Drawing.Size(126, 30);
             label2.TabIndex = 25;
             label2.Text = "Task name*";
             // 
@@ -226,11 +226,11 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label7.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             label7.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
             label7.Location = new System.Drawing.Point(35, 447);
             label7.Name = "label7";
-            label7.Size = new System.Drawing.Size(103, 30);
+            label7.Size = new System.Drawing.Size(107, 30);
             label7.TabIndex = 45;
             label7.Text = "Estimate*";
             label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -254,11 +254,11 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label9.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             label9.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
             label9.Location = new System.Drawing.Point(35, 100);
             label9.Name = "label9";
-            label9.Size = new System.Drawing.Size(149, 30);
+            label9.Size = new System.Drawing.Size(154, 30);
             label9.TabIndex = 48;
             label9.Text = "Project name*";
             // 

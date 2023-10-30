@@ -18,6 +18,8 @@ using DevExpress.XtraEditors;
 using Microsoft.EntityFrameworkCore;
 using HutechNote.UI.Frm;
 using HutechPM.Data.Entities;
+using System.Net.Mail;
+
 namespace HutechPM.UI.Frm
 {
     public partial class FrmCreateProject : Form
@@ -42,6 +44,38 @@ namespace HutechPM.UI.Frm
             projectDetailService = new ProjectDetailService(_dbContext);
             userService = new UserService(_dbContext);
             this.UserNameLogin = userNameLogin;
+        }
+        private static readonly string _from = "workflowttp@gmail.com";
+        private static readonly string _pass = "mytk qdlt eyfl xfby";
+       /* private static readonly string _from = "trantrung28122003@gmail.com";
+        private static readonly string _pass = "artc gpdp bcpi gvuq";*/
+        public static string sendEmail(string sendto, string subject, string content)
+        {
+
+            try
+            {
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+                mail.From = new MailAddress(_from);
+                mail.To.Add(sendto);
+                mail.Subject = subject;
+                mail.IsBodyHtml = true;
+                mail.Body = content;
+
+                mail.Priority = MailPriority.High;
+
+                SmtpServer.Port = 587;
+                SmtpServer.Credentials = new System.Net.NetworkCredential(_from, _pass);
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+                return "OK";
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
+            }
         }
 
         //SingleTon design pattern -> Dependency Injection
@@ -70,10 +104,14 @@ namespace HutechPM.UI.Frm
 
             project.description = textBoxDescription.Text;
             project.dateStart = DateTime.Now;
+            project.dateEnd = DateTime.Now;
             project.isActive = true;
 
-            await projectService.AddProject(project);
-
+            ActionBaseResult res = await projectService.AddProject(project);
+            if(res.Success)
+            {
+                MessageBox.Show("Add thành công");
+            }
             createProject = project;
             ProjectDetail projectDetail = new ProjectDetail();
             projectDetail.projectDetailId = Guid.NewGuid();
@@ -122,6 +160,7 @@ namespace HutechPM.UI.Frm
                 listInviteUser.Remove(skill);
             }
         }
+
         private async void buttonInvite_Click(object sender, EventArgs e)
         {
             if (listInviteUser != null)
@@ -136,10 +175,12 @@ namespace HutechPM.UI.Frm
                     projectDetail.projectRole = projectRole.ProjectMember;
                     projectDetail.project = createProject;
                     await projectDetailService.AddProjectDetail(projectDetail);
-                    
+                    string subject = "Thông báo workFlow";
+                    string content =
+                    "Bạn đã được mời vào dự án" + createProject.projectName;
+                    sendEmail(user.email, subject, content);
+                    XtraMessageBox.Show("moi thanh cong");
                 }
-                XtraMessageBox.Show("moi thanh cong");
-
             }
             else
             {
@@ -150,7 +191,7 @@ namespace HutechPM.UI.Frm
         }
         private void linkLabelLater_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void linkLabelLater_MouseHover(object sender, EventArgs e)

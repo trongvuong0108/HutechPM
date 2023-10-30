@@ -1,4 +1,5 @@
 ﻿using HutechPM.Data.Common;
+using HutechPM.Data.Data.ProjectAttachmentData;
 using HutechPM.Data.Data.ProjectData;
 using HutechPM.Data.Data.ProjectDetailData;
 using HutechPM.Data.Entities;
@@ -34,7 +35,10 @@ namespace HutechPM.Data.Data.ProjectTaskData
         {
             return await projectTaskRepository.upadteProjectTask(projectTask);
         }
-
+        public async Task<ActionBaseResult> DeleteProjectTask(ProjectTask projectTask)
+        {
+            return await projectTaskRepository.DeleteProjectTask(projectTask);
+        }
         public async Task<ProjectTask> findProjectTaskId(Guid projectTaskId)
         {
             return await projectTaskRepository.findProjectTaskId(projectTaskId);

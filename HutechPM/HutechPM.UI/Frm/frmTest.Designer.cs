@@ -33,9 +33,10 @@
             // 
             // button1
             // 
-            button1.Location = new System.Drawing.Point(253, 142);
+            button1.Location = new System.Drawing.Point(361, 237);
+            button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             button1.Name = "button1";
-            button1.Size = new System.Drawing.Size(321, 114);
+            button1.Size = new System.Drawing.Size(459, 190);
             button1.TabIndex = 0;
             button1.Text = "button1";
             button1.UseVisualStyleBackColor = true;
@@ -43,12 +44,14 @@
             // 
             // frmTest
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(800, 450);
+            ClientSize = new System.Drawing.Size(1143, 750);
             Controls.Add(button1);
+            Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             Name = "frmTest";
             Text = "frmTest";
+            Load += frmTest_Load;
             ResumeLayout(false);
         }
 

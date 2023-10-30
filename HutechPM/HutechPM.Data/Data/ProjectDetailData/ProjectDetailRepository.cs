@@ -31,6 +31,7 @@ namespace HutechPM.Data.Data.ProjectDetailData
                 {
                     await _dbContext.projectDetails.AddAsync(projectDetail);
                     await _dbContext.SaveChangesAsync();
+                    await transaction.CommitAsync();
                     return new ActionBaseResult() { Success = true, Message = "Add project Successful" };
                 }
                 catch (Exception e)
@@ -39,6 +40,29 @@ namespace HutechPM.Data.Data.ProjectDetailData
                     return new ActionBaseResult() { Success = false, Message = e.Message };
                 }
             }
+        }
+        public async Task<ActionBaseResult> DeleteProjectDetail(ProjectDetail projectDetail)
+        {
+
+            using (var transaction = _dbContext.Database.BeginTransaction())
+            {
+                try
+                {
+                    _dbContext.projectDetails.Remove(projectDetail);
+                    await _dbContext.SaveChangesAsync();
+                    await transaction.CommitAsync();
+                    return new ActionBaseResult() { Success = true, Message = "Add project Successful" };
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    return new ActionBaseResult() { Success = false, Message = e.Message };
+                }
+            }
+        }
+        public async Task<List<ProjectDetail>> getAllProjectDetailByUser(User user)
+        {
+            return await _dbContext.projectDetails.Where(p => p.user.userId == user.userId && p.projectRole == projectRole.ProjectManager).ToListAsync();
         }
     }
 }

@@ -27,6 +27,7 @@ namespace HutechPM.Data.Entities
         [Column("taskName")]
         public string name { set; get; }
         [Column("description")]
+        [AllowNull]
         public string description { set; get; }
         [Column("estimate")]
         public int estimate { set; get; }

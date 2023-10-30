@@ -19,7 +19,15 @@ namespace HutechPM.Data.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid acttachmentId { set; get; }
         [Column("acttachment_name")]
-        public string name { set; get; }
+        public string acttachmentName { set; get; }
+
+        [Column("type")]
+        public string acttachmentType { set; get; }
+
+        [Column("description")]
+        public string description { set; get; }
+        [AllowNull]
+
         [Column("date_create")]
         public DateTime dateCreate { set; get; }
         public ProjectTask task { set; get; }

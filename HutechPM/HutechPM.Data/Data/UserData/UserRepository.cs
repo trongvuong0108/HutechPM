@@ -32,6 +32,18 @@ namespace HutechPM.Data.UserData
             }
             
         }
+
+        public async Task<ProjectDetail> findProjetRoleOfOwner(User user)
+        {
+            List<ProjectDetail> projectDetails = await _dbContext.projectDetails
+                                                    .Include(p => p.projectTasks)
+                                                    .Include(p => p.user).ToListAsync();
+            return projectDetails.FirstOrDefault(p => p.user.userId == user.userId);
+        }
+        public async Task<List<ProjectTask>> GetProjectTask()
+        {
+            return await _dbContext.projectTasks.Include(x => x.projectDetail.project).Include(x => x.projectDetail.user).ToListAsync();
+        }
     }
         
     
