@@ -16,6 +16,9 @@ using DevExpress.XtraEditors;
 using System.Linq;
 using DevExpress.XtraRichEdit.Layout;
 using DevExpress.XtraGrid.Views.Base;
+using HutechPM.Data.UserData;
+using System.Threading.Tasks;
+using DevExpress.CodeParser;
 
 namespace HutechPM.UI.Components
 {
@@ -34,6 +37,7 @@ namespace HutechPM.UI.Components
         ProjectService projectService;
         ProjectTaskService projectTaskService;
         ProjectDetailService projectDetailService;
+        UserService userService;
         List<Project> ListProject;
         List<ProjectTask> ListProjectTask;
         List<ProjectDTO> listProjectDTO;
@@ -44,6 +48,7 @@ namespace HutechPM.UI.Components
             projectService = new ProjectService(_dbContext);
             projectTaskService = new ProjectTaskService(_dbContext);
             projectDetailService = new ProjectDetailService(_dbContext);
+            userService = new UserService(_dbContext);
         }
 
 
@@ -54,39 +59,47 @@ namespace HutechPM.UI.Components
 
         private async void uc_ListProject_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(UserName.userName);
-
             ListProject = await projectService.getAllProject();
             ListProjectTask = await projectTaskService.getAllProjectTask();
             listProjectDTO = await projectService.getAllProjectsDTO();
             BindingSource bindingSourceProject = new BindingSource();
             bindingSourceProject.DataSource = listProjectDTO;
             gridControlProjects.DataSource = bindingSourceProject;
+
             ItemButtonUpdate.Click += ItemButtonUpdate_Click;
             ItemButtonDelete.Click += ItemButtonDelete_Click;
         }
+
         private void ItemButtonUpdate_Click(object sender, EventArgs e)
         {
-            getProjectId = gridViewProjects.GetFocusedRowCellValue("projectId").ToString();
-            getProjectName = gridViewProjects.GetFocusedRowCellValue("projectName").ToString();
-            getDescription = gridViewProjects.GetFocusedRowCellValue("description").ToString();
-            getOwner = gridViewProjects.GetFocusedRowCellValue("owner").ToString();
-            getDateStart = gridViewProjects.GetFocusedRowCellValue("dateStart").ToString();
-            getDateEnd = gridViewProjects.GetFocusedRowCellValue("dateEnd").ToString();
-            getisActive = true;
-            foreach (ProjectDTO projectDTO in listProjectDTO)
+            try
             {
-                if (projectDTO.projectName == getProjectName)
+                string getProjectId = gridViewProjects.GetFocusedRowCellValue("projectId").ToString();
+                string getProjectName = gridViewProjects.GetFocusedRowCellValue("projectName").ToString();
+                string getDescription = gridViewProjects.GetFocusedRowCellValue("description").ToString();
+                string getOwner = gridViewProjects.GetFocusedRowCellValue("owner").ToString();
+                string getDateStart = gridViewProjects.GetFocusedRowCellValue("dateStart").ToString();
+                string getDateEnd = gridViewProjects.GetFocusedRowCellValue("dateEnd").ToString();
+                bool getisActive = true;
+                foreach (ProjectDTO projectDTO in listProjectDTO)
                 {
-                    getisActive = projectDTO.isActive;
+                    if (projectDTO.projectName == getProjectName)
+                    {
+                        getisActive = projectDTO.isActive;
+                    }
                 }
-            }
-            using (FrmProject frmProject = new FrmProject(getProjectId, getProjectName, getDescription, getOwner, getDateStart, getDateEnd, getisActive))
-            {
-                if (frmProject.ShowDialog() == DialogResult.OK)
+                using (FrmProject frmProject = new FrmProject(getProjectId, getProjectName, getDescription, getOwner, getDateStart, getDateEnd, getisActive))
                 {
+                    if (frmProject.ShowDialog() == DialogResult.OK)
+                    {
+                        uc_ListProject_Load(sender, e);
+                    }
+                }
 
-                }
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message, "Notification", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             }
         }
         private async void ItemButtonDelete_Click(object sender, EventArgs e)
@@ -96,9 +109,7 @@ namespace HutechPM.UI.Components
             getProjectName = gridViewProjects.GetFocusedRowCellValue("projectName").ToString();
             if (XtraMessageBox.Show($"Do you want to delete project '" + getProjectName + "'", "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                gridViewProjects.DeleteSelectedRows();
                 Project deleteproject = await projectService.findProjectId(guidGetProject);
-
                 foreach (ProjectDetail deleteProjectDetail in await projectDetailService.getAllProjectDetail())
                 {
                     if (deleteproject.projectId == deleteProjectDetail.project.projectId)
@@ -106,82 +117,115 @@ namespace HutechPM.UI.Components
                         await projectDetailService.DeleteProjectDetail(deleteProjectDetail);
                     }
                 }
-                await projectService.DeleteProject(deleteproject);
+                ActionBaseResult result = await projectService.DeleteProject(deleteproject);
+                if (result.Success)
+                {
+                    XtraMessageBox.Show("Successfully deleted the selected project", "Notification");
+                    uc_ListProject_Load(sender, e);
+                }
             }
         }
-
         private void gridViewProjects_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            getProjectId = gridViewProjects.GetFocusedRowCellValue("projectId").ToString();
-            getProjectName = gridViewProjects.GetFocusedRowCellValue("projectName").ToString();
-            getDescription = gridViewProjects.GetFocusedRowCellValue("description").ToString();
-            getOwner = gridViewProjects.GetFocusedRowCellValue("owner").ToString();
-            getDateStart = gridViewProjects.GetFocusedRowCellValue("dateStart").ToString();
-            getDateEnd = gridViewProjects.GetFocusedRowCellValue("dateEnd").ToString();
-            getisActive = true;
-            foreach (ProjectDTO projectDTO in listProjectDTO)
+            try
             {
-                if (projectDTO.projectName == getProjectName)
+                getProjectId = gridViewProjects.GetFocusedRowCellValue("projectId").ToString();
+                getProjectName = gridViewProjects.GetFocusedRowCellValue("projectName").ToString();
+                getDescription = gridViewProjects.GetFocusedRowCellValue("description").ToString();
+                getOwner = gridViewProjects.GetFocusedRowCellValue("owner").ToString();
+                getDateStart = gridViewProjects.GetFocusedRowCellValue("dateStart").ToString();
+                getDateEnd = gridViewProjects.GetFocusedRowCellValue("dateEnd").ToString();
+                getisActive = true;
+                foreach (ProjectDTO projectDTO in listProjectDTO)
                 {
-                    getisActive = projectDTO.isActive;
+                    if (projectDTO.projectName == getProjectName)
+                    {
+                        getisActive = projectDTO.isActive;
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message, "Notification", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            }
         }
+
         private void buttonCreate_Click(object sender, EventArgs e)
         {
-            using (FrmCreateProject frmCreateProject = new FrmCreateProject(UserName))
+            try
             {
-                if (frmCreateProject.ShowDialog() == DialogResult.OK)
+                using (FrmCreateProject frmCreateProject = new FrmCreateProject(UserName))
                 {
-
+                    frmCreateProject.ShowDialog();
+                    uc_ListProject_Load(sender, e);
                 }
             }
-
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message, "Notification", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            }
         }
-
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            using (FrmProject frmProject = new FrmProject(getProjectId, getProjectName, getDescription, getOwner, getDateStart, getDateEnd, getisActive))
+            try
             {
-                if (frmProject.ShowDialog() == DialogResult.OK)
+                List<int> row = gridViewProjects.GetSelectedRows().Where(c => c >= 0).ToList();
+                if (row.Count > 1)
                 {
-
+                    throw new Exception("Cannot update multiple lines at once");
                 }
+                using (FrmProject frmProject = new FrmProject(getProjectId, getProjectName, getDescription, getOwner, getDateStart, getDateEnd, getisActive))
+                {
+                    frmProject.ShowDialog();
+                    uc_ListProject_Load(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message, "Notification", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             }
         }
 
         private async void buttonSelectDelete_Click(object sender, EventArgs e)
         {
-            List<int> row = gridViewProjects.GetSelectedRows().Where(c => c >= 0).ToList();
-            foreach (var item in row)
+            try
             {
-                getProjectId = gridViewProjects.GetRowCellValue(item, "projectId").ToString();
-                Guid guidGetProject = new Guid(getProjectId);
-                getProjectName = gridViewProjects.GetRowCellValue(item, "projectName").ToString();
-                if (XtraMessageBox.Show($"Do you want to delete project '" + getProjectName + "'", "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+                List<int> row = gridViewProjects.GetSelectedRows().Where(c => c >= 0).ToList();
+                foreach (var item in row)
                 {
-                    Project deleteproject = await projectService.findProjectId(guidGetProject);
-
-                    foreach (ProjectDetail deleteProjectDetail in await projectDetailService.getAllProjectDetail())
+                    getProjectId = gridViewProjects.GetRowCellValue(item, "projectId").ToString();
+                    Guid guidGetProject = new Guid(getProjectId);
+                    getProjectName = gridViewProjects.GetRowCellValue(item, "projectName").ToString();
+                    if (XtraMessageBox.Show($"Do you want to delete project '" + getProjectName + "'", "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        if (deleteproject.projectId == deleteProjectDetail.project.projectId)
+                        Project deleteproject = await projectService.findProjectId(guidGetProject);
+
+                        foreach (ProjectDetail deleteProjectDetail in await projectDetailService.getAllProjectDetail())
                         {
-                            await projectDetailService.DeleteProjectDetail(deleteProjectDetail);
+                            if (deleteproject.projectId == deleteProjectDetail.project.projectId)
+                            {
+                                await projectDetailService.DeleteProjectDetail(deleteProjectDetail);
+                            }
+                        }
+                        ActionBaseResult result = await projectService.DeleteProject(deleteproject);
+                        if(result.Success)
+                        {
+                            XtraMessageBox.Show("Successfully deleted the selected project", "Notification");
+                            uc_ListProject_Load(sender, e);
                         }
                     }
-                    await projectService.DeleteProject(deleteproject);
                 }
             }
-            foreach (var item in row)
+            catch (Exception ex)
             {
-                gridViewProjects.DeleteSelectedRows();
+                XtraMessageBox.Show(ex.Message, "Notification", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             }
-        }
-
-        private void gridControlProjects_Click(object sender, EventArgs e)
-        {
 
         }
+
+
+
+
     }
 }
 

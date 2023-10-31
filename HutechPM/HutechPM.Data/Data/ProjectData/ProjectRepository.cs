@@ -36,7 +36,6 @@ namespace HutechPM.Data.Data.ProjectData
 
         public async Task<ActionBaseResult> AddProject(Project project)
         {
-
             using (var transaction = _dbContext.Database.BeginTransaction())
             {
                 try
@@ -63,7 +62,7 @@ namespace HutechPM.Data.Data.ProjectData
                     _dbContext.projects.Update(project);
                     await _dbContext.SaveChangesAsync();
                     await transaction.CommitAsync();
-                    return new ActionBaseResult() { Success = true, Message = "Add project Successful" };
+                    return new ActionBaseResult() { Success = true, Message = "Update project Successful" };
                 }
                 catch (Exception e)
                 {

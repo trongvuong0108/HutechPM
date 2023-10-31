@@ -62,7 +62,7 @@ namespace HutechPM.Data.Data.ProjectDetailData
         }
         public async Task<List<ProjectDetail>> getAllProjectDetailByUser(User user)
         {
-            return await _dbContext.projectDetails.Where(p => p.user.userId == user.userId && p.projectRole == projectRole.ProjectManager).ToListAsync();
+            return await _dbContext.projectDetails.Include(p=>p.project).Where(p => p.user.userId == user.userId && p.projectRole == projectRole.ProjectManager).ToListAsync();
         }
     }
 }

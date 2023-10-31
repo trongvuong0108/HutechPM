@@ -19,12 +19,15 @@ using Microsoft.EntityFrameworkCore;
 using HutechNote.UI.Frm;
 using HutechPM.Data.Entities;
 using System.Net.Mail;
+using DevExpress.XtraRichEdit.Model;
+using static DevExpress.CodeParser.CodeStyle.Formatting.Rules.LineBreaks;
+using System.Windows.Documents;
 
 namespace HutechPM.UI.Frm
 {
     public partial class FrmCreateProject : Form
     {
-        public User UserNameLogin { set; get; }
+        public User UserLogin { set; get; }
         List<User> listInviteUser = new List<User>();
 
         HutechNoteDbContext _dbContext;
@@ -36,19 +39,19 @@ namespace HutechPM.UI.Frm
         {
             //InitializeComponent();
         }
-        public FrmCreateProject(User userNameLogin)
+        public FrmCreateProject(User userLogin)
         {
             InitializeComponent();
             _dbContext = new HutechNoteDbContext();
             projectService = new ProjectService(_dbContext);
             projectDetailService = new ProjectDetailService(_dbContext);
             userService = new UserService(_dbContext);
-            this.UserNameLogin = userNameLogin;
+            this.UserLogin = userLogin;
         }
         private static readonly string _from = "workflowttp@gmail.com";
         private static readonly string _pass = "mytk qdlt eyfl xfby";
-       /* private static readonly string _from = "trantrung28122003@gmail.com";
-        private static readonly string _pass = "artc gpdp bcpi gvuq";*/
+        /* private static readonly string _from = "trantrung28122003@gmail.com";
+         private static readonly string _pass = "artc gpdp bcpi gvuq";*/
         public static string sendEmail(string sendto, string subject, string content)
         {
 
@@ -82,7 +85,6 @@ namespace HutechPM.UI.Frm
 
         private async void FrmCreateProject_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(UserNameLogin.userName);
             addListCheckboxInviteUser(await userService.GetAllUsers());
         }
 
@@ -90,37 +92,71 @@ namespace HutechPM.UI.Frm
         {
             foreach (User user in users)
             {
-                checkedListBoxInviteUser.Items.Add(user);
+                if (user.userId != UserLogin.userId)
+                {
+                    checkedListBoxInviteUser.Items.Add(user);
+                }
             }
         }
         public Data.Entities.Project createProject;
         private async void buttonContinue_Click(object sender, EventArgs e)
         {
-            panelCreateProject2.BringToFront();
-         
-            Data.Entities.Project project = new Data.Entities.Project();
-            project.projectId = Guid.NewGuid();
-            project.projectName = textBoxProjectname.Text;
-
-            project.description = textBoxDescription.Text;
-            project.dateStart = DateTime.Now;
-            project.dateEnd = DateTime.Now;
-            project.isActive = true;
-
-            ActionBaseResult res = await projectService.AddProject(project);
-            if(res.Success)
+            try
             {
-                MessageBox.Show("Add thành công");
+                if (textBoxProjectname.Text == "" && textBoxDescription.Text == "")
+                {
+                    throw new Exception("Please! Enter complete information");
+                }
+                if (textBoxProjectname.Text == "")
+                {
+                    throw new Exception("Please! Enter project name");
+                }
+                foreach (Data.Entities.Project checkproject in await projectService.getAllProject())
+                {
+                    if (checkproject.projectName == textBoxProjectname.Text)
+                    {
+                        throw new Exception("This project name already exists in the system");
+                    }
+                }
+                if (textBoxDescription.Text == "")
+                {
+                    throw new Exception("Please! Enter project Description");
+                }
+
+                Data.Entities.Project project = new Data.Entities.Project();
+                project.projectId = Guid.NewGuid();
+                project.projectName = textBoxProjectname.Text;
+                project.description = textBoxDescription.Text;
+                project.dateStart = DateTime.Now;
+                project.dateEnd = DateTime.Now;
+                project.isActive = true;
+                await projectService.AddProject(project);
+
+                createProject = project;
+                ProjectDetail projectDetail = new ProjectDetail();
+                projectDetail.projectDetailId = Guid.NewGuid();
+                projectDetail.project = project;
+                projectDetail.user_id = UserLogin.userId;
+                projectDetail.timeJoin = DateTime.Now;
+                projectDetail.timeLeft = DateTime.Now;
+                projectDetail.projectRole = projectRole.ProjectManager;
+                ActionBaseResult result = await projectDetailService.AddProjectDetail(projectDetail);
+                if (result.Success)
+                {
+                    panelCreateProject2.BringToFront();
+                    MessageBox.Show("Create successful projects");
+                }
             }
-            createProject = project;
-            ProjectDetail projectDetail = new ProjectDetail();
-            projectDetail.projectDetailId = Guid.NewGuid();
-            projectDetail.project = project;
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message, "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Error);
+            }
 
             /*Guid userIdLogin = UserNameLogin();
             using (HutechNoteDbContext _dbContext = new HutechNoteDbContext())
             {
                 UserService userService = new UserService(_dbContext);
+                var users = await userService.GetAllUsers();
                 var users = await userService.GetAllUsers();
                 foreach (User user in users)
                 {
@@ -139,55 +175,60 @@ namespace HutechPM.UI.Frm
                     XtraMessageBox.Show("Dell tạo dc condilon oi");
                 }
             }*/
-
-            projectDetail.user_id = UserNameLogin.userId;
-            projectDetail.timeJoin = DateTime.Now;
-            projectDetail.timeLeft = DateTime.Now;
-            projectDetail.projectRole = projectRole.ProjectManager;
-            await projectDetailService.AddProjectDetail(projectDetail);
         }
 
         private void checkedListBoxInviteUser_ItemCheck(object sender, ItemCheckEventArgs e)
         {
+
             if (e.NewValue == CheckState.Checked)
             {
-                User skill = checkedListBoxInviteUser.Items[e.Index] as User;
-                listInviteUser.Add(skill);
+                User user = checkedListBoxInviteUser.Items[e.Index] as User;
+                listInviteUser.Add(user);
             }
             else
             {
-                User skill = checkedListBoxInviteUser.Items[e.Index] as User;
-                listInviteUser.Remove(skill);
+                User user = checkedListBoxInviteUser.Items[e.Index] as User;
+                listInviteUser.Remove(user);
             }
         }
 
         private async void buttonInvite_Click(object sender, EventArgs e)
         {
-            if (listInviteUser != null)
+            try
             {
-                foreach (User user in listInviteUser)
+                if (listInviteUser.Count != 0)
                 {
-                    ProjectDetail projectDetail = new ProjectDetail();
-                    projectDetail.projectDetailId = Guid.NewGuid();
-                    projectDetail.user_id = user.userId;
-                    projectDetail.timeJoin = DateTime.Now;
-                    projectDetail.timeLeft = DateTime.Now;
-                    projectDetail.projectRole = projectRole.ProjectMember;
-                    projectDetail.project = createProject;
-                    await projectDetailService.AddProjectDetail(projectDetail);
-                    string subject = "Thông báo workFlow";
-                    string content =
-                    "Bạn đã được mời vào dự án" + createProject.projectName;
-                    sendEmail(user.email, subject, content);
-                    XtraMessageBox.Show("moi thanh cong");
+                    foreach (User user in listInviteUser)
+                    {
+                        ProjectDetail projectDetail = new ProjectDetail();
+                        projectDetail.projectDetailId = Guid.NewGuid();
+                        projectDetail.user_id = user.userId;
+                        projectDetail.timeJoin = DateTime.Now;
+                        projectDetail.timeLeft = DateTime.Now;
+                        projectDetail.projectRole = projectRole.ProjectMember;
+                        projectDetail.project = createProject;
+                        ActionBaseResult result = await projectDetailService.AddProjectDetail(projectDetail);
+                        if (result.Success)
+                        {
+                            string subject = "WorkFlow notifications";
+                            string content =
+                            "You have been invited to the " + createProject.projectName + " project by " + projectDetail.user.email;
+                            sendEmail(user.email, subject, content);
+                        }
+                    }
+                    this.Close();
+                    XtraMessageBox.Show("Invite everyone to join the successfully " + createProject.projectName + " project");
                 }
+                else
+                {
+                    throw new Exception("Members have not been selected to invite to join the project");
+                }
+                listInviteUser.Clear();
             }
-            else
+            catch (Exception ex)
             {
-                XtraMessageBox.Show("Chuaw chon user");
+                XtraMessageBox.Show(ex.Message, "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Error);
             }
-
-
         }
         private void linkLabelLater_Click(object sender, EventArgs e)
         {
@@ -204,16 +245,14 @@ namespace HutechPM.UI.Frm
             linkLabelLater.LinkBehavior = LinkBehavior.AlwaysUnderline;
         }
 
-
         private void buttonExit_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void panelCreateProject2_Paint(object sender, PaintEventArgs e)
+        private void linkLabelLater_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            this.Close();
         }
-
     }
 }

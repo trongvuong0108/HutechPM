@@ -28,180 +28,152 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panelForgotPassword = new System.Windows.Forms.Panel();
-            VerifyCodebtn = new System.Windows.Forms.Button();
-            label12 = new System.Windows.Forms.Label();
-            SendCodebtn = new System.Windows.Forms.Button();
-            textBoxNewPassword = new System.Windows.Forms.TextBox();
-            textBoxEnterCode = new System.Windows.Forms.TextBox();
-            label11 = new System.Windows.Forms.Label();
-            label14 = new System.Windows.Forms.Label();
-            label13 = new System.Windows.Forms.Label();
-            textBoxUsername = new System.Windows.Forms.TextBox();
+            panel1 = new System.Windows.Forms.Panel();
+            button1 = new System.Windows.Forms.Button();
+            textBoxPassword = new System.Windows.Forms.TextBox();
+            pictureBoxPasswork = new System.Windows.Forms.PictureBox();
+            pictureBoxIconUser = new System.Windows.Forms.PictureBox();
+            textBoxUser = new System.Windows.Forms.TextBox();
+            pictureBoxUser = new System.Windows.Forms.PictureBox();
+            buttonLogin = new System.Windows.Forms.Button();
             label6 = new System.Windows.Forms.Label();
-            panelForgotPassword.SuspendLayout();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxPasswork).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxIconUser).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxUser).BeginInit();
             SuspendLayout();
             // 
-            // panelForgotPassword
+            // panel1
             // 
-            panelForgotPassword.AutoScroll = true;
-            panelForgotPassword.AutoSize = true;
-            panelForgotPassword.Controls.Add(VerifyCodebtn);
-            panelForgotPassword.Controls.Add(label12);
-            panelForgotPassword.Controls.Add(SendCodebtn);
-            panelForgotPassword.Controls.Add(textBoxNewPassword);
-            panelForgotPassword.Controls.Add(textBoxEnterCode);
-            panelForgotPassword.Controls.Add(label11);
-            panelForgotPassword.Controls.Add(label14);
-            panelForgotPassword.Controls.Add(label13);
-            panelForgotPassword.Controls.Add(textBoxUsername);
-            panelForgotPassword.Location = new System.Drawing.Point(143, 141);
-            panelForgotPassword.Name = "panelForgotPassword";
-            panelForgotPassword.Size = new System.Drawing.Size(756, 390);
-            panelForgotPassword.TabIndex = 90;
+            panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            panel1.Controls.Add(button1);
+            panel1.Controls.Add(textBoxPassword);
+            panel1.Controls.Add(pictureBoxPasswork);
+            panel1.Controls.Add(pictureBoxIconUser);
+            panel1.Controls.Add(textBoxUser);
+            panel1.Controls.Add(pictureBoxUser);
+            panel1.Controls.Add(buttonLogin);
+            panel1.Controls.Add(label6);
+            panel1.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
+            panel1.Location = new System.Drawing.Point(13, 35);
+            panel1.Name = "panel1";
+            panel1.Size = new System.Drawing.Size(695, 428);
+            panel1.TabIndex = 44;
             // 
-            // VerifyCodebtn
+            // button1
             // 
-            VerifyCodebtn.BackColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            VerifyCodebtn.FlatAppearance.BorderSize = 0;
-            VerifyCodebtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            VerifyCodebtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            VerifyCodebtn.ForeColor = System.Drawing.Color.White;
-            VerifyCodebtn.Location = new System.Drawing.Point(262, 311);
-            VerifyCodebtn.Name = "VerifyCodebtn";
-            VerifyCodebtn.Size = new System.Drawing.Size(252, 44);
-            VerifyCodebtn.TabIndex = 84;
-            VerifyCodebtn.Text = "Verify";
-            VerifyCodebtn.UseVisualStyleBackColor = false;
+            button1.BackColor = System.Drawing.Color.FromArgb(41, 128, 185);
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            button1.ForeColor = System.Drawing.Color.White;
+            button1.Location = new System.Drawing.Point(193, 345);
+            button1.Name = "button1";
+            button1.Size = new System.Drawing.Size(340, 54);
+            button1.TabIndex = 51;
+            button1.Text = "CONFIRM";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
-            // label12
+            // textBoxPassword
             // 
-            label12.BackColor = System.Drawing.Color.FromArgb(42, 128, 185);
-            label12.ForeColor = System.Drawing.Color.FromArgb(42, 128, 185);
-            label12.Location = new System.Drawing.Point(26, 288);
-            label12.Name = "label12";
-            label12.Size = new System.Drawing.Size(702, 1);
-            label12.TabIndex = 79;
+            textBoxPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            textBoxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            textBoxPassword.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
+            textBoxPassword.Location = new System.Drawing.Point(102, 219);
+            textBoxPassword.Name = "textBoxPassword";
+            textBoxPassword.Size = new System.Drawing.Size(284, 46);
+            textBoxPassword.TabIndex = 50;
             // 
-            // SendCodebtn
+            // pictureBoxPasswork
             // 
-            SendCodebtn.BackColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            SendCodebtn.FlatAppearance.BorderSize = 0;
-            SendCodebtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            SendCodebtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            SendCodebtn.ForeColor = System.Drawing.Color.White;
-            SendCodebtn.Location = new System.Drawing.Point(262, 148);
-            SendCodebtn.Name = "SendCodebtn";
-            SendCodebtn.Size = new System.Drawing.Size(252, 44);
-            SendCodebtn.TabIndex = 89;
-            SendCodebtn.Text = "Send Code";
-            SendCodebtn.UseVisualStyleBackColor = false;
+            pictureBoxPasswork.BackColor = System.Drawing.Color.White;
+            pictureBoxPasswork.Location = new System.Drawing.Point(88, 204);
+            pictureBoxPasswork.Name = "pictureBoxPasswork";
+            pictureBoxPasswork.Size = new System.Drawing.Size(316, 78);
+            pictureBoxPasswork.TabIndex = 49;
+            pictureBoxPasswork.TabStop = false;
             // 
-            // textBoxNewPassword
+            // pictureBoxIconUser
             // 
-            textBoxNewPassword.BackColor = System.Drawing.SystemColors.Control;
-            textBoxNewPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            textBoxNewPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            textBoxNewPassword.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            textBoxNewPassword.Location = new System.Drawing.Point(44, 80);
-            textBoxNewPassword.Name = "textBoxNewPassword";
-            textBoxNewPassword.Size = new System.Drawing.Size(514, 28);
-            textBoxNewPassword.TabIndex = 82;
-            textBoxNewPassword.UseSystemPasswordChar = true;
+            pictureBoxIconUser.BackColor = System.Drawing.Color.White;
+            pictureBoxIconUser.Image = Properties.Resources.sendcode;
+            pictureBoxIconUser.Location = new System.Drawing.Point(26, 113);
+            pictureBoxIconUser.Name = "pictureBoxIconUser";
+            pictureBoxIconUser.Size = new System.Drawing.Size(51, 52);
+            pictureBoxIconUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            pictureBoxIconUser.TabIndex = 48;
+            pictureBoxIconUser.TabStop = false;
             // 
-            // textBoxEnterCode
+            // textBoxUser
             // 
-            textBoxEnterCode.BackColor = System.Drawing.SystemColors.Control;
-            textBoxEnterCode.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            textBoxEnterCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            textBoxEnterCode.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            textBoxEnterCode.Location = new System.Drawing.Point(44, 251);
-            textBoxEnterCode.Name = "textBoxEnterCode";
-            textBoxEnterCode.Size = new System.Drawing.Size(514, 28);
-            textBoxEnterCode.TabIndex = 78;
-            textBoxEnterCode.UseSystemPasswordChar = true;
+            textBoxUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            textBoxUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            textBoxUser.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
+            textBoxUser.Location = new System.Drawing.Point(102, 123);
+            textBoxUser.Name = "textBoxUser";
+            textBoxUser.Size = new System.Drawing.Size(558, 32);
+            textBoxUser.TabIndex = 47;
             // 
-            // label11
+            // pictureBoxUser
             // 
-            label11.BackColor = System.Drawing.Color.FromArgb(42, 128, 185);
-            label11.ForeColor = System.Drawing.Color.FromArgb(42, 128, 185);
-            label11.Location = new System.Drawing.Point(26, 121);
-            label11.Name = "label11";
-            label11.Size = new System.Drawing.Size(702, 1);
-            label11.TabIndex = 76;
+            pictureBoxUser.BackColor = System.Drawing.Color.White;
+            pictureBoxUser.Location = new System.Drawing.Point(12, 100);
+            pictureBoxUser.Name = "pictureBoxUser";
+            pictureBoxUser.Size = new System.Drawing.Size(668, 78);
+            pictureBoxUser.TabIndex = 46;
+            pictureBoxUser.TabStop = false;
             // 
-            // label14
+            // buttonLogin
             // 
-            label14.AutoSize = true;
-            label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label14.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            label14.Location = new System.Drawing.Point(26, 34);
-            label14.Name = "label14";
-            label14.Size = new System.Drawing.Size(534, 33);
-            label14.TabIndex = 74;
-            label14.Text = "Enter your Email to reset your password";
-            label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label13.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            label13.Location = new System.Drawing.Point(26, 202);
-            label13.Name = "label13";
-            label13.Size = new System.Drawing.Size(161, 33);
-            label13.TabIndex = 77;
-            label13.Text = "Enter Code";
-            label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBoxUsername
-            // 
-            textBoxUsername.BackColor = System.Drawing.SystemColors.Control;
-            textBoxUsername.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            textBoxUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            textBoxUsername.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            textBoxUsername.Location = new System.Drawing.Point(44, 34);
-            textBoxUsername.Name = "textBoxUsername";
-            textBoxUsername.Size = new System.Drawing.Size(514, 28);
-            textBoxUsername.TabIndex = 59;
+            buttonLogin.BackColor = System.Drawing.Color.FromArgb(41, 128, 185);
+            buttonLogin.FlatAppearance.BorderSize = 0;
+            buttonLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            buttonLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            buttonLogin.ForeColor = System.Drawing.Color.White;
+            buttonLogin.Location = new System.Drawing.Point(442, 219);
+            buttonLogin.Name = "buttonLogin";
+            buttonLogin.Size = new System.Drawing.Size(149, 46);
+            buttonLogin.TabIndex = 45;
+            buttonLogin.Text = "SEND";
+            buttonLogin.UseVisualStyleBackColor = false;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             label6.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            label6.Location = new System.Drawing.Point(143, 84);
+            label6.Location = new System.Drawing.Point(12, 28);
             label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(261, 37);
-            label6.TabIndex = 89;
-            label6.Text = "Forgot Password";
+            label6.Size = new System.Drawing.Size(260, 37);
+            label6.TabIndex = 44;
+            label6.Text = "Forget Password";
             // 
             // uc_ForgetPassword
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            Controls.Add(panelForgotPassword);
-            Controls.Add(label6);
+            Controls.Add(panel1);
             Name = "uc_ForgetPassword";
-            Size = new System.Drawing.Size(1043, 615);
-            panelForgotPassword.ResumeLayout(false);
-            panelForgotPassword.PerformLayout();
+            Size = new System.Drawing.Size(711, 543);
+            Load += uc_ForgetPassword_Load;
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxPasswork).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxIconUser).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxUser).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panelForgotPassword;
-        private System.Windows.Forms.Button VerifyCodebtn;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Button SendCodebtn;
-        private System.Windows.Forms.TextBox textBoxNewPassword;
-        private System.Windows.Forms.TextBox textBoxEnterCode;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBoxUsername;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBoxPassword;
+        private System.Windows.Forms.PictureBox pictureBoxPasswork;
+        private System.Windows.Forms.PictureBox pictureBoxIconUser;
+        private System.Windows.Forms.TextBox textBoxUser;
+        private System.Windows.Forms.PictureBox pictureBoxUser;
+        private System.Windows.Forms.Button buttonLogin;
         private System.Windows.Forms.Label label6;
     }
 }

@@ -16,5 +16,15 @@ namespace HutechPM.UI.Uc
         {
             InitializeComponent();
         }
+
+        private void uc_ForgetPassword_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

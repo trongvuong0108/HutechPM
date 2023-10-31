@@ -31,6 +31,11 @@ namespace HutechPM.UI.FRM
 
         }
 
+        private void FrmSplashScreen_Load(object sender, EventArgs e)
+        {
+
+        }
+
         public enum SplashScreenCommand
         {
         }

@@ -36,6 +36,11 @@ namespace HutechPM.UI.FRM
 
         #endregion
 
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
         public enum WaitFormCommand
         {
         }

@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraReports.Design;
+﻿using DevExpress.XtraEditors;
+using DevExpress.XtraReports.Design;
 using HutechNote.Data.Data.ProjectData;
 using HutechPM.Data.Common;
 using HutechPM.Data.Data.ProjectDetailData;
@@ -57,26 +58,28 @@ namespace HutechPM.UI.Frm
 
         private async void FrmProject_Load(object sender, EventArgs e)
         {
-            dateTimePickerStartDate.Format = DateTimePickerFormat.Custom;
-            dateTimePickerStartDate.CustomFormat = "dd/MM/yyyy";
-            dateTimePickerEndDate.Format = DateTimePickerFormat.Custom;
-            dateTimePickerEndDate.CustomFormat = "dd/MM/yyyy";
-            comboBoxOwner.DataSource = await userService.GetAllUsers();
-            textBoxProjectName.Text = projectName;
-            textBoxDescription.Text = description;
-            comboBoxOwner.Text = owner;
-            string[] dateStartSplit = dateStart.Split(' ');
-            dateTimePickerStartDate.Value = DateTime.ParseExact(dateStartSplit[0], "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            string[] dateEndSplit = dateEnd.Split(' ');
-            dateTimePickerEndDate.Value = DateTime.ParseExact(dateEndSplit[0], "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            if (isActive)
-            {
-                radioButtonTrue.Checked = true;
-            }
-            else
-            {
-                radioButtonFalse.Checked = false;
-            }
+           
+                dateTimePickerStartDate.Format = DateTimePickerFormat.Custom;
+                dateTimePickerStartDate.CustomFormat = "dd/MM/yyyy";
+                dateTimePickerEndDate.Format = DateTimePickerFormat.Custom;
+                dateTimePickerEndDate.CustomFormat = "dd/MM/yyyy";
+                comboBoxOwner.DataSource = await userService.GetAllUsers();
+                textBoxProjectName.Text = projectName;
+                textBoxDescription.Text = description;
+                comboBoxOwner.Text = owner;
+                string[] dateStartSplit = dateStart.Split(' ');
+                dateTimePickerStartDate.Value = DateTime.ParseExact(dateStartSplit[0], "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                string[] dateEndSplit = dateEnd.Split(' ');
+                dateTimePickerEndDate.Value = DateTime.ParseExact(dateEndSplit[0], "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                if (isActive)
+                {
+                    radioButtonTrue.Checked = true;
+                }
+                else
+                {
+                    radioButtonFalse.Checked = false;
+                }
+           
         }
 
         private void buttonExit_Click(object sender, EventArgs e)
@@ -91,22 +94,54 @@ namespace HutechPM.UI.Frm
 
         private async void buttonSave_Click(object sender, EventArgs e)
         {
-            Guid guidprojectId = new Guid(projectId);
-            Project project = await projectService.findProjectId(guidprojectId);
-            project.projectName = textBoxProjectName.Text;
-            project.description = textBoxDescription.Text;
-            project.dateEnd = dateTimePickerEndDate.Value;
-
-            if(radioButtonTrue.Checked)
+            try
             {
-                project.isActive = true;
+                Guid guidprojectId = new Guid(projectId);
+                Project project = await projectService.findProjectId(guidprojectId);
+                if (textBoxProjectName.Text == "" && textBoxDescription.Text == "")
+                {
+                    throw new Exception("Please! Enter complete information");
+                }    
+                if (textBoxProjectName.Text == "")
+                {
+                    throw new Exception("Please! Enter project name");
+                }
+
+                foreach (Data.Entities.Project checkproject in await projectService.getAllProject())
+                {
+                    if (checkproject.projectName == textBoxProjectName.Text && textBoxProjectName.Text != project.projectName)
+                    {
+                        throw new Exception("This project name already exists in the system");
+                    }
+                }
+                if(textBoxDescription.Text == "")
+                {
+                    throw new Exception("Please! Enter Description");
+                }    
+                
+                project.projectName = textBoxProjectName.Text;
+                project.description = textBoxDescription.Text;
+                project.dateEnd = dateTimePickerEndDate.Value;
+                if (radioButtonTrue.Checked)
+                {
+                    project.isActive = true;
+                }
+                else
+                {
+                    project.isActive = false;
+                }
+            
+                ActionBaseResult result = await projectService.UpdateProject(project);
+                if(result.Success)
+                {
+                    MessageBox.Show("Update project successfully");
+                    this.Close();
+                }
             }
-            else
-            { 
-                project.isActive = false;
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message, "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Error);
             }
-            projectService.UpdateProject(project);
-            MessageBox.Show("update thanh cong");
         }     
     }
 }

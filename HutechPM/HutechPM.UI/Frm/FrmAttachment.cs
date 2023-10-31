@@ -15,18 +15,19 @@ namespace HutechPM.UI.Frm
 {
     public partial class FrmAttachment : Form
     {
+        string projectTaskId {  get; set; }
         string projectTaskName { get; set; }
         public FrmAttachment()
         {
             //InitializeComponent();
         }
 
-        public FrmAttachment(string projectTaskName)
+        public FrmAttachment(string projectTaskName, string projectTaskId)
         {
             InitializeComponent();
 
             this.projectTaskName = projectTaskName;
-
+            this.projectTaskId = projectTaskId;
         }
 
         private void FrmAttachment_Load(object sender, EventArgs e)

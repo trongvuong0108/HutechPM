@@ -38,9 +38,8 @@
             quantityTask = new DevExpress.XtraGrid.Columns.GridColumn();
             repositoryItemImageEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageEdit();
             userBindingSource = new System.Windows.Forms.BindingSource(components);
-            buttonCreate = new System.Windows.Forms.Button();
-            buttonSelectDelete = new System.Windows.Forms.Button();
-            projectName = new DevExpress.XtraGrid.Columns.GridColumn();
+            buttonAddMenber = new System.Windows.Forms.Button();
+            buttonDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)gridControlEmployess).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridViewEmployess).BeginInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemImageEdit1).BeginInit();
@@ -59,7 +58,7 @@
             // 
             // gridViewEmployess
             // 
-            gridViewEmployess.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { userName, gender, email, role, quantityTask, projectName });
+            gridViewEmployess.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { userName, gender, email, role, quantityTask });
             gridViewEmployess.GridControl = gridControlEmployess;
             gridViewEmployess.Name = "gridViewEmployess";
             // 
@@ -123,51 +122,43 @@
             // 
             userBindingSource.DataSource = typeof(Data.Entities.User);
             // 
-            // buttonCreate
+            // buttonAddMenber
             // 
-            buttonCreate.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            buttonCreate.AutoSize = true;
-            buttonCreate.BackColor = System.Drawing.Color.White;
-            buttonCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            buttonCreate.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            buttonCreate.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            buttonCreate.Location = new System.Drawing.Point(39, 62);
-            buttonCreate.Name = "buttonCreate";
-            buttonCreate.Size = new System.Drawing.Size(143, 50);
-            buttonCreate.TabIndex = 6;
-            buttonCreate.Text = "Add";
-            buttonCreate.UseVisualStyleBackColor = false;
+            buttonAddMenber.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            buttonAddMenber.AutoSize = true;
+            buttonAddMenber.BackColor = System.Drawing.Color.White;
+            buttonAddMenber.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            buttonAddMenber.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            buttonAddMenber.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
+            buttonAddMenber.Location = new System.Drawing.Point(39, 62);
+            buttonAddMenber.Name = "buttonAddMenber";
+            buttonAddMenber.Size = new System.Drawing.Size(143, 50);
+            buttonAddMenber.TabIndex = 6;
+            buttonAddMenber.Text = "Add";
+            buttonAddMenber.UseVisualStyleBackColor = false;
+            buttonAddMenber.Click += buttonAddMenber_Click;
             // 
-            // buttonSelectDelete
+            // buttonDelete
             // 
-            buttonSelectDelete.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            buttonSelectDelete.AutoSize = true;
-            buttonSelectDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            buttonSelectDelete.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            buttonSelectDelete.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            buttonSelectDelete.Location = new System.Drawing.Point(255, 62);
-            buttonSelectDelete.Name = "buttonSelectDelete";
-            buttonSelectDelete.Size = new System.Drawing.Size(140, 50);
-            buttonSelectDelete.TabIndex = 5;
-            buttonSelectDelete.Text = "Delete";
-            buttonSelectDelete.UseVisualStyleBackColor = true;
-            // 
-            // projectName
-            // 
-            projectName.Caption = "Project Name";
-            projectName.FieldName = "projectName";
-            projectName.MinWidth = 30;
-            projectName.Name = "projectName";
-            projectName.Visible = true;
-            projectName.VisibleIndex = 5;
-            projectName.Width = 112;
+            buttonDelete.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            buttonDelete.AutoSize = true;
+            buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            buttonDelete.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            buttonDelete.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
+            buttonDelete.Location = new System.Drawing.Point(231, 62);
+            buttonDelete.Name = "buttonDelete";
+            buttonDelete.Size = new System.Drawing.Size(140, 50);
+            buttonDelete.TabIndex = 5;
+            buttonDelete.Text = "Delete";
+            buttonDelete.UseVisualStyleBackColor = true;
+            buttonDelete.Click += buttonDelete_Click;
             // 
             // uc_ListEmployess
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            Controls.Add(buttonCreate);
-            Controls.Add(buttonSelectDelete);
+            Controls.Add(buttonAddMenber);
+            Controls.Add(buttonDelete);
             Controls.Add(gridControlEmployess);
             Name = "uc_ListEmployess";
             Size = new System.Drawing.Size(1335, 722);
@@ -189,8 +180,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn email;
         private DevExpress.XtraGrid.Columns.GridColumn role;
         private DevExpress.XtraEditors.Repository.RepositoryItemImageEdit repositoryItemImageEdit1;
-        private System.Windows.Forms.Button buttonCreate;
-        private System.Windows.Forms.Button buttonSelectDelete;
+        private System.Windows.Forms.Button buttonAddMenber;
+        private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.BindingSource userBindingSource;
         private DevExpress.XtraGrid.Columns.GridColumn quantityTask;
         private DevExpress.XtraGrid.Columns.GridColumn projectName;

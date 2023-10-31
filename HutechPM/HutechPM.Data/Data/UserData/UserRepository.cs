@@ -22,6 +22,7 @@ namespace HutechPM.Data.UserData
                 {
                     await _dbContext.users.AddAsync(user);
                     await _dbContext.SaveChangesAsync();
+                    await transaction.CommitAsync();
                     return new ActionBaseResult() { Success = true, Message = "SignUp Successful" };
                 }
                 catch (Exception e)
@@ -30,9 +31,26 @@ namespace HutechPM.Data.UserData
                     return new ActionBaseResult() { Success = false, Message = e.Message };
                 }
             }
-            
-        }
 
+        }
+        public async Task<ActionBaseResult> updateUser(User user)
+        {
+            using (var transaction = _dbContext.Database.BeginTransaction())
+            {
+                try
+                {
+                    _dbContext.users.Update(user);
+                    await _dbContext.SaveChangesAsync();
+                    await transaction.CommitAsync();
+                    return new ActionBaseResult() { Success = true, Message = "SignUp Successful" };
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    return new ActionBaseResult() { Success = false, Message = e.Message };
+                }
+            }
+        }
         public async Task<ProjectDetail> findProjetRoleOfOwner(User user)
         {
             List<ProjectDetail> projectDetails = await _dbContext.projectDetails
@@ -44,7 +62,12 @@ namespace HutechPM.Data.UserData
         {
             return await _dbContext.projectTasks.Include(x => x.projectDetail.project).Include(x => x.projectDetail.user).ToListAsync();
         }
+
+        public async Task<User> findUserByEmail(string email)
+        {
+            return await _dbContext.users.FirstOrDefaultAsync(x => x.email == email);  
+        }
     }
-        
-    
+
+
 }

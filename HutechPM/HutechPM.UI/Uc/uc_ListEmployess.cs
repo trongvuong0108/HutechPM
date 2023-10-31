@@ -5,6 +5,7 @@ using HutechPM.Data.Common;
 using HutechPM.Data.Data.ProjectDetailData;
 using HutechPM.Data.Entities;
 using HutechPM.Data.UserData;
+using HutechPM.UI.Frm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,10 +34,14 @@ namespace HutechPM.UI.Uc
             projectDetailService = new ProjectDetailService(_dbContext);
         }
         public User UserLogin { get; set; }
+        public string ProjectNameLogin { get; set; }
 
-        public void getUserLoginInUcListEmployess(User userlogin)
+        
+
+        public void getUserLoginInUcListEmployess(User userlogin, string projectNameLogin)
         {
             this.UserLogin = userlogin;
+            this.ProjectNameLogin = projectNameLogin;
         }
 
         List<User> Employess = new List<User>();
@@ -46,55 +51,42 @@ namespace HutechPM.UI.Uc
         List<User> users;
         private async void uc_ListEmployess_Load(object sender, EventArgs e)
         {
+            MessageBox.Show(UserLogin.userName + ProjectNameLogin);
             projectDetailOfUserLogin = await projectDetailService.getAllProjectDetailByUser(UserLogin);
             projectDetails = await projectDetailService.getAllProjectDetail();
             users = await userService.GetAllUsers();
-            GetEmployessProjectDetail();
-            getListEmployess();
+            getListEmployess(ProjectNameLogin);
             BindingSource bindingSourceProject = new BindingSource();
             bindingSourceProject.DataSource = await userService.getListUserDTO(Employess);
             gridControlEmployess.DataSource = bindingSourceProject;
         }
-        private void GetEmployessProjectDetail()
+
+        public void getListEmployess(string ProjectNameLogin)
         {
-            foreach (ProjectDetail projectDetailOfUserLogin in projectDetailOfUserLogin)
+            foreach (ProjectDetail projectDetail in projectDetails)
             {
-                foreach (ProjectDetail projectDetail in projectDetails)
+                if (projectDetail.project.projectName == ProjectNameLogin)
                 {
-                    if (projectDetail.project == projectDetailOfUserLogin.project)
-                    {
-                        EmployessProjectDetail.Add(projectDetail);
-                    }
+                    Employess.Add(projectDetail.user);
                 }
             }
         }
 
-        private void getListEmployess()
+        private void buttonAddMenber_Click(object sender, EventArgs e)
+        {
+           using(FrmInviteMenbers frmInviteMenbers = new FrmInviteMenbers(UserLogin, ProjectNameLogin, Employess))
+           {
+                if(frmInviteMenbers.ShowDialog() == DialogResult.OK)
+                {
+
+                }
+           }
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
         {
 
-            foreach (ProjectDetail employessProjectDetail in EmployessProjectDetail)
-            {
-                foreach (User user in users)
-                {
-                    if (user.userId == employessProjectDetail.user_id)
-                    {
-
-                        Employess.Add(user);
-                    }
-                }
-            }
-
-            /*for (int i = 0; i < Employess.Count - 1; i++)
-            {
-                User employDuplicate = Employess[i];
-                for (int j = i + 1; j < Employess.Count; j++)
-                {
-                    if (Employess[j] == employDuplicate)
-                    {
-                        Employess.Remove(employDuplicate);
-                    }
-                }
-            }*/
         }
     }
 }
+

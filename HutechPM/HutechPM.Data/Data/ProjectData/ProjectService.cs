@@ -1,4 +1,5 @@
-﻿using HutechPM.Data.Common;
+﻿using HutechNote.Data.Data.UserData.DTOs;
+using HutechPM.Data.Common;
 using HutechPM.Data.Data.ProjectData;
 using HutechPM.Data.Data.ProjectData.DTO;
 using HutechPM.Data.Data.ProjectDetailData;
@@ -34,7 +35,7 @@ namespace HutechNote.Data.Data.ProjectData
         public async Task<List<ProjectDTO>> getAllProjectsDTO()
         {
             List<ProjectDTO> ProjectDTOs = new List<ProjectDTO>();
-            List<Project> projects = await projectRepository.GetProject();
+            List<Project> projects = await getAllProject();
             foreach (Project project in projects)
             {
                 ProjectDTO projectDTO = new ProjectDTO();
@@ -62,6 +63,7 @@ namespace HutechNote.Data.Data.ProjectData
             }
             return ProjectDTOs;
         }
+
         public async Task<ActionBaseResult> AddProject(Project project)
         {
             return await projectRepository.AddProject(project);

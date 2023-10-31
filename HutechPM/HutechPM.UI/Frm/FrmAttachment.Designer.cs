@@ -30,6 +30,7 @@
         {
             System.Windows.Forms.Button buttonCancel;
             System.Windows.Forms.Button buttonSave;
+            System.Windows.Forms.Button buttonOpenFile;
             buttonExit = new System.Windows.Forms.Button();
             pictureBox1 = new System.Windows.Forms.PictureBox();
             label8 = new System.Windows.Forms.Label();
@@ -48,6 +49,7 @@
             linkLabelChooseFile = new System.Windows.Forms.LinkLabel();
             buttonCancel = new System.Windows.Forms.Button();
             buttonSave = new System.Windows.Forms.Button();
+            buttonOpenFile = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -57,7 +59,7 @@
             buttonCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             buttonCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             buttonCancel.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            buttonCancel.Location = new System.Drawing.Point(355, 636);
+            buttonCancel.Location = new System.Drawing.Point(355, 675);
             buttonCancel.Name = "buttonCancel";
             buttonCancel.Size = new System.Drawing.Size(110, 48);
             buttonCancel.TabIndex = 66;
@@ -71,7 +73,7 @@
             buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             buttonSave.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             buttonSave.ForeColor = System.Drawing.Color.Transparent;
-            buttonSave.Location = new System.Drawing.Point(523, 636);
+            buttonSave.Location = new System.Drawing.Point(523, 675);
             buttonSave.Name = "buttonSave";
             buttonSave.Size = new System.Drawing.Size(112, 50);
             buttonSave.TabIndex = 65;
@@ -120,7 +122,7 @@
             // dateTimePickerDateAdded
             // 
             dateTimePickerDateAdded.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dateTimePickerDateAdded.Location = new System.Drawing.Point(235, 566);
+            dateTimePickerDateAdded.Location = new System.Drawing.Point(235, 605);
             dateTimePickerDateAdded.Name = "dateTimePickerDateAdded";
             dateTimePickerDateAdded.Size = new System.Drawing.Size(400, 37);
             dateTimePickerDateAdded.TabIndex = 61;
@@ -130,7 +132,7 @@
             label6.AutoSize = true;
             label6.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             label6.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            label6.Location = new System.Drawing.Point(36, 566);
+            label6.Location = new System.Drawing.Point(36, 605);
             label6.Name = "label6";
             label6.Size = new System.Drawing.Size(142, 30);
             label6.TabIndex = 60;
@@ -141,7 +143,7 @@
             label3.AutoSize = true;
             label3.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             label3.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            label3.Location = new System.Drawing.Point(36, 483);
+            label3.Location = new System.Drawing.Point(36, 522);
             label3.Name = "label3";
             label3.Size = new System.Drawing.Size(58, 30);
             label3.TabIndex = 57;
@@ -171,7 +173,7 @@
             // 
             comboBoxTypeFile.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             comboBoxTypeFile.FormattingEnabled = true;
-            comboBoxTypeFile.Location = new System.Drawing.Point(235, 273);
+            comboBoxTypeFile.Location = new System.Drawing.Point(235, 312);
             comboBoxTypeFile.Name = "comboBoxTypeFile";
             comboBoxTypeFile.Size = new System.Drawing.Size(400, 38);
             comboBoxTypeFile.TabIndex = 52;
@@ -191,7 +193,7 @@
             label4.AutoSize = true;
             label4.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             label4.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            label4.Location = new System.Drawing.Point(36, 273);
+            label4.Location = new System.Drawing.Point(36, 312);
             label4.Name = "label4";
             label4.Size = new System.Drawing.Size(193, 30);
             label4.TabIndex = 50;
@@ -214,14 +216,14 @@
             label1.BackColor = System.Drawing.Color.FromArgb(41, 128, 185);
             label1.Location = new System.Drawing.Point(0, 0);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(694, 59);
+            label1.Size = new System.Drawing.Size(694, 95);
             label1.TabIndex = 48;
             // 
             // textBoxDescription
             // 
             textBoxDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             textBoxDescription.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            textBoxDescription.Location = new System.Drawing.Point(235, 356);
+            textBoxDescription.Location = new System.Drawing.Point(235, 395);
             textBoxDescription.Multiline = true;
             textBoxDescription.Name = "textBoxDescription";
             textBoxDescription.Size = new System.Drawing.Size(400, 80);
@@ -232,7 +234,7 @@
             label7.AutoSize = true;
             label7.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             label7.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            label7.Location = new System.Drawing.Point(36, 358);
+            label7.Location = new System.Drawing.Point(36, 397);
             label7.Name = "label7";
             label7.Size = new System.Drawing.Size(127, 30);
             label7.TabIndex = 67;
@@ -241,7 +243,7 @@
             // linkLabelChooseFile
             // 
             linkLabelChooseFile.AutoSize = true;
-            linkLabelChooseFile.Location = new System.Drawing.Point(235, 488);
+            linkLabelChooseFile.Location = new System.Drawing.Point(235, 527);
             linkLabelChooseFile.Name = "linkLabelChooseFile";
             linkLabelChooseFile.Size = new System.Drawing.Size(103, 25);
             linkLabelChooseFile.TabIndex = 69;
@@ -249,11 +251,26 @@
             linkLabelChooseFile.Text = "Choose File";
             linkLabelChooseFile.LinkClicked += linkLabelChooseFile_LinkClicked;
             // 
+            // buttonOpenFile
+            // 
+            buttonOpenFile.BackColor = System.Drawing.Color.FromArgb(41, 128, 185);
+            buttonOpenFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            buttonOpenFile.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            buttonOpenFile.ForeColor = System.Drawing.Color.Transparent;
+            buttonOpenFile.Location = new System.Drawing.Point(297, 225);
+            buttonOpenFile.Name = "buttonOpenFile";
+            buttonOpenFile.Size = new System.Drawing.Size(311, 37);
+            buttonOpenFile.TabIndex = 70;
+            buttonOpenFile.Text = "Open File";
+            buttonOpenFile.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            buttonOpenFile.UseVisualStyleBackColor = false;
+            // 
             // FrmAttachment
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(694, 723);
+            ClientSize = new System.Drawing.Size(694, 759);
+            Controls.Add(buttonOpenFile);
             Controls.Add(linkLabelChooseFile);
             Controls.Add(textBoxDescription);
             Controls.Add(label7);

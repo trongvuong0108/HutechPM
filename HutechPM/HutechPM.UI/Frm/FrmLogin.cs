@@ -22,7 +22,6 @@ namespace HutechPM.UI.Frm
         uc_Login uc_Login;
         private void FrmLogin_Load(object sender, EventArgs e)
         {
-
             uc_Login = new uc_Login();
             uc_Login.Dock = DockStyle.Fill;
             panelFormLogin.Controls.Add(uc_Login);
@@ -62,6 +61,11 @@ namespace HutechPM.UI.Frm
             }
         }
         private void panelFormSignup_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
         }

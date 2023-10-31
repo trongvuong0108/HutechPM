@@ -1,7 +1,11 @@
 ﻿using DevExpress.Utils.CodedUISupport;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Navigation;
+using HutechNote.Data.Data.ProjectData;
+using HutechPM.Data.Common;
+using HutechPM.Data.Data.ProjectDetailData;
 using HutechPM.Data.Entities;
+using HutechPM.Data.UserData;
 using HutechPM.UI.Components;
 using HutechPM.UI.Frm;
 using HutechPM.UI.Uc;
@@ -25,6 +29,10 @@ namespace HutechNote.UI.Frm
         uc_ListEmployess uc_ListEmployess;
         uc_UserProfile uc_UserProfile;
         uc_ChangePassword uc_ChangePassword;
+        HutechNoteDbContext _dbContext;
+        UserService userService;
+        ProjectService projectService;
+        ProjectDetailService projectDetailService;
         public User UserLogin { set; get; }
 
         public FrmMain()
@@ -34,38 +42,66 @@ namespace HutechNote.UI.Frm
 
         public delegate void userNameLogin(User userName);
 
+        public delegate void userNameAndProjectNameLogin(User userName, string projectName);
         public FrmMain(User userLogin)
         {
             InitializeComponent();
             this.UserLogin = userLogin;
-        }
-        AccordionControlElement[] accordionControlElement = new AccordionControlElement[100];
-        private void createControlElement()
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                accordionControlElement[i] = new AccordionControlElement();
-                accordionControlElement[i].Text = i.ToString();
-                accordionControlElement[i].Style = ElementStyle.Item;
-                accordionControlElement[i].Click += new EventHandler(thongbao);
-                accordionControlElement1.Elements.Add(accordionControlElement[i]);
-                //var a = accordionControlElement.to
+            _dbContext = new HutechNoteDbContext();
+            userService = new UserService(_dbContext);
+            projectService = new ProjectService(_dbContext);
+            projectDetailService = new ProjectDetailService(_dbContext);
 
+        }
+        List<ProjectDetail> projectDetailOfUserLogin;
+        AccordionControlElement[] accordionControlElement = new AccordionControlElement[100];
+        private async void createControlElement()
+        {
+            projectDetailOfUserLogin = await projectDetailService.getAllProjectDetailByUser(UserLogin);
+            foreach (ProjectDetail projectDetail in projectDetailOfUserLogin)
+            {
+                int i = 0;
+                accordionControlElement[i] = new AccordionControlElement();
+                accordionControlElement[i].Text = projectDetail.project.projectName;
+                accordionControlElement[i].Style = ElementStyle.Item;
+                accordionControlElement[i].Click += new EventHandler(openUcListEmployess);
+                accordionControlElementEmployess.Elements.Add(accordionControlElement[i]);
+                i++;
             }
+        }
+        private void accordionControlElementEmployess_Click(object sender, EventArgs e)
+        {
+            /*if (uc_ListEmployess == null)
+            {
+                uc_ListEmployess = new uc_ListEmployess();
+                uc_ListEmployess.Dock = DockStyle.Fill;
+                userNameAndProjectNameLogin userNameAndProjectNameLogin = new userNameAndProjectNameLogin(uc_ListEmployess.getUserLoginInUcListEmployess);
+              
+
+                fluentDesignFormContainerMain.Controls.Add(uc_ListEmployess);
+                uc_ListEmployess.BringToFront();
+            }
+            else
+            {
+                uc_ListEmployess.BringToFront();
+            }*/
+        }
+        private void openUcListEmployess(object sender, EventArgs e)
+        {
+            var accordionControlElement = sender as AccordionControlElement;
+            //fluentDesignFormContainerMain.Controls.Remove(uc_ListEmployess);
+            uc_ListEmployess = new uc_ListEmployess();
+            uc_ListEmployess.Dock = DockStyle.Fill;
+            userNameAndProjectNameLogin userNameAndProjectNameLogin = new userNameAndProjectNameLogin(uc_ListEmployess.getUserLoginInUcListEmployess);
+            userNameAndProjectNameLogin(UserLogin, accordionControlElement.Text);
+            fluentDesignFormContainerMain.Controls.Add(uc_ListEmployess);
+            uc_ListEmployess.BringToFront();
+
+
         }
         private void FrmMain_Load(object sender, EventArgs e)
         {
-
-
-
-            /*private void thongbao(object sender, EventArgs e)
-            {
-                var accordionControlElement = sender as AccordionControlElement;
-                if (accordionControlElement.Text == "1")
-
-                    MessageBox.Show(accordionControlElement.Text);
-
-            }*/
+            createControlElement();
 
         }
         private void fluentDesignFormContainerMain_Click(object sender, EventArgs e)
@@ -77,20 +113,21 @@ namespace HutechNote.UI.Frm
             //frmCreateProject.Show();
 
 
-
-
+        }
+        private void accordionControlElementHome_Click(object sender, EventArgs e)
+        {
 
         }
 
-        /*private void accordionControlElementProject_Click(object sender, EventArgs e)
+        private void accordionControlElementProject_Click(object sender, EventArgs e)
         {
+
             if (uc_ListProject == null)
             {
                 uc_ListProject = new uc_ListProject();
                 uc_ListProject.Dock = DockStyle.Fill;
                 userNameLogin userNameLogin = new userNameLogin(uc_ListProject.getUserLoginInUcListProject);
                 userNameLogin(UserLogin);
-
                 fluentDesignFormContainerMain.Controls.Add(uc_ListProject);
                 uc_ListProject.BringToFront();
             }
@@ -98,10 +135,9 @@ namespace HutechNote.UI.Frm
             {
                 uc_ListProject.BringToFront();
             }
-        }*/
+        }
 
-
-        private void accordionControlElementTasks_Click(object sender, EventArgs e)
+        private void accordionControlElementTask_Click(object sender, EventArgs e)
         {
             if (uc_ListTask == null)
             {
@@ -120,25 +156,7 @@ namespace HutechNote.UI.Frm
         }
 
 
-        private void accordionControlElementEmployees_Click(object sender, EventArgs e)
-        {
-            if (uc_ListEmployess == null)
-            {
-                uc_ListEmployess = new uc_ListEmployess();
-                uc_ListEmployess.Dock = DockStyle.Fill;
-                userNameLogin userNameLogin = new userNameLogin(uc_ListEmployess.getUserLoginInUcListEmployess);
-                userNameLogin(UserLogin);
-
-                fluentDesignFormContainerMain.Controls.Add(uc_ListEmployess);
-                uc_ListEmployess.BringToFront();
-            }
-            else
-            {
-                uc_ListEmployess.BringToFront();
-            }
-        }
-
-        private void accordionControlElementMyprofile_Click(object sender, EventArgs e)
+        private void accordionControlElementProfile_Click(object sender, EventArgs e)
         {
             if (uc_UserProfile == null)
             {
@@ -155,12 +173,6 @@ namespace HutechNote.UI.Frm
                 uc_UserProfile.BringToFront();
             }
         }
-
-        private void accordionControlElementHome_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void accordionControlElementChangePassword_Click(object sender, EventArgs e)
         {
             if (uc_ChangePassword == null)
@@ -178,5 +190,12 @@ namespace HutechNote.UI.Frm
                 uc_ChangePassword.BringToFront();
             }
         }
+
+        private void accordionControlElementLogout_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

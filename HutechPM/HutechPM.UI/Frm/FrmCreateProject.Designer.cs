@@ -32,7 +32,6 @@
             label11 = new System.Windows.Forms.Label();
             label15 = new System.Windows.Forms.Label();
             label8 = new System.Windows.Forms.Label();
-            label6 = new System.Windows.Forms.Label();
             label5 = new System.Windows.Forms.Label();
             buttonContinue = new System.Windows.Forms.Button();
             textBoxDescription = new System.Windows.Forms.TextBox();
@@ -96,16 +95,6 @@
             label8.Size = new System.Drawing.Size(617, 28);
             label8.TabIndex = 42;
             label8.Text = "Get your members on board with a few words about your Workspace.";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label6.Location = new System.Drawing.Point(277, 209);
-            label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(89, 28);
-            label6.TabIndex = 41;
-            label6.Text = "Optional";
             // 
             // label5
             // 
@@ -176,6 +165,7 @@
             linkLabelLater.TabStop = true;
             linkLabelLater.Text = "I'll do this later";
             linkLabelLater.VisitedLinkColor = System.Drawing.Color.FromArgb(41, 128, 185);
+            linkLabelLater.LinkClicked += linkLabelLater_LinkClicked;
             linkLabelLater.Click += linkLabelLater_Click;
             linkLabelLater.MouseLeave += linkLabelLater_MouseLeave;
             linkLabelLater.MouseHover += linkLabelLater_MouseHover;
@@ -240,7 +230,6 @@
             panelCreateProject1.Anchor = System.Windows.Forms.AnchorStyles.None;
             panelCreateProject1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             panelCreateProject1.Controls.Add(label8);
-            panelCreateProject1.Controls.Add(label6);
             panelCreateProject1.Controls.Add(label5);
             panelCreateProject1.Controls.Add(buttonContinue);
             panelCreateProject1.Controls.Add(textBoxDescription);
@@ -281,7 +270,6 @@
             panelCreateProject2.Name = "panelCreateProject2";
             panelCreateProject2.Size = new System.Drawing.Size(700, 592);
             panelCreateProject2.TabIndex = 48;
-            panelCreateProject2.Paint += panelCreateProject2_Paint;
             // 
             // checkedListBoxInviteUser
             // 
@@ -368,7 +356,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button buttonContinue;
         private System.Windows.Forms.TextBox textBoxDescription;

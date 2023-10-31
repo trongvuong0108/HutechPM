@@ -114,8 +114,9 @@ namespace HutechPM.UI.Uc
 
         private void ItemButtonuploadFile_Click(object sender, EventArgs e)
         {
+            string projectTaskid = gridViewTask.GetFocusedRowCellValue("projectTaskid").ToString();
             string projectTaskName = gridViewTask.GetFocusedRowCellValue("name").ToString();
-            using (FrmAttachment frmAttachment = new FrmAttachment(projectTaskName))
+            using (FrmAttachment frmAttachment = new FrmAttachment(projectTaskName, projectTaskid))
             {
                 if (frmAttachment.ShowDialog() == DialogResult.OK)
                 {
@@ -123,8 +124,6 @@ namespace HutechPM.UI.Uc
                 }
             }
         }
-
-
         private async void buttonCreate_Click(object sender, EventArgs e)
         {
             string projectName = null;

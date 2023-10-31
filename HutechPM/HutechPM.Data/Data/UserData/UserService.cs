@@ -5,6 +5,7 @@ using HutechPM.Data.Data.ProjectData;
 using HutechPM.Data.Data.UserData.DTOs;
 using HutechPM.Data.Entities;
 using System.Reflection.Metadata.Ecma335;
+using Microsoft.EntityFrameworkCore;
 
 namespace HutechPM.Data.UserData
 {
@@ -38,6 +39,10 @@ namespace HutechPM.Data.UserData
             User user = new User(new Guid(), userDTO.userName, userDTO.password, userDTO.email, userDTO.phone, userDTO.fullName, userDTO.address);
             ActionBaseResult result = await userRepository.createUser(user);
             return result;
+        }
+        public async Task<ActionBaseResult> updateUser(User user)
+        {
+            return await userRepository.updateUser(user);
         }
 
 
@@ -100,6 +105,10 @@ namespace HutechPM.Data.UserData
             userDTO.avatar = user.avatar;
             userDTOs.Add(userDTO);
             return userDTOs;
+        }
+        public async Task<User> findUserByEmail(string email)
+        {
+            return await userRepository.findUserByEmail(email);
         }
     }
 }
