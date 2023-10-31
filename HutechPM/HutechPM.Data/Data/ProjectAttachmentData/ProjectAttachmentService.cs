@@ -26,5 +26,10 @@ namespace HutechPM.Data.Data.ProjectAttachmentData
         {
             return await projectAttachmentRepository.DeleteProjectAttachment(projectAttachment);
         }
+
+        public async Task<ActionBaseResult> CreateProjectAttachment(ProjectAttachment projectAttachment)
+        {
+            return await projectAttachmentRepository.CreateProjectAttachment(projectAttachment);
+        }
     }
 }

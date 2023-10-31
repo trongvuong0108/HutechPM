@@ -31,7 +31,7 @@ namespace HutechPM.Data.Data.ProjectAttachmentData
                     _dbContext.acttachments.Remove(projectAttachment);
                     await _dbContext.SaveChangesAsync();
                     await transaction.CommitAsync();
-                    return new ActionBaseResult() { Success = true, Message = "Add project Successful" };
+                    return new ActionBaseResult() { Success = true, Message = "Remove Attachment Successful" };
                 }
                 catch (Exception e)
                 {
@@ -40,7 +40,26 @@ namespace HutechPM.Data.Data.ProjectAttachmentData
                 }
             }
         }
-       
+
+        public async Task<ActionBaseResult> CreateProjectAttachment(ProjectAttachment projectAttachment)
+        {
+            using (var transaction = _dbContext.Database.BeginTransaction())
+            {
+                try
+                {
+                    _dbContext.acttachments.Add(projectAttachment);
+                    await _dbContext.SaveChangesAsync();
+                    await transaction.CommitAsync();
+                    return new ActionBaseResult() { Success = true, Message = "Add Attachment Successful" };
+                }
+                catch (Exception e)
+                {
+                    await transaction.RollbackAsync();
+                    return new ActionBaseResult() { Success = false, Message = e.Message };
+                }
+            }
+        }
+
 
     }
 }
