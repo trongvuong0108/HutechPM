@@ -71,6 +71,7 @@
             panelChangePassword.Name = "panelChangePassword";
             panelChangePassword.Size = new System.Drawing.Size(1152, 725);
             panelChangePassword.TabIndex = 87;
+            panelChangePassword.Paint += panelChangePassword_Paint;
             // 
             // panel1
             // 

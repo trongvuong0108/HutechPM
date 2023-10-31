@@ -49,5 +49,10 @@ namespace HutechPM.UI.Uc
         {
             //var userChangePassword = userService.getUser(UserLogin);
         }
+
+        private void panelChangePassword_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
