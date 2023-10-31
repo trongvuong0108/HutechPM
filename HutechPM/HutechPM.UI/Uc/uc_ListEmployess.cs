@@ -1,8 +1,11 @@
-﻿using DevExpress.XtraRichEdit.Fields;
+﻿using DevExpress.XtraEditors;
+using DevExpress.XtraRichEdit.Fields;
 using HutechNote.Data.Data.ProjectData;
 using HutechNote.Data.Data.UserData.DTOs;
 using HutechPM.Data.Common;
+using HutechPM.Data.Data.ProjectAttachmentData;
 using HutechPM.Data.Data.ProjectDetailData;
+using HutechPM.Data.Data.ProjectTaskData;
 using HutechPM.Data.Entities;
 using HutechPM.Data.UserData;
 using HutechPM.UI.Frm;
@@ -33,10 +36,11 @@ namespace HutechPM.UI.Uc
             projectService = new ProjectService(_dbContext);
             projectDetailService = new ProjectDetailService(_dbContext);
         }
+        User deleteUser { get; set; }
         public User UserLogin { get; set; }
         public string ProjectNameLogin { get; set; }
 
-        
+
 
         public void getUserLoginInUcListEmployess(User userlogin, string projectNameLogin)
         {
@@ -74,18 +78,42 @@ namespace HutechPM.UI.Uc
 
         private void buttonAddMenber_Click(object sender, EventArgs e)
         {
-           using(FrmInviteMenbers frmInviteMenbers = new FrmInviteMenbers(UserLogin, ProjectNameLogin, Employess))
-           {
-                if(frmInviteMenbers.ShowDialog() == DialogResult.OK)
+            using (FrmInviteMenbers frmInviteMenbers = new FrmInviteMenbers(UserLogin, ProjectNameLogin, Employess))
+            {
+                if (frmInviteMenbers.ShowDialog() == DialogResult.OK)
                 {
-
+                    uc_ListEmployess_Load(sender, e);
                 }
-           }
+            }
         }
 
-        private void buttonDelete_Click(object sender, EventArgs e)
+        private async void buttonDelete_Click(object sender, EventArgs e)
         {
+            List<int> row = gridViewEmployess.GetSelectedRows().Where(c => c >= 0).ToList();
+            foreach (var item in row)
+            {
+                string getUserId = gridViewEmployess.GetFocusedRowCellValue("userId").ToString();
+                Guid guidgetUserId = new Guid(getUserId);
 
+                if (XtraMessageBox.Show($"Do you want to delete user", "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    foreach (ProjectDetail projectDetail in await projectDetailService.getAllProjectDetail())
+                    {
+                        if (projectDetail.user.userId == guidgetUserId && projectDetail.project.projectName == ProjectNameLogin)
+                        {
+                            ActionBaseResult result = await projectDetailService.DeleteProjectDetail(projectDetail);
+                            if (result.Success)
+                            {
+                                MessageBox.Show("Delete user successfully");
+                            }
+                        }
+                    }
+                }
+            }
+            foreach (var item in row)
+            {
+                gridViewEmployess.DeleteSelectedRows();
+            }
         }
     }
 }

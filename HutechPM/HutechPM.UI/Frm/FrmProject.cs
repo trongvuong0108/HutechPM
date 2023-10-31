@@ -31,8 +31,7 @@ namespace HutechPM.UI.Frm
 
         public FrmProject()
         {
-            InitializeComponent();
-
+            //InitializeComponent();
         }
         public string projectId { get; set; }
         public string projectName { get; set; }
@@ -55,31 +54,30 @@ namespace HutechPM.UI.Frm
             this.dateEnd = dateEnd;
             this.isActive = isActive;
         }
-
         private async void FrmProject_Load(object sender, EventArgs e)
         {
-           
-                dateTimePickerStartDate.Format = DateTimePickerFormat.Custom;
-                dateTimePickerStartDate.CustomFormat = "dd/MM/yyyy";
-                dateTimePickerEndDate.Format = DateTimePickerFormat.Custom;
-                dateTimePickerEndDate.CustomFormat = "dd/MM/yyyy";
-                comboBoxOwner.DataSource = await userService.GetAllUsers();
-                textBoxProjectName.Text = projectName;
-                textBoxDescription.Text = description;
-                comboBoxOwner.Text = owner;
-                string[] dateStartSplit = dateStart.Split(' ');
-                dateTimePickerStartDate.Value = DateTime.ParseExact(dateStartSplit[0], "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                string[] dateEndSplit = dateEnd.Split(' ');
-                dateTimePickerEndDate.Value = DateTime.ParseExact(dateEndSplit[0], "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                if (isActive)
-                {
-                    radioButtonTrue.Checked = true;
-                }
-                else
-                {
-                    radioButtonFalse.Checked = false;
-                }
-           
+
+            dateTimePickerStartDate.Format = DateTimePickerFormat.Custom;
+            dateTimePickerStartDate.CustomFormat = "dd/MM/yyyy";
+            dateTimePickerEndDate.Format = DateTimePickerFormat.Custom;
+            dateTimePickerEndDate.CustomFormat = "dd/MM/yyyy";
+            comboBoxOwner.DataSource = await userService.GetAllUsers();
+            textBoxProjectName.Text = projectName;
+            textBoxDescription.Text = description;
+            comboBoxOwner.Text = owner;
+            string[] dateStartSplit = dateStart.Split(' ');
+            dateTimePickerStartDate.Value = DateTime.ParseExact(dateStartSplit[0], "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            string[] dateEndSplit = dateEnd.Split(' ');
+            dateTimePickerEndDate.Value = DateTime.ParseExact(dateEndSplit[0], "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            if (isActive)
+            {
+                radioButtonTrue.Checked = true;
+            }
+            else
+            {
+                radioButtonFalse.Checked = false;
+            }
+
         }
 
         private void buttonExit_Click(object sender, EventArgs e)
@@ -101,7 +99,7 @@ namespace HutechPM.UI.Frm
                 if (textBoxProjectName.Text == "" && textBoxDescription.Text == "")
                 {
                     throw new Exception("Please! Enter complete information");
-                }    
+                }
                 if (textBoxProjectName.Text == "")
                 {
                     throw new Exception("Please! Enter project name");
@@ -114,11 +112,11 @@ namespace HutechPM.UI.Frm
                         throw new Exception("This project name already exists in the system");
                     }
                 }
-                if(textBoxDescription.Text == "")
+                if (textBoxDescription.Text == "")
                 {
                     throw new Exception("Please! Enter Description");
-                }    
-                
+                }
+
                 project.projectName = textBoxProjectName.Text;
                 project.description = textBoxDescription.Text;
                 project.dateEnd = dateTimePickerEndDate.Value;
@@ -130,9 +128,9 @@ namespace HutechPM.UI.Frm
                 {
                     project.isActive = false;
                 }
-            
+
                 ActionBaseResult result = await projectService.UpdateProject(project);
-                if(result.Success)
+                if (result.Success)
                 {
                     MessageBox.Show("Update project successfully");
                     this.Close();
@@ -142,7 +140,7 @@ namespace HutechPM.UI.Frm
             {
                 XtraMessageBox.Show(ex.Message, "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Error);
             }
-        }     
+        }
     }
 }
 

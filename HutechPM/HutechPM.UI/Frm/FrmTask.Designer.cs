@@ -154,7 +154,7 @@
             comboBoxOwner.Name = "comboBoxOwner";
             comboBoxOwner.Size = new System.Drawing.Size(400, 38);
             comboBoxOwner.TabIndex = 28;
-            comboBoxOwner.SelectedIndexChanged += comboBoxOwner_SelectedIndexChanged;
+         
             // 
             // textBoxTaskName
             // 
@@ -164,7 +164,7 @@
             textBoxTaskName.Name = "textBoxTaskName";
             textBoxTaskName.Size = new System.Drawing.Size(400, 37);
             textBoxTaskName.TabIndex = 27;
-            textBoxTaskName.TextChanged += textBoxTaskName_TextChanged;
+          
             // 
             // label4
             // 
@@ -270,6 +270,7 @@
             comboBoxProjectName.Name = "comboBoxProjectName";
             comboBoxProjectName.Size = new System.Drawing.Size(400, 38);
             comboBoxProjectName.TabIndex = 49;
+         
             // 
             // FrmTask
             // 

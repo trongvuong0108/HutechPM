@@ -57,6 +57,7 @@ namespace HutechNote.UI.Frm
         AccordionControlElement[] accordionControlElement = new AccordionControlElement[100];
         private async void createControlElement()
         {
+            accordionControlElementEmployess.Elements.Clear();
             projectDetailOfUserLogin = await projectDetailService.getAllProjectDetailByUser(UserLogin);
             foreach (ProjectDetail projectDetail in projectDetailOfUserLogin)
             {
@@ -71,6 +72,8 @@ namespace HutechNote.UI.Frm
         }
         private void accordionControlElementEmployess_Click(object sender, EventArgs e)
         {
+
+            FrmMain_Load(sender, e);
             /*if (uc_ListEmployess == null)
             {
                 uc_ListEmployess = new uc_ListEmployess();

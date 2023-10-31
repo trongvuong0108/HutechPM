@@ -41,6 +41,7 @@ namespace HutechPM.UI.Components
         List<Project> ListProject;
         List<ProjectTask> ListProjectTask;
         List<ProjectDTO> listProjectDTO;
+
         public uc_ListProject()
         {
             InitializeComponent();
@@ -66,8 +67,8 @@ namespace HutechPM.UI.Components
             bindingSourceProject.DataSource = listProjectDTO;
             gridControlProjects.DataSource = bindingSourceProject;
 
-            ItemButtonUpdate.Click += ItemButtonUpdate_Click;
-            ItemButtonDelete.Click += ItemButtonDelete_Click;
+            ItemButtonUpdate.ButtonClick += ItemButtonUpdate_Click;
+            ItemButtonDelete.ButtonClick += ItemButtonDelete_Click;
         }
 
         private void ItemButtonUpdate_Click(object sender, EventArgs e)
@@ -91,9 +92,10 @@ namespace HutechPM.UI.Components
                 using (FrmProject frmProject = new FrmProject(getProjectId, getProjectName, getDescription, getOwner, getDateStart, getDateEnd, getisActive))
                 {
                     if (frmProject.ShowDialog() == DialogResult.OK)
-                    {
-                        uc_ListProject_Load(sender, e);
+                    { 
+                        
                     }
+                    uc_ListProject_Load(sender, e);
                 }
 
             }
@@ -109,6 +111,8 @@ namespace HutechPM.UI.Components
             getProjectName = gridViewProjects.GetFocusedRowCellValue("projectName").ToString();
             if (XtraMessageBox.Show($"Do you want to delete project '" + getProjectName + "'", "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+
+                gridViewProjects.DeleteSelectedRows();
                 Project deleteproject = await projectService.findProjectId(guidGetProject);
                 foreach (ProjectDetail deleteProjectDetail in await projectDetailService.getAllProjectDetail())
                 {
@@ -211,9 +215,13 @@ namespace HutechPM.UI.Components
                         if(result.Success)
                         {
                             XtraMessageBox.Show("Successfully deleted the selected project", "Notification");
-                            uc_ListProject_Load(sender, e);
+                            //uc_ListProject_Load(sender, e);
                         }
                     }
+                }
+                foreach (var item in row)
+                {
+                    gridViewProjects.DeleteSelectedRows();
                 }
             }
             catch (Exception ex)

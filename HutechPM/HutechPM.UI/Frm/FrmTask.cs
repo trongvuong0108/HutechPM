@@ -19,6 +19,7 @@ using HutechNote.Data.Data.ProjectData;
 using HutechPM.UI.Uc;
 using HutechPM.Data.Data.ProjectDetailData;
 using DevExpress.DataProcessing.InMemoryDataProcessor;
+using DevExpress.XtraEditors;
 
 namespace HutechPM.UI.Frm
 {
@@ -64,28 +65,35 @@ namespace HutechPM.UI.Frm
         }
         private async void FrmTask_Load(object sender, EventArgs e)
         {
-            if (projectTaskId != null)
+            try
             {
-                comboBoxProjectName.Enabled = false;
+                if (projectTaskId != null)
+                {
+                    comboBoxProjectName.Enabled = false;
+                }
+                else
+                {
+                    comboBoxProjectName.Enabled = true;
+                }
+                projectDetails = await projectDetailService.getAllProjectDetail();
+                listComboBoxOwner();
+                listComboBoxStatus();
+                listComboBoxProjectName();
+                comboBoxProjectName.Text = ProjectName;
+                textBoxTaskName.Text = TaskName;
+                textBoxDescription.Text = Description;
+                comboBoxOwner.Text = Owner;
+                textBoxEstimate.Text = Estimate;
+                textBoxRemaining.Text = Remaining;
+                comboBoxStatus.Text = Status;
+                listTaskStatus.Add(ProjectTask.TaskStatus.In_Process);
+                listTaskStatus.Add(ProjectTask.TaskStatus.Completed);
+                listTaskStatus.Add(ProjectTask.TaskStatus.On_Hold);
             }
-            else
+            catch(Exception ex)
             {
-                comboBoxProjectName.Enabled = true;
+                XtraMessageBox.Show(ex.Message, "Notification", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             }
-            projectDetails = await projectDetailService.getAllProjectDetail();
-            listComboBoxOwner();
-            listComboBoxStatus();
-            listComboBoxProjectName();
-            comboBoxProjectName.Text = ProjectName;
-            textBoxTaskName.Text = TaskName;
-            textBoxDescription.Text = Description;
-            comboBoxOwner.Text = Owner;
-            textBoxEstimate.Text = Estimate;
-            textBoxRemaining.Text = Remaining;
-            comboBoxStatus.Text = Status;
-            listTaskStatus.Add(ProjectTask.TaskStatus.In_Process);
-            listTaskStatus.Add(ProjectTask.TaskStatus.Completed);
-            listTaskStatus.Add(ProjectTask.TaskStatus.On_Hold);
 
 
         }
@@ -129,63 +137,103 @@ namespace HutechPM.UI.Frm
 
         private async void buttonSave_Click(object sender, EventArgs e)
         {
-            if (projectTaskId != null)
+            try
             {
-                Guid guidprojectTaskId = new Guid(projectTaskId);
-                ProjectTask projectTask = await projectTaskService.findProjectTaskId(guidprojectTaskId);
-                projectTask.name = textBoxTaskName.Text;
-                projectTask.description = textBoxDescription.Text;
-                projectTask.estimate = int.Parse(textBoxEstimate.Text);
-                projectTask.remaining = int.Parse(textBoxRemaining.Text);
-                foreach (ProjectTask.TaskStatus task in listTaskStatus)
+                /*foreach (Data.Entities.Project checkproject in await projectService.getAllProject())
                 {
-                    if (task.ToString() == comboBoxStatus.Text)
+                    if (checkproject.projectName != comboBoxProjectName.Text)
                     {
-                        projectTask.taskStatus = task;
+                        throw new Exception("There is no such project in the system");
+                    }
+                    break;
+                }*/
+                if (textBoxTaskName.Text == "" || textBoxDescription.Text == "" || textBoxEstimate.Text == "" || textBoxRemaining.Text == "")
+                {
+                    throw new Exception("Please! Enter complete information");
+                }
+                if (textBoxTaskName.Text == "")
+                {
+                    throw new Exception("Please! Enter Task Name");
+                }
+                if (textBoxDescription.Text == "")
+                {
+                    throw new Exception("Please! Enter Description");
+                }
+                if (textBoxEstimate.Text == "")
+                {
+                    throw new Exception("Please! Enter Estimate");
+                }
+                if (textBoxRemaining.Text == "")
+                {
+                    throw new Exception("Please! Enter Remaining");
+                }
+                if (projectTaskId != null)
+                {
+                    Guid guidprojectTaskId = new Guid(projectTaskId);
+                    ProjectTask projectTask = await projectTaskService.findProjectTaskId(guidprojectTaskId);
+                    projectTask.name = textBoxTaskName.Text;
+                    projectTask.description = textBoxDescription.Text;
+                    projectTask.estimate = int.Parse(textBoxEstimate.Text);
+                    projectTask.remaining = int.Parse(textBoxRemaining.Text);
+                    foreach (ProjectTask.TaskStatus task in listTaskStatus)
+                    {
+                        if (task.ToString() == comboBoxStatus.Text)
+                        {
+                            projectTask.taskStatus = task;
+                        }
+                    }
+                    ActionBaseResult result = await projectTaskService.upadteProjectTask(projectTask);
+                    if (result.Success)
+                    {
+                        MessageBox.Show("Update task successfully");
+                        uc_ListTask uc_ListTask = new uc_ListTask();
+        
+                        this.Close();
                     }
                 }
-                await projectTaskService.upadteProjectTask(projectTask);
-                MessageBox.Show("update thanh cong");
+                else
+                {
+                    ProjectTask projectTask = new ProjectTask();
+                    projectTask.projectTaskid = Guid.NewGuid();
+                    projectTask.name = textBoxTaskName.Text;
+                    projectTask.description = textBoxDescription.Text;
+                    projectTask.estimate = int.Parse(textBoxEstimate.Text);
+                    projectTask.remaining = int.Parse(textBoxRemaining.Text);
+                    foreach (ProjectTask.TaskStatus task in listTaskStatus)
+                    {
+                        if (task.ToString() == comboBoxStatus.Text)
+                        {
+                            projectTask.taskStatus = task;
+                        }
+                    }
+                    foreach (ProjectDetail projectDetail in await projectDetailService.getAllProjectDetail())
+                    {
+                        if (projectDetail.user.userName == Owner && projectDetail.projectRole == ProjectRole)
+                        {
+                            projectTask.projectDetail = projectDetail;
+                        }
+                    }
+                    ActionBaseResult result = await projectTaskService.AddProjectTask(projectTask);
+                    if (result.Success)
+                    {
+                        MessageBox.Show("Create task successfully");
+                        this.Close();
+                    }
+                }
             }
-            else
+            catch(Exception ex)
             {
-                ProjectTask projectTask = new ProjectTask();
-                projectTask.projectTaskid = Guid.NewGuid();
-                projectTask.name = textBoxTaskName.Text;
-                projectTask.description = textBoxDescription.Text;
-                projectTask.estimate = int.Parse(textBoxEstimate.Text);
-                projectTask.remaining = int.Parse(textBoxRemaining.Text);
-                foreach (ProjectTask.TaskStatus task in listTaskStatus)
-                {
-                    if (task.ToString() == comboBoxStatus.Text)
-                    {
-                        projectTask.taskStatus = task;
-                    }
-                }
-                foreach (ProjectDetail projectDetail in await projectDetailService.getAllProjectDetail())
-                {
-                    if (projectDetail.user.userName == Owner && projectDetail.projectRole == ProjectRole)
-                    {
-                        projectTask.projectDetail = projectDetail;
-                    }
-                }
-                await projectTaskService.AddProjectTask(projectTask);
+                XtraMessageBox.Show(ex.Message, "Notification", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             }
         }
 
-        private void textBoxTaskName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBoxOwner_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+     
 
         private void buttonExit_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+     
     }
 }

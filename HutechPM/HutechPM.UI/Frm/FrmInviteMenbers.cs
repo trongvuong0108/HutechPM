@@ -120,35 +120,48 @@ namespace HutechPM.UI.Frm
         }
         private async void buttonInvite_Click(object sender, EventArgs e)
         {
-            if (listInviteUser != null)
+            try
             {
-                foreach (User user in listInviteUser)
+                if (listInviteUser.Count != 0)
                 {
-                    ProjectDetail projectDetail = new ProjectDetail();
-                    projectDetail.projectDetailId = Guid.NewGuid();
-                    projectDetail.user_id = user.userId;
-                    projectDetail.timeJoin = DateTime.Now;
-                    projectDetail.timeLeft = DateTime.Now;
-                    projectDetail.projectRole = projectRole.ProjectMember;
-                    foreach (var projectInvite in projects)
+                    foreach (User user in listInviteUser)
                     {
-                        if (projectInvite.projectName == getProjectName)
+                        ProjectDetail projectDetail = new ProjectDetail();
+                        projectDetail.projectDetailId = Guid.NewGuid();
+                        projectDetail.user_id = user.userId;
+                        projectDetail.timeJoin = DateTime.Now;
+                        projectDetail.timeLeft = DateTime.Now;
+                        projectDetail.projectRole = projectRole.ProjectMember;
+                        foreach (var projectInvite in projects)
                         {
-                            projectDetail.project = projectInvite;
+                            if (projectInvite.projectName == getProjectName)
+                            {
+                                projectDetail.project = projectInvite;
+                            }
+                        }
+                        ActionBaseResult result = await projectDetailService.AddProjectDetail(projectDetail);
+                        if (result.Success)
+                        {
+                            string subject = "WorkFlow notifications";
+                            string content =
+                            "You have been invited to the " + getProjectName + " project by " + projectDetail.user.email;
+                            sendEmail(user.email, subject, content);
                         }
                     }
-                    await projectDetailService.AddProjectDetail(projectDetail);
-                    string subject = "Thông báo workFlow";
-                    string content =
-                    "Bạn đã được mời vào dự án" + getProjectName;
-                    sendEmail(user.email, subject, content);
-                    XtraMessageBox.Show("moi thanh cong");
+                    this.Close();
+                    XtraMessageBox.Show("Invite everyone to join the successfully " + getProjectName + " project");
                 }
+                else
+                {
+                    throw new Exception("Members have not been selected to invite to join the project");
+                }
+                listInviteUser.Clear();
             }
-            else
+            catch (Exception ex)
             {
-                XtraMessageBox.Show("Chuaw chon user");
+                XtraMessageBox.Show(ex.Message, "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Error);
             }
         }
+      
     }
 }

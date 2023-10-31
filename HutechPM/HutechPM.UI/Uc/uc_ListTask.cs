@@ -42,8 +42,7 @@ namespace HutechPM.UI.Uc
         ProjectTaskService projectTaskService;
         ProjectDetailService projectDetailService;
         ProjectAttachmentService projectAttachmentService;
-        List<Project> ListProject;
-        List<ProjectTask> ListProjectTask;
+
         public uc_ListTask()
         {
             InitializeComponent();
@@ -60,20 +59,21 @@ namespace HutechPM.UI.Uc
         {
             this.UserLogin = userlogin;
         }
-        private async void uc_ListTask_Load(object sender, EventArgs e)
+        public async void loadData(List<ProjectTask> ListProjectTask)
         {
-            ListProject = await projectService.getAllProject();
-
-            ListProjectTask = await projectTaskService.getAllProjectTask();
             BindingSource bindingSourceProject = new BindingSource();
             bindingSourceProject.DataSource = ListProjectTask;
             gridControlGridTask.DataSource = bindingSourceProject;
-
+        }
+        private async void uc_ListTask_Load(object sender, EventArgs e)
+        {
+            List<ProjectTask> ListProjectTask = await projectTaskService.getAllProjectTask();
+            loadData(ListProjectTask);
             ItemButtonUpdate.Click += ItemButtonUpdate_Click;
             ItemButtonDelete.Click += ItemButtonDelete_Click;
             ItemButtonuploadFile.Click += ItemButtonuploadFile_Click;
         }
-        private void ItemButtonUpdate_Click(object sender, EventArgs e)
+        private async void ItemButtonUpdate_Click(object sender, EventArgs e)
         {
             getProjectTaskid = gridViewTask.GetFocusedRowCellValue("projectTaskid").ToString();
             getProjectName = gridViewTask.GetFocusedRowCellValue("projectDetail.project.projectName").ToString();
@@ -83,12 +83,11 @@ namespace HutechPM.UI.Uc
             getEstimate = gridViewTask.GetFocusedRowCellValue("estimate").ToString();
             getRemaining = gridViewTask.GetFocusedRowCellValue("remaining").ToString();
             getStatus = gridViewTask.GetFocusedRowCellValue("taskStatus").ToString();
-            using (FrmTask frmTask = new FrmTask(getProjectName, userProjectRole, getProjectTaskid, getTaskName, getDescription, getOwner, getEstimate, getRemaining, getStatus))
-            {
-                if (frmTask.ShowDialog() == DialogResult.OK)
-                {
-                }
-            }
+            FrmTask frmTask = new FrmTask(getProjectName, userProjectRole, getProjectTaskid, getTaskName, getDescription, getOwner, getEstimate, getRemaining, getStatus);
+            frmTask.ShowDialog();
+            ProjectTaskService projectTaskService2 = new ProjectTaskService(_dbContext);
+            List<ProjectTask> ListProjectTask = await projectTaskService2.getAllProjectTask();
+            loadData(ListProjectTask);
         }
 
         private async void ItemButtonDelete_Click(object sender, EventArgs e)
@@ -108,7 +107,12 @@ namespace HutechPM.UI.Uc
                         await projectAttachmentService.DeleteProjectAttachment(delteprojectAttachment);
                     }
                 }
-                await projectTaskService.DeleteProjectTask(deleteprojectTask);
+                ActionBaseResult result = await projectTaskService.DeleteProjectTask(deleteprojectTask);
+                if (result.Success)
+                {
+                    MessageBox.Show("Delete task successfully");
+                    uc_ListTask_Load(sender, e);
+                }
             }
         }
 
@@ -170,7 +174,12 @@ namespace HutechPM.UI.Uc
                             await projectAttachmentService.DeleteProjectAttachment(delteprojectAttachment);
                         }
                     }
-                    await projectTaskService.DeleteProjectTask(deleteprojectTask);
+                    ActionBaseResult result = await projectTaskService.DeleteProjectTask(deleteprojectTask);
+                    if (result.Success)
+                    {
+                        MessageBox.Show("Delete task successfully");
+                        //uc_ListTask_Load(sender, e);
+                    }
                 }
             }
             foreach (var item in row)
@@ -203,6 +212,7 @@ namespace HutechPM.UI.Uc
             {
                 if (frmTask.ShowDialog() == DialogResult.OK)
                 {
+
                 }
             }
         }
