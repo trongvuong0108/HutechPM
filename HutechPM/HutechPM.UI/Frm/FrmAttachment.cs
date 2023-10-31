@@ -1,5 +1,9 @@
 ﻿using HutechNote.Data.Services;
+using HutechPM.Data.Common;
+using HutechPM.Data.Data.ProjectAttachmentData;
+using HutechPM.Data.Data.ProjectTaskData;
 using HutechPM.Data.Entities;
+using HutechPM.UI.FRM;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,8 +19,12 @@ namespace HutechPM.UI.Frm
 {
     public partial class FrmAttachment : Form
     {
-        string projectTaskId {  get; set; }
+        string projectTaskId { get; set; }
         string projectTaskName { get; set; }
+        private readonly ProjectAttachmentService projectAttachmentService;
+        private readonly ProjectTaskService projectTaskService;
+        private readonly HutechNoteDbContext _dbContext;
+        private readonly FrmLoader frmLoader;
         public FrmAttachment()
         {
             //InitializeComponent();
@@ -25,9 +33,12 @@ namespace HutechPM.UI.Frm
         public FrmAttachment(string projectTaskName, string projectTaskId)
         {
             InitializeComponent();
-
+            _dbContext = new HutechNoteDbContext();
+            projectAttachmentService = new ProjectAttachmentService(_dbContext);
+            projectTaskService = new ProjectTaskService(_dbContext);
             this.projectTaskName = projectTaskName;
             this.projectTaskId = projectTaskId;
+            frmLoader = new FrmLoader();
         }
 
         private void FrmAttachment_Load(object sender, EventArgs e)
@@ -52,11 +63,13 @@ namespace HutechPM.UI.Frm
             openFileDialog.InitialDirectory = @"C:\";
             openFileDialog.Title = "Browse Text Files";
             openFileDialog.ShowDialog();
+            frmLoader.Show();
             foreach (String file in openFileDialog.FileNames)
             {
                 res = await fileUpload.uploadFile(file, file);
                 MessageBox.Show(res);
             }
+            frmLoader.Close();
             textBoxFileName.Text = res;
 
         }
@@ -65,9 +78,21 @@ namespace HutechPM.UI.Frm
             this.Close();
         }
 
-        private void buttonSave_Click(object sender, EventArgs e)
+        private  async void buttonSave_Click(object sender, EventArgs e)
         {
-
+            frmLoader.Show();
+            List<ProjectTask> tasks = await projectTaskService.getAllProjectTask();
+            ProjectAttachment attachment = new ProjectAttachment()
+            {
+                acttachmentId = Guid.NewGuid(),
+                acttachmentName = textBoxProjectTaskName.Text,
+                description = textBoxDescription.Text,
+                dateCreate = DateTime.Now,
+                acttachmentType = comboBoxTypeFile.Text,
+                task = tasks.FirstOrDefault(x=>x.projectTaskid.Equals(projectTaskId)),
+            };
+            await projectAttachmentService.CreateProjectAttachment(attachment);
+            frmLoader.Close();
         }
 
         private void buttonExit_Click(object sender, EventArgs e)
