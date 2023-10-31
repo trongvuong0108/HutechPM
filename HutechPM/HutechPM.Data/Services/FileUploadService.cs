@@ -11,25 +11,21 @@ namespace HutechNote.Data.Services
 {
     public class FileUploadService
     {
-        private Cloudinary cloudinary;
-        private FileUploadService()
+        private readonly Cloudinary cloudinary;
+        public FileUploadService()
         {
-            Account account = new Account("dzjmvy2ty", "682162512936223", "***************************");
+            Account account = new Account("dzjmvy2ty", "682162512936223", "O9El85LO2lGt5Af1rlZxb8xxRwo");
             cloudinary = new Cloudinary(account);
         }
-
-        public Cloudinary GetInstance()
-        {
-            return cloudinary;
-        }
-        public string uploadFile()
+        public async Task<string> uploadFile(string url, string fileName)
         {
             var uploadParams = new ImageUploadParams()
             {
-                File = new FileDescription(@"https://upload.wikimedia.org/wikipedia/commons/a/ae/Olympic_flag.jpg"),
-                PublicId = "HutechPM_" + DateTime.Now + "_" + new Guid().ToString()
+                File = new FileDescription(url),
+                PublicId = "HutechPM_" + DateTime.Now.Year+ "/"+ DateTime.Now.Month + "/" + DateTime.Now.Day + "_" + Guid.NewGuid().ToString(),
+                Overwrite = true
             };
-            ImageUploadResult uploadResult = cloudinary.Upload(uploadParams);
+            ImageUploadResult uploadResult = await cloudinary.UploadAsync(uploadParams);
             return uploadResult.Url.ToString();
         }
         public string downloadFile()

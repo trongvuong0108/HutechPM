@@ -1,5 +1,6 @@
-﻿using HutechNote.Data.Data.User;
-using HutechPM.Data.Data.Project;
+﻿
+using HutechNote.Data.Data.ProjectData;
+using HutechPM.Data.Data.ProjectData;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Hutech.Data

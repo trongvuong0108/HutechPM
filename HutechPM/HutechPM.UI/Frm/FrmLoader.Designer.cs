@@ -67,6 +67,7 @@
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             tableLayoutPanel1.Size = new System.Drawing.Size(369, 107);
             tableLayoutPanel1.TabIndex = 1;
+            tableLayoutPanel1.Paint += tableLayoutPanel1_Paint;
             // 
             // FrmLoader
             // 
@@ -79,7 +80,6 @@
             DoubleBuffered = true;
             Margin = new System.Windows.Forms.Padding(4);
             Name = "FrmLoader";
-            StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             Text = "Form1";
             tableLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);

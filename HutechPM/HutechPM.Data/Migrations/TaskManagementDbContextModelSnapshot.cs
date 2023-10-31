@@ -29,9 +29,18 @@ namespace HutechNote.Data.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("project_id");
 
+                    b.Property<DateTime>("dateEnd")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("date_end");
+
                     b.Property<DateTime>("dateStart")
                         .HasColumnType("datetime2")
                         .HasColumnName("date_start");
+
+                    b.Property<string>("description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("description");
 
                     b.Property<bool>("isActive")
                         .HasColumnType("bit")
@@ -54,21 +63,31 @@ namespace HutechNote.Data.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("acttachment_id");
 
-                    b.Property<DateTime>("dateCreate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("date_create");
-
-                    b.Property<string>("name")
+                    b.Property<string>("acttachmentName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("acttachment_name");
 
-                    b.Property<Guid>("taskuserId")
+                    b.Property<string>("acttachmentType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("type");
+
+                    b.Property<DateTime>("dateCreate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("date_create");
+
+                    b.Property<string>("description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("description");
+
+                    b.Property<Guid>("taskprojectTaskid")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("acttachmentId");
 
-                    b.HasIndex("taskuserId");
+                    b.HasIndex("taskprojectTaskid");
 
                     b.ToTable("ProjectAttachment");
                 });
@@ -80,12 +99,12 @@ namespace HutechNote.Data.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("project_detail_id");
 
-                    b.Property<Guid>("projectId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int>("projectRole")
                         .HasColumnType("int")
                         .HasColumnName("project_role");
+
+                    b.Property<Guid?>("project_id")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("timeJoin")
                         .HasColumnType("datetime2")
@@ -95,21 +114,21 @@ namespace HutechNote.Data.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("time_left");
 
-                    b.Property<Guid>("userId")
+                    b.Property<Guid?>("user_id")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("projectDetailId");
 
-                    b.HasIndex("projectId");
+                    b.HasIndex("project_id");
 
-                    b.HasIndex("userId");
+                    b.HasIndex("user_id");
 
                     b.ToTable("ProjectDetail");
                 });
 
             modelBuilder.Entity("HutechPM.Data.Entities.ProjectTask", b =>
                 {
-                    b.Property<Guid>("userId")
+                    b.Property<Guid>("projectTaskid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("project_task_id");
@@ -126,18 +145,22 @@ namespace HutechNote.Data.Migrations
                     b.Property<string>("name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("name");
+                        .HasColumnName("taskName");
 
-                    b.Property<Guid>("projectDetailId")
+                    b.Property<Guid>("project_detail_id")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("remaining")
                         .HasColumnType("int")
                         .HasColumnName("remaining");
 
-                    b.HasKey("userId");
+                    b.Property<int>("taskStatus")
+                        .HasColumnType("int")
+                        .HasColumnName("status");
 
-                    b.HasIndex("projectDetailId");
+                    b.HasKey("projectTaskid");
+
+                    b.HasIndex("project_detail_id");
 
                     b.ToTable("ProjectTask");
                 });
@@ -230,7 +253,7 @@ namespace HutechNote.Data.Migrations
                 {
                     b.HasOne("HutechPM.Data.Entities.ProjectTask", "task")
                         .WithMany("projectAttachments")
-                        .HasForeignKey("taskuserId")
+                        .HasForeignKey("taskprojectTaskid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -241,15 +264,11 @@ namespace HutechNote.Data.Migrations
                 {
                     b.HasOne("HutechPM.Data.Entities.Project", "project")
                         .WithMany("ApplicationProjectDetails")
-                        .HasForeignKey("projectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("project_id");
 
                     b.HasOne("HutechPM.Data.Entities.User", "user")
                         .WithMany("ApplicationProjectDetails")
-                        .HasForeignKey("userId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("user_id");
 
                     b.Navigation("project");
 
@@ -260,7 +279,7 @@ namespace HutechNote.Data.Migrations
                 {
                     b.HasOne("HutechPM.Data.Entities.ProjectDetail", "projectDetail")
                         .WithMany("projectTasks")
-                        .HasForeignKey("projectDetailId")
+                        .HasForeignKey("project_detail_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

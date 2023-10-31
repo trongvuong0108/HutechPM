@@ -51,7 +51,7 @@ namespace HutechPM.Data.Entities
         public string avatar { set; get; }
         public ICollection<ProjectDetail> ApplicationProjectDetails { set; get; }
 
-        public User(Guid userId, string userName, string email, string phone, string password, string fullName, string address)
+        public User(Guid userId, string userName, string password, string email, string phone, string fullName, string address)
         {
             this.userId = userId;
             this.userName = userName;
@@ -61,6 +61,11 @@ namespace HutechPM.Data.Entities
             this.fullName = fullName;
             this.address = address;
             this.avatar = CommonConstanst.DEFAULT_AVT;
+        }
+
+        public override string ToString()
+        {
+            return userName;
         }
     }
 }
