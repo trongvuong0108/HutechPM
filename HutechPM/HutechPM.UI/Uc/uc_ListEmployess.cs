@@ -9,6 +9,7 @@ using HutechPM.Data.Data.ProjectTaskData;
 using HutechPM.Data.Entities;
 using HutechPM.Data.UserData;
 using HutechPM.UI.Frm;
+using HutechPM.UI.FRM;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -55,11 +56,14 @@ namespace HutechPM.UI.Uc
         List<User> users;
         private async void uc_ListEmployess_Load(object sender, EventArgs e)
         {
+            FrmLoader frmLoader = new FrmLoader();
             labelProject.Text = ProjectNameLogin;
+            frmLoader.Show();
             projectDetailOfUserLogin = await projectDetailService.getAllProjectDetailByUser(UserLogin);
             projectDetails = await projectDetailService.getAllProjectDetail();
             users = await userService.GetAllUsers();
             getListEmployess(ProjectNameLogin);
+            frmLoader.Close();
             BindingSource bindingSourceProject = new BindingSource();
             bindingSourceProject.DataSource = await userService.getListUserDTO(Employess);
             gridControlEmployess.DataSource = bindingSourceProject;

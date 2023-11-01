@@ -5,6 +5,7 @@ using HutechPM.Data.Common;
 using HutechPM.Data.Data.ProjectDetailData;
 using HutechPM.Data.Entities;
 using HutechPM.Data.UserData;
+using HutechPM.UI.FRM;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -92,9 +93,11 @@ namespace HutechPM.UI.Frm
          private static readonly string _pass = "artc gpdp bcpi gvuq";*/
         public static string sendEmail(string sendto, string subject, string content)
         {
-
+            FrmLoader frmLoader = new FrmLoader();
+            
             try
             {
+                frmLoader.Show();
                 MailMessage mail = new MailMessage();
                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
@@ -111,12 +114,15 @@ namespace HutechPM.UI.Frm
                 SmtpServer.EnableSsl = true;
 
                 SmtpServer.Send(mail);
+                frmLoader.Close();
                 return "OK";
             }
             catch (Exception ex)
             {
+                frmLoader.Close();
                 return ex.ToString();
             }
+            
         }
         private async void buttonInvite_Click(object sender, EventArgs e)
         {

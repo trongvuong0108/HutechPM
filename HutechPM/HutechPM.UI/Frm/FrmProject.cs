@@ -6,6 +6,7 @@ using HutechPM.Data.Data.ProjectDetailData;
 using HutechPM.Data.Data.ProjectTaskData;
 using HutechPM.Data.Entities;
 using HutechPM.Data.UserData;
+using HutechPM.UI.FRM;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -102,6 +103,7 @@ namespace HutechPM.UI.Frm
 
         private async void buttonSave_Click(object sender, EventArgs e)
         {
+            FrmLoader frmLoader = new FrmLoader();
             try
             {
                 if (UserNameLogin.userName != comboBoxOwner.Text)
@@ -118,7 +120,7 @@ namespace HutechPM.UI.Frm
                 {
                     throw new Exception("Please! Enter project name");
                 }
-
+                frmLoader.Show();
                 foreach (Data.Entities.Project checkproject in await projectService.getAllProject())
                 {
                     if (checkproject.projectName == textBoxProjectName.Text && textBoxProjectName.Text != project.projectName)
@@ -144,6 +146,7 @@ namespace HutechPM.UI.Frm
                 }
 
                 ActionBaseResult result = await projectService.UpdateProject(project);
+                frmLoader.Close();
                 if (result.Success)
                 {
                     MessageBox.Show("Update project successfully");
@@ -152,6 +155,7 @@ namespace HutechPM.UI.Frm
             }
             catch (Exception ex)
             {
+                frmLoader.Close();
                 XtraMessageBox.Show(ex.Message, "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Error);
             }
         }
