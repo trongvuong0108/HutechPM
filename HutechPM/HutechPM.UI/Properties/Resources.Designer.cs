@@ -113,6 +113,16 @@ namespace HutechPM.UI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap HutechlogoNoName {
+            get {
+                object obj = ResourceManager.GetObject("HutechlogoNoName", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap iconmenu {
             get {
                 object obj = ResourceManager.GetObject("iconmenu", resourceCulture);
@@ -196,6 +206,16 @@ namespace HutechPM.UI.Properties {
         internal static System.Drawing.Bitmap logoHutech {
             get {
                 object obj = ResourceManager.GetObject("logoHutech", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logoHutech1 {
+            get {
+                object obj = ResourceManager.GetObject("logoHutech1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -35,7 +35,7 @@ namespace HutechNote.Data.Data.ProjectData
         public async Task<List<ProjectDTO>> getAllProjectsDTO()
         {
             List<ProjectDTO> ProjectDTOs = new List<ProjectDTO>();
-            List<Project> projects = await getAllProject();
+            List<Project> projects = await projectRepository.GetProject();
             foreach (Project project in projects)
             {
                 ProjectDTO projectDTO = new ProjectDTO();

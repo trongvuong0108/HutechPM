@@ -4,6 +4,7 @@ using DevExpress.XtraEditors;
 using HutechPM.Data.Common;
 using HutechPM.Data.Entities;
 using HutechPM.Data.UserData;
+using HutechPM.UI.FRM;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +24,7 @@ namespace HutechPM.UI.Frm
         User UserChangePassword { get; set; }
         HutechNoteDbContext _dbContext;
         UserService userService;
+
         public FrmChangePassword()
         {
             //InitializeComponent();
@@ -39,9 +41,8 @@ namespace HutechPM.UI.Frm
 
         private void buttonExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
-
         private void checkBoxShowpassword_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxShowpassword.Checked)
@@ -89,6 +90,8 @@ namespace HutechPM.UI.Frm
                 {
                     throw new Exception("The confirmation password does not match the new password");
                 }
+                FrmLoader frmLoader = new FrmLoader();
+                frmLoader.Show();
                 User finduserChangePassword = await userService.findUserByEmail(UserChangePassword.email);
                 if (finduserChangePassword != null)
                 {
@@ -96,6 +99,7 @@ namespace HutechPM.UI.Frm
                     await userService.updateUser(finduserChangePassword);
                     XtraMessageBox.Show("Changed password successfully", "Notification");
                     this.Close();
+                    frmLoader.Close();
                 }
             }
             catch (Exception ex)

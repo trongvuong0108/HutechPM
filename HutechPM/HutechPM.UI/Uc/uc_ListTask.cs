@@ -8,6 +8,7 @@ using HutechPM.Data.Data.ProjectDetailData;
 using HutechPM.Data.Data.ProjectTaskData;
 using HutechPM.Data.Entities;
 using HutechPM.UI.Frm;
+using HutechPM.UI.FRM;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -45,30 +46,35 @@ namespace HutechPM.UI.Uc
 
         public uc_ListTask()
         {
-            InitializeComponent();
-            _dbContext = new HutechNoteDbContext();
-            projectService = new ProjectService(_dbContext);
-            projectTaskService = new ProjectTaskService(_dbContext);
-            projectDetailService = new ProjectDetailService(_dbContext);
-            projectAttachmentService = new ProjectAttachmentService(_dbContext);
+
+
         }
         public projectRole userProjectRole { get; set; }
         public User UserLogin { get; set; }
 
         public void getUserLoginInUcListTask(User userlogin)
         {
+            InitializeComponent();
             this.UserLogin = userlogin;
         }
-        public async void loadData(List<ProjectTask> ListProjectTask)
+        public async void loadData()
         {
+            FrmLoader frmLoader = new FrmLoader();
+            frmLoader.Show();
+            _dbContext = new HutechNoteDbContext();
+            projectService = new ProjectService(_dbContext);
+            projectTaskService = new ProjectTaskService(_dbContext);
+            projectDetailService = new ProjectDetailService(_dbContext);
+            projectAttachmentService = new ProjectAttachmentService(_dbContext);
+            List<ProjectTask> ListProjectTask = await projectTaskService.getAllProjectTask();
             BindingSource bindingSourceProject = new BindingSource();
             bindingSourceProject.DataSource = ListProjectTask;
             gridControlGridTask.DataSource = bindingSourceProject;
+            frmLoader.Close();
         }
         private async void uc_ListTask_Load(object sender, EventArgs e)
         {
-            List<ProjectTask> ListProjectTask = await projectTaskService.getAllProjectTask();
-            loadData(ListProjectTask);
+            loadData();
             ItemButtonUpdate.Click += ItemButtonUpdate_Click;
             ItemButtonDelete.Click += ItemButtonDelete_Click;
             ItemButtonuploadFile.Click += ItemButtonuploadFile_Click;
@@ -83,11 +89,11 @@ namespace HutechPM.UI.Uc
             getEstimate = gridViewTask.GetFocusedRowCellValue("estimate").ToString();
             getRemaining = gridViewTask.GetFocusedRowCellValue("remaining").ToString();
             getStatus = gridViewTask.GetFocusedRowCellValue("taskStatus").ToString();
-            FrmTask frmTask = new FrmTask(getProjectName, userProjectRole, getProjectTaskid, getTaskName, getDescription, getOwner, getEstimate, getRemaining, getStatus);
-            frmTask.ShowDialog();
-            ProjectTaskService projectTaskService2 = new ProjectTaskService(_dbContext);
-            List<ProjectTask> ListProjectTask = await projectTaskService2.getAllProjectTask();
-            loadData(ListProjectTask);
+            using (FrmTask frmTask = new FrmTask(getProjectName, userProjectRole, getProjectTaskid, getTaskName, getDescription, getOwner, getEstimate, getRemaining, getStatus, UserLogin))
+            {
+                frmTask.ShowDialog();
+                loadData();
+            }
         }
 
         private async void ItemButtonDelete_Click(object sender, EventArgs e)
@@ -99,6 +105,8 @@ namespace HutechPM.UI.Uc
             if (XtraMessageBox.Show($"Do you want to delete project '" + getTaskName + "'", "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 gridViewTask.DeleteSelectedRows();
+                FrmLoader frmLoader = new FrmLoader();
+                frmLoader.Show();
                 ProjectTask deleteprojectTask = await projectTaskService.findProjectTaskId(guidgetProjectTaskid);
                 foreach (ProjectAttachment delteprojectAttachment in await projectAttachmentService.getAllProjectAttachment())
                 {
@@ -111,25 +119,24 @@ namespace HutechPM.UI.Uc
                 if (result.Success)
                 {
                     MessageBox.Show("Delete task successfully");
-                    uc_ListTask_Load(sender, e);
+                    loadData();
+                    frmLoader.Close();
                 }
             }
         }
-
         private void ItemButtonuploadFile_Click(object sender, EventArgs e)
         {
             string projectTaskid = gridViewTask.GetFocusedRowCellValue("projectTaskid").ToString();
             string projectTaskName = gridViewTask.GetFocusedRowCellValue("name").ToString();
             using (FrmAttachment frmAttachment = new FrmAttachment(projectTaskName, projectTaskid))
             {
-                if (frmAttachment.ShowDialog() == DialogResult.OK)
-                {
-
-                }
+                frmAttachment.ShowDialog();
             }
         }
         private async void buttonCreate_Click(object sender, EventArgs e)
         {
+            FrmLoader frmLoader = new FrmLoader();
+            frmLoader.Show();
             string projectName = null;
             foreach (ProjectDetail projectDetail in await projectDetailService.getAllProjectDetail())
             {
@@ -145,11 +152,13 @@ namespace HutechPM.UI.Uc
             string estimate = null;
             string remaining = null;
             string status = "In_Process";
-            FrmTask frmTask = new FrmTask(projectName, userProjectRole, projectTaskid, taskName, description, owner, estimate, remaining, status);
-            frmTask.Show();
+            frmLoader.Close();
+            using (FrmTask frmTask = new FrmTask(projectName, userProjectRole, projectTaskid, taskName, description, owner, estimate, remaining, status, UserLogin))
+            {
+                frmTask.ShowDialog();
+                loadData();
+            }
         }
-
-
         private void gridControlGridTask_Click(object sender, EventArgs e)
         {
 
@@ -166,6 +175,8 @@ namespace HutechPM.UI.Uc
 
                 if (XtraMessageBox.Show($"Do you want to delete task '" + getTaskName + "'", "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+                    FrmLoader frmLoader = new FrmLoader();
+                    frmLoader.Show();
                     ProjectTask deleteprojectTask = await projectTaskService.findProjectTaskId(guidgetProjectTaskid);
                     foreach (ProjectAttachment delteprojectAttachment in await projectAttachmentService.getAllProjectAttachment())
                     {
@@ -178,13 +189,10 @@ namespace HutechPM.UI.Uc
                     if (result.Success)
                     {
                         MessageBox.Show("Delete task successfully");
-                        //uc_ListTask_Load(sender, e);
+                        loadData();
+                        frmLoader.Close();
                     }
                 }
-            }
-            foreach (var item in row)
-            {
-                gridViewTask.DeleteSelectedRows();
             }
         }
         private void gridViewTask_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
@@ -208,12 +216,10 @@ namespace HutechPM.UI.Uc
             getEstimate = gridViewTask.GetFocusedRowCellValue("estimate").ToString();
             getRemaining = gridViewTask.GetFocusedRowCellValue("remaining").ToString();
             getStatus = gridViewTask.GetFocusedRowCellValue("taskStatus").ToString();
-            using (FrmTask frmTask = new FrmTask(getProjectName, userProjectRole, getProjectTaskid, getTaskName, getDescription, getOwner, getEstimate, getRemaining, getStatus))
+            using (FrmTask frmTask = new FrmTask(getProjectName, userProjectRole, getProjectTaskid, getTaskName, getDescription, getOwner, getEstimate, getRemaining, getStatus, UserLogin))
             {
-                if (frmTask.ShowDialog() == DialogResult.OK)
-                {
-
-                }
+                frmTask.ShowDialog();
+                loadData();
             }
         }
     }

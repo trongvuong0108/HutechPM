@@ -1,4 +1,5 @@
-﻿using HutechPM.Data.Common;
+﻿using DevExpress.XtraEditors;
+using HutechPM.Data.Common;
 using HutechPM.Data.Entities;
 using HutechPM.Data.UserData;
 using System;
@@ -8,6 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,44 +17,85 @@ namespace HutechPM.UI.Uc
 {
     public partial class uc_ChangePassword : UserControl
     {
-        public User UserLogin { get; set; }
+        public User UserChangePassword { get; set; }
         HutechNoteDbContext _dbContext;
         UserService userService;
         public uc_ChangePassword()
         {
-            InitializeComponent();
-            userService = new UserService(_dbContext);
         }
-
-
         public void getUserLoginInUcChangePassword(User userlogin)
         {
-            this.UserLogin = userlogin;
+            InitializeComponent();
+            _dbContext = new HutechNoteDbContext();
+            userService = new UserService(_dbContext);
+            this.UserChangePassword = userlogin;
         }
         private void uc_ChangePassword_Load(object sender, EventArgs e)
         {
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
 
         }
 
+        private async void ChangePassword_Click(object sender, EventArgs e)
+        {
+            var hasNumber = new Regex(@"[0-9]+");
+            var hasUpperChar = new Regex(@"[A-Z]+");
+            var hasMinimum8Chars = new Regex(@".{8,}");
+            var hasSymbols = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-]");
+            try
+            {
+                if (!hasNumber.IsMatch(textBoxNewPassword.Text))
+                {
+                    throw new Exception("Password must contain numeric characters");
+                }
+                if (!hasUpperChar.IsMatch(textBoxNewPassword.Text))
+                {
+                    throw new Exception("Password must contain capital letters");
+                }
+                if (!hasMinimum8Chars.IsMatch(textBoxNewPassword.Text))
+                {
+                    throw new Exception("Password must have at least 8 characters");
+                }
+                if (!hasSymbols.IsMatch(textBoxNewPassword.Text))
+                {
+                    throw new Exception("Password must contain special characters");
+                }
+                if (textBoxNewPassword.Text != textBoxPasswordConfirm.Text)
+                {
+                    throw new Exception("The confirmation password does not match the new password");
+                }
+                User finduserChangePassword = await userService.findUserByEmail(UserChangePassword.email);
+                if (finduserChangePassword.password != textBoxCurentPassword.Text)
+                {
+                    throw new Exception("Password entered is incorrect");
+                }
+                if (finduserChangePassword != null)
+                {
+                    finduserChangePassword.password = textBoxNewPassword.Text;
+                    await userService.updateUser(finduserChangePassword);
+                    textBoxCurentPassword.Text = string.Empty;
+                    textBoxNewPassword.Text = string.Empty;
+                    textBoxPasswordConfirm.Text = string.Empty;
+                    XtraMessageBox.Show("Changed password successfully", "Notification");
+                }
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message, "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+            }
+        }
 
         private void checkBoxShowpassword_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxShowpassword.Checked)
             {
                 textBoxCurentPassword.UseSystemPasswordChar = false;
-                textBoxCurentPassword.UseSystemPasswordChar = false;
-                textBoxCurentPassword.UseSystemPasswordChar = false;
+                textBoxNewPassword.UseSystemPasswordChar = false;
+                textBoxPasswordConfirm.UseSystemPasswordChar = false;
             }
-        }
-
-        private void ChangePassword_Click(object sender, EventArgs e)
-        {
-            //var userChangePassword = userService.getUser(UserLogin);
-        }
-
-        private void panelChangePassword_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

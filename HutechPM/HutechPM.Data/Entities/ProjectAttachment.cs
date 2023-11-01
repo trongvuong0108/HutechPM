@@ -28,6 +28,9 @@ namespace HutechPM.Data.Entities
         public string description { set; get; }
         [AllowNull]
 
+        [Column("fileName")]
+        public string filename { set; get; }
+
         [Column("date_create")]
         public DateTime dateCreate { set; get; }
         public ProjectTask task { set; get; }

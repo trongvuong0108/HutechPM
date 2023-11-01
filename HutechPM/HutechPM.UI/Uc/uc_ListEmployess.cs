@@ -55,7 +55,7 @@ namespace HutechPM.UI.Uc
         List<User> users;
         private async void uc_ListEmployess_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(UserLogin.userName + ProjectNameLogin);
+            labelProject.Text = ProjectNameLogin;
             projectDetailOfUserLogin = await projectDetailService.getAllProjectDetailByUser(UserLogin);
             projectDetails = await projectDetailService.getAllProjectDetail();
             users = await userService.GetAllUsers();
@@ -92,14 +92,14 @@ namespace HutechPM.UI.Uc
             List<int> row = gridViewEmployess.GetSelectedRows().Where(c => c >= 0).ToList();
             foreach (var item in row)
             {
-                string getUserId = gridViewEmployess.GetFocusedRowCellValue("userId").ToString();
-                Guid guidgetUserId = new Guid(getUserId);
+                string getUserName = gridViewEmployess.GetFocusedRowCellValue("userName").ToString();
+
 
                 if (XtraMessageBox.Show($"Do you want to delete user", "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     foreach (ProjectDetail projectDetail in await projectDetailService.getAllProjectDetail())
                     {
-                        if (projectDetail.user.userId == guidgetUserId && projectDetail.project.projectName == ProjectNameLogin)
+                        if (projectDetail.user.userName == getUserName && projectDetail.project.projectName == ProjectNameLogin)
                         {
                             ActionBaseResult result = await projectDetailService.DeleteProjectDetail(projectDetail);
                             if (result.Success)
@@ -114,6 +114,11 @@ namespace HutechPM.UI.Uc
             {
                 gridViewEmployess.DeleteSelectedRows();
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

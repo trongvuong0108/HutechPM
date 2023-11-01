@@ -19,15 +19,23 @@ namespace HutechPM.UI.Uc
 {
     public partial class uc_Login : UserControl
     {
-        string formattedNumber;
-        FrmSplashScreen frmSplashScreen = new FrmSplashScreen();
+        User userChangePassword { get; set; }
+        string formattedNumber { get; set; }
+
+        private static readonly string _from = "workflowttp@gmail.com";
+
+        private static readonly string _pass = "mytk qdlt eyfl xfby";
+
+        /* private static readonly string _from = "trantrung28122003@gmail.com";
+         private static readonly string _pass = "artc gpdp bcpi gvuq";*/
+
         uc_ForgetPassword uc_ForgetPassword;
         HutechNoteDbContext _dbContext;
         UserService userService;
+
         public uc_Login()
         {
             InitializeComponent();
-
             _dbContext = new HutechNoteDbContext();
             userService = new UserService(_dbContext);
         }
@@ -40,7 +48,6 @@ namespace HutechPM.UI.Uc
             textBoxPassword.BackColor = SystemColors.Control;
             pictureBoxPasswork.BackColor = SystemColors.Control;
             pictureBoxIconLock.BackColor = SystemColors.Control;
-
         }
 
         private void textBoxPassword_Click(object sender, EventArgs e)
@@ -51,13 +58,6 @@ namespace HutechPM.UI.Uc
             textBoxUser.BackColor = SystemColors.Control;
             pictureBoxUser.BackColor = SystemColors.Control;
             pictureBoxIconUser.BackColor = SystemColors.Control;
-
-        }
-
-
-
-        private void linkLabelCreateAccount_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
 
         }
 
@@ -110,10 +110,6 @@ namespace HutechPM.UI.Uc
             textBoxSendCode.Enabled = false;
         }
 
-        private static readonly string _from = "workflowttp@gmail.com";
-        private static readonly string _pass = "mytk qdlt eyfl xfby";
-        /* private static readonly string _from = "trantrung28122003@gmail.com";
-         private static readonly string _pass = "artc gpdp bcpi gvuq";*/
         public static string sendEmail(string sendto, string subject, string content)
         {
             try
@@ -128,7 +124,6 @@ namespace HutechPM.UI.Uc
                 mail.Body = content;
 
                 mail.Priority = MailPriority.High;
-
                 SmtpServer.Port = 587;
                 SmtpServer.Credentials = new System.Net.NetworkCredential(_from, _pass);
                 SmtpServer.EnableSsl = true;
@@ -154,7 +149,7 @@ namespace HutechPM.UI.Uc
             else
                 return (false);
         }
-        User userChangePassword;
+
         private async void buttonSend_Click(object sender, EventArgs e)
         {
             try
@@ -169,7 +164,8 @@ namespace HutechPM.UI.Uc
                 {
                     throw new Exception("Please! Enter email address");
                 }
-
+                FrmLoader frmLoader = new FrmLoader();
+                frmLoader.Show();
                 User user = await userService.findUserByEmail(textBoxEmailSend.Text);
                 if (user != null)
                 {
@@ -187,6 +183,7 @@ namespace HutechPM.UI.Uc
                     "<br />Hello " + user.userName +
                     "<br />Please get the code information to recover your WorkFlow login:: " + formattedNumber;
                     sendEmail(user.email, subject, content);
+                    frmLoader.Close();
                 }
                 else
                 {
@@ -198,6 +195,7 @@ namespace HutechPM.UI.Uc
                 XtraMessageBox.Show(ex.Message, "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
             }
         }
+
         private void buttonConfirm_Click(object sender, EventArgs e)
         {
             try
@@ -232,14 +230,11 @@ namespace HutechPM.UI.Uc
             panelLogin.BringToFront();
         }
 
-
-
         private void pictureBoxShowPass_Click(object sender, EventArgs e)
         {
             textBoxPassword.UseSystemPasswordChar = true;
             pictureBoxHidePass.BringToFront();
         }
-
         private void pictureBoxHidePass_Click(object sender, EventArgs e)
         {
             textBoxPassword.UseSystemPasswordChar = false;

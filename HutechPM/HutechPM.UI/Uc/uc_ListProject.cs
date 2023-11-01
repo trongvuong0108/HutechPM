@@ -19,12 +19,13 @@ using DevExpress.XtraGrid.Views.Base;
 using HutechPM.Data.UserData;
 using System.Threading.Tasks;
 using DevExpress.CodeParser;
+using HutechPM.UI.FRM;
 
 namespace HutechPM.UI.Components
 {
     public partial class uc_ListProject : UserControl
     {
-        public User UserName { get; set; }
+        public User UserNameLogin { get; set; }
         public string getProjectId { get; set; }
         public string getProjectName { get; set; }
         public string getDescription { get; set; }
@@ -41,32 +42,38 @@ namespace HutechPM.UI.Components
         List<Project> ListProject;
         List<ProjectTask> ListProjectTask;
         List<ProjectDTO> listProjectDTO;
+        private uc_ListProject uc_ListProject1;
 
         public uc_ListProject()
         {
+
+        }
+        public async void getUserLoginInUcListProject(User userNameLogin)
+        {
             InitializeComponent();
+            this.UserNameLogin = userNameLogin;
+        }
+        public async void loadData()
+        {
+            FrmLoader frmLoader = new FrmLoader();
+            frmLoader.Show();
             _dbContext = new HutechNoteDbContext();
             projectService = new ProjectService(_dbContext);
             projectTaskService = new ProjectTaskService(_dbContext);
             projectDetailService = new ProjectDetailService(_dbContext);
             userService = new UserService(_dbContext);
-        }
-
-
-        public void getUserLoginInUcListProject(User userName)
-        {
-            this.UserName = userName;
-        }
-
-        private async void uc_ListProject_Load(object sender, EventArgs e)
-        {
             ListProject = await projectService.getAllProject();
             ListProjectTask = await projectTaskService.getAllProjectTask();
             listProjectDTO = await projectService.getAllProjectsDTO();
             BindingSource bindingSourceProject = new BindingSource();
             bindingSourceProject.DataSource = listProjectDTO;
             gridControlProjects.DataSource = bindingSourceProject;
+            frmLoader.Close();
+        }
 
+        private async void uc_ListProject_Load(object sender, EventArgs e)
+        {
+            loadData();
             ItemButtonUpdate.ButtonClick += ItemButtonUpdate_Click;
             ItemButtonDelete.ButtonClick += ItemButtonDelete_Click;
         }
@@ -75,13 +82,13 @@ namespace HutechPM.UI.Components
         {
             try
             {
-                string getProjectId = gridViewProjects.GetFocusedRowCellValue("projectId").ToString();
-                string getProjectName = gridViewProjects.GetFocusedRowCellValue("projectName").ToString();
-                string getDescription = gridViewProjects.GetFocusedRowCellValue("description").ToString();
-                string getOwner = gridViewProjects.GetFocusedRowCellValue("owner").ToString();
-                string getDateStart = gridViewProjects.GetFocusedRowCellValue("dateStart").ToString();
-                string getDateEnd = gridViewProjects.GetFocusedRowCellValue("dateEnd").ToString();
-                bool getisActive = true;
+                getProjectId = gridViewProjects.GetFocusedRowCellValue("projectId").ToString();
+                getProjectName = gridViewProjects.GetFocusedRowCellValue("projectName").ToString();
+                getDescription = gridViewProjects.GetFocusedRowCellValue("description").ToString();
+                getOwner = gridViewProjects.GetFocusedRowCellValue("owner").ToString();
+                getDateStart = gridViewProjects.GetFocusedRowCellValue("dateStart").ToString();
+                getDateEnd = gridViewProjects.GetFocusedRowCellValue("dateEnd").ToString();
+                getisActive = true;
                 foreach (ProjectDTO projectDTO in listProjectDTO)
                 {
                     if (projectDTO.projectName == getProjectName)
@@ -89,15 +96,11 @@ namespace HutechPM.UI.Components
                         getisActive = projectDTO.isActive;
                     }
                 }
-                using (FrmProject frmProject = new FrmProject(getProjectId, getProjectName, getDescription, getOwner, getDateStart, getDateEnd, getisActive))
+                using (FrmProject frmProject = new FrmProject(getProjectId, getProjectName, getDescription, getOwner, getDateStart, getDateEnd, getisActive, UserNameLogin))
                 {
-                    if (frmProject.ShowDialog() == DialogResult.OK)
-                    { 
-                        
-                    }
-                    uc_ListProject_Load(sender, e);
+                    frmProject.ShowDialog();
+                    loadData();
                 }
-
             }
             catch (Exception ex)
             {
@@ -111,8 +114,9 @@ namespace HutechPM.UI.Components
             getProjectName = gridViewProjects.GetFocusedRowCellValue("projectName").ToString();
             if (XtraMessageBox.Show($"Do you want to delete project '" + getProjectName + "'", "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-
                 gridViewProjects.DeleteSelectedRows();
+                FrmLoader frmLoader = new FrmLoader();
+                frmLoader.Show();
                 Project deleteproject = await projectService.findProjectId(guidGetProject);
                 foreach (ProjectDetail deleteProjectDetail in await projectDetailService.getAllProjectDetail())
                 {
@@ -125,7 +129,8 @@ namespace HutechPM.UI.Components
                 if (result.Success)
                 {
                     XtraMessageBox.Show("Successfully deleted the selected project", "Notification");
-                    uc_ListProject_Load(sender, e);
+                    loadData();
+                    frmLoader.Close();
                 }
             }
         }
@@ -153,12 +158,12 @@ namespace HutechPM.UI.Components
                 XtraMessageBox.Show(ex.Message, "Notification", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             }
         }
-
         private void buttonCreate_Click(object sender, EventArgs e)
         {
             try
             {
-                using (FrmCreateProject frmCreateProject = new FrmCreateProject(UserName))
+
+                using (FrmCreateProject frmCreateProject = new FrmCreateProject(UserNameLogin))
                 {
                     frmCreateProject.ShowDialog();
                     uc_ListProject_Load(sender, e);
@@ -173,15 +178,16 @@ namespace HutechPM.UI.Components
         {
             try
             {
+                uc_ListProject_Load(sender, e);
                 List<int> row = gridViewProjects.GetSelectedRows().Where(c => c >= 0).ToList();
                 if (row.Count > 1)
                 {
                     throw new Exception("Cannot update multiple lines at once");
                 }
-                using (FrmProject frmProject = new FrmProject(getProjectId, getProjectName, getDescription, getOwner, getDateStart, getDateEnd, getisActive))
+                using (FrmProject frmProject = new FrmProject(getProjectId, getProjectName, getDescription, getOwner, getDateStart, getDateEnd, getisActive, UserNameLogin))
                 {
                     frmProject.ShowDialog();
-                    uc_ListProject_Load(sender, e);
+                    loadData();
                 }
             }
             catch (Exception ex)
@@ -202,6 +208,8 @@ namespace HutechPM.UI.Components
                     getProjectName = gridViewProjects.GetRowCellValue(item, "projectName").ToString();
                     if (XtraMessageBox.Show($"Do you want to delete project '" + getProjectName + "'", "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
+                        FrmLoader frmLoader = new FrmLoader();
+                        frmLoader.Show();
                         Project deleteproject = await projectService.findProjectId(guidGetProject);
 
                         foreach (ProjectDetail deleteProjectDetail in await projectDetailService.getAllProjectDetail())
@@ -212,10 +220,11 @@ namespace HutechPM.UI.Components
                             }
                         }
                         ActionBaseResult result = await projectService.DeleteProject(deleteproject);
-                        if(result.Success)
+                        if (result.Success)
                         {
+                            frmLoader.Close();
                             XtraMessageBox.Show("Successfully deleted the selected project", "Notification");
-                            //uc_ListProject_Load(sender, e);
+
                         }
                     }
                 }
@@ -230,10 +239,6 @@ namespace HutechPM.UI.Components
             }
 
         }
-
-
-
-
     }
 }
 

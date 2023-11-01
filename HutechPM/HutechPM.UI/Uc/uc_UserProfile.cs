@@ -24,8 +24,6 @@ namespace HutechPM.UI.Uc
             _dbContext = new HutechNoteDbContext();
             userService = new UserService(_dbContext);
         }
-
-
         public void getUserLoginInUcUserProfile(User userlogin)
         {
             this.UserLogin = userlogin;
@@ -33,7 +31,6 @@ namespace HutechPM.UI.Uc
         private async void uc_UserProfile_Load(object sender, EventArgs e)
         {
             BindingSource bindingSourceProject = new BindingSource();
-
             bindingSourceProject.DataSource = await userService.getUserProfile(UserLogin);
             gridControlUserProfile.DataSource = bindingSourceProject;
         }

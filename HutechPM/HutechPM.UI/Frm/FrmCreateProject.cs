@@ -22,12 +22,14 @@ using System.Net.Mail;
 using DevExpress.XtraRichEdit.Model;
 using static DevExpress.CodeParser.CodeStyle.Formatting.Rules.LineBreaks;
 using System.Windows.Documents;
+using HutechPM.UI.FRM;
 
 namespace HutechPM.UI.Frm
 {
     public partial class FrmCreateProject : Form
     {
         public User UserLogin { set; get; }
+
         List<User> listInviteUser = new List<User>();
 
         HutechNoteDbContext _dbContext;
@@ -85,11 +87,15 @@ namespace HutechPM.UI.Frm
 
         private async void FrmCreateProject_Load(object sender, EventArgs e)
         {
+            FrmLoader frmLoader = new FrmLoader();
+            frmLoader.Show();
             addListCheckboxInviteUser(await userService.GetAllUsers());
+            frmLoader.Close();
         }
 
         private void addListCheckboxInviteUser(List<User> users)
         {
+
             foreach (User user in users)
             {
                 if (user.userId != UserLogin.userId)
@@ -130,6 +136,8 @@ namespace HutechPM.UI.Frm
                 project.dateStart = DateTime.Now;
                 project.dateEnd = DateTime.Now;
                 project.isActive = true;
+                FrmLoader frmLoader = new FrmLoader();
+                frmLoader.Show();
                 await projectService.AddProject(project);
 
                 createProject = project;
@@ -144,6 +152,7 @@ namespace HutechPM.UI.Frm
                 if (result.Success)
                 {
                     panelCreateProject2.BringToFront();
+                    frmLoader.Close();
                     MessageBox.Show("Create successful projects");
                 }
             }
@@ -207,6 +216,8 @@ namespace HutechPM.UI.Frm
                         projectDetail.timeLeft = DateTime.Now;
                         projectDetail.projectRole = projectRole.ProjectMember;
                         projectDetail.project = createProject;
+                        FrmLoader frmLoader = new FrmLoader();
+                        frmLoader.Show();
                         ActionBaseResult result = await projectDetailService.AddProjectDetail(projectDetail);
                         if (result.Success)
                         {
@@ -214,6 +225,7 @@ namespace HutechPM.UI.Frm
                             string content =
                             "You have been invited to the " + createProject.projectName + " project by " + projectDetail.user.email;
                             sendEmail(user.email, subject, content);
+                            frmLoader.Show();
                         }
                     }
                     this.Close();

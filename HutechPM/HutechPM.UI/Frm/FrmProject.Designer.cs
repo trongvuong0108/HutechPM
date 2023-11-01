@@ -217,7 +217,6 @@
             // 
             // comboBoxOwner
             // 
-            comboBoxOwner.Enabled = false;
             comboBoxOwner.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             comboBoxOwner.FormattingEnabled = true;
             comboBoxOwner.Location = new System.Drawing.Point(200, 306);

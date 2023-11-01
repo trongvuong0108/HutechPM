@@ -20,6 +20,7 @@ using HutechPM.UI.Uc;
 using HutechPM.Data.Data.ProjectDetailData;
 using DevExpress.DataProcessing.InMemoryDataProcessor;
 using DevExpress.XtraEditors;
+using HutechPM.UI.FRM;
 
 namespace HutechPM.UI.Frm
 {
@@ -34,6 +35,8 @@ namespace HutechPM.UI.Frm
         public string Estimate { get; set; }
         public string Remaining { get; set; }
         public string Status { get; set; }
+        public string userLoginRole { get; set; }
+        public Data.Entities.User UserLogin { get; set; }
         public FrmTask()
         {
 
@@ -44,7 +47,7 @@ namespace HutechPM.UI.Frm
         ProjectDetailService projectDetailService;
         ProjectTaskService projectTaskService;
         List<ProjectDetail> projectDetails;
-        public FrmTask(string projectName, projectRole ProjectRole, string projectTaskId, string taskName, string description, string owner, string estimate, string remaining, string status)
+        public FrmTask(string projectName, projectRole ProjectRole, string projectTaskId, string taskName, string description, string owner, string estimate, string remaining, string status,Data.Entities.User userLogin)
         {
             InitializeComponent();
             _dbContext = new HutechNoteDbContext();
@@ -61,12 +64,28 @@ namespace HutechPM.UI.Frm
             this.Estimate = estimate;
             this.Remaining = remaining;
             this.Status = status;
-
+            this.UserLogin = userLogin;
         }
         private async void FrmTask_Load(object sender, EventArgs e)
         {
+           
             try
             {
+                FrmLoader frmLoader = new FrmLoader();
+                frmLoader.Show();
+                projectDetails = await projectDetailService.getAllProjectDetail();
+               
+                frmLoader.Close();
+
+              
+                if(Owner != UserLogin.userName)
+                {
+                    comboBoxOwner.Enabled = false;
+                }    
+                else
+                {
+                    comboBoxOwner.Enabled = true;
+                }
                 if (projectTaskId != null)
                 {
                     comboBoxProjectName.Enabled = false;
@@ -75,8 +94,8 @@ namespace HutechPM.UI.Frm
                 {
                     comboBoxProjectName.Enabled = true;
                 }
-                projectDetails = await projectDetailService.getAllProjectDetail();
-                listComboBoxOwner();
+                
+
                 listComboBoxStatus();
                 listComboBoxProjectName();
                 comboBoxProjectName.Text = ProjectName;
@@ -90,12 +109,10 @@ namespace HutechPM.UI.Frm
                 listTaskStatus.Add(ProjectTask.TaskStatus.Completed);
                 listTaskStatus.Add(ProjectTask.TaskStatus.On_Hold);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 XtraMessageBox.Show(ex.Message, "Notification", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             }
-
-
         }
 
         List<ProjectTask.TaskStatus> listTaskStatus = new List<ProjectTask.TaskStatus>();
@@ -109,11 +126,12 @@ namespace HutechPM.UI.Frm
             comboBoxStatus.Items.Add(ProjectTask.TaskStatus.On_Hold);
 
         }
-        private void listComboBoxOwner()
+        private void listComboBoxOwner(string projectname)
         {
+            this.comboBoxOwner.Items.Clear();  
             foreach (ProjectDetail projectDetail in projectDetails)
             {
-                if (projectDetail.project.projectName == ProjectName)
+                if (projectDetail.project.projectName == projectname)
                 {
                     this.comboBoxOwner.Items.Add(projectDetail.user.userName);
                 }
@@ -121,6 +139,7 @@ namespace HutechPM.UI.Frm
         }
         private void listComboBoxProjectName()
         {
+            this.comboBoxProjectName.Items.Clear();
             foreach (ProjectDetail projectDetail in projectDetails)
             {
                 if (projectDetail.user.userName == Owner)
@@ -187,7 +206,7 @@ namespace HutechPM.UI.Frm
                     {
                         MessageBox.Show("Update task successfully");
                         uc_ListTask uc_ListTask = new uc_ListTask();
-        
+
                         this.Close();
                     }
                 }
@@ -221,19 +240,22 @@ namespace HutechPM.UI.Frm
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 XtraMessageBox.Show(ex.Message, "Notification", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             }
         }
 
-     
+
 
         private void buttonExit_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-     
+        private void comboBoxProjectName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listComboBoxOwner(comboBoxProjectName.Text);
+        }
     }
 }

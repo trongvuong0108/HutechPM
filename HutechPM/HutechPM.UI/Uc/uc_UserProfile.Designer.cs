@@ -50,18 +50,18 @@
             colgender = new DevExpress.XtraGrid.Columns.GridColumn();
             colisActive = new DevExpress.XtraGrid.Columns.GridColumn();
             colavatar = new DevExpress.XtraGrid.Columns.GridColumn();
+            update = new DevExpress.XtraGrid.Columns.GridColumn();
+            ItemButtonUpdate = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             pictureBox1 = new System.Windows.Forms.PictureBox();
             label1 = new System.Windows.Forms.Label();
             label7 = new System.Windows.Forms.Label();
-            update = new DevExpress.XtraGrid.Columns.GridColumn();
-            ItemButtonUpdate = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             ((System.ComponentModel.ISupportInitialize)userBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)userBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridControlUserProfile).BeginInit();
             ((System.ComponentModel.ISupportInitialize)userBindingSource2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridViewUserProfile).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ItemButtonUpdate).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // userBindingSource
@@ -74,12 +74,13 @@
             // 
             // gridControlUserProfile
             // 
+            gridControlUserProfile.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             gridControlUserProfile.DataSource = userBindingSource2;
             gridControlUserProfile.Location = new System.Drawing.Point(0, 121);
             gridControlUserProfile.MainView = gridViewUserProfile;
             gridControlUserProfile.Name = "gridControlUserProfile";
             gridControlUserProfile.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { ItemButtonUpdate });
-            gridControlUserProfile.Size = new System.Drawing.Size(1350, 402);
+            gridControlUserProfile.Size = new System.Drawing.Size(1350, 395);
             gridControlUserProfile.TabIndex = 0;
             gridControlUserProfile.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridViewUserProfile });
             // 
@@ -185,36 +186,6 @@
             colavatar.Name = "colavatar";
             colavatar.Width = 112;
             // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = Properties.Resources.Workflow2;
-            pictureBox1.Location = new System.Drawing.Point(8, 15);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new System.Drawing.Size(80, 80);
-            pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 59;
-            pictureBox1.TabStop = false;
-            // 
-            // label1
-            // 
-            label1.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            label1.BackColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            label1.Location = new System.Drawing.Point(0, 520);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(1350, 56);
-            label1.TabIndex = 57;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new System.Drawing.Font("Segoe UI", 28F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            label7.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            label7.Location = new System.Drawing.Point(94, 21);
-            label7.Name = "label7";
-            label7.Size = new System.Drawing.Size(289, 74);
-            label7.TabIndex = 58;
-            label7.Text = "Workflow";
-            // 
             // update
             // 
             update.ColumnEdit = ItemButtonUpdate;
@@ -231,10 +202,44 @@
             ItemButtonUpdate.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default) });
             ItemButtonUpdate.Name = "ItemButtonUpdate";
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.Workflow2;
+            pictureBox1.Location = new System.Drawing.Point(8, 15);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new System.Drawing.Size(80, 80);
+            pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 59;
+            pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            label1.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            label1.BackColor = System.Drawing.Color.FromArgb(41, 128, 185);
+            label1.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            label1.ForeColor = System.Drawing.Color.White;
+            label1.Location = new System.Drawing.Point(0, 513);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(1350, 63);
+            label1.TabIndex = 57;
+            label1.Tag = "Profile ";
+            label1.Text = "Profile";
+            label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new System.Drawing.Font("Segoe UI", 28F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            label7.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
+            label7.Location = new System.Drawing.Point(94, 21);
+            label7.Name = "label7";
+            label7.Size = new System.Drawing.Size(289, 74);
+            label7.TabIndex = 58;
+            label7.Text = "Workflow";
+            // 
             // uc_UserProfile
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             Controls.Add(pictureBox1);
             Controls.Add(label7);
             Controls.Add(label1);
@@ -247,8 +252,8 @@
             ((System.ComponentModel.ISupportInitialize)gridControlUserProfile).EndInit();
             ((System.ComponentModel.ISupportInitialize)userBindingSource2).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridViewUserProfile).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)ItemButtonUpdate).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

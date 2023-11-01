@@ -43,7 +43,7 @@
             buttonDelete = new System.Windows.Forms.Button();
             pictureBox1 = new System.Windows.Forms.PictureBox();
             label7 = new System.Windows.Forms.Label();
-            label1 = new System.Windows.Forms.Label();
+            labelProject = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)gridControlEmployess).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridViewEmployess).BeginInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemImageEdit1).BeginInit();
@@ -72,6 +72,8 @@
             // 
             // userName
             // 
+            userName.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            userName.AppearanceHeader.Options.UseFont = true;
             userName.Caption = "User Name";
             userName.FieldName = "userName";
             userName.MinWidth = 30;
@@ -82,6 +84,8 @@
             // 
             // gender
             // 
+            gender.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            gender.AppearanceHeader.Options.UseFont = true;
             gender.Caption = "Gender";
             gender.FieldName = "genderDTO";
             gender.MinWidth = 30;
@@ -92,6 +96,8 @@
             // 
             // email
             // 
+            email.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            email.AppearanceHeader.Options.UseFont = true;
             email.Caption = "Email";
             email.FieldName = "email";
             email.MinWidth = 30;
@@ -102,6 +108,8 @@
             // 
             // role
             // 
+            role.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            role.AppearanceHeader.Options.UseFont = true;
             role.Caption = "Role";
             role.FieldName = "projectRole";
             role.MinWidth = 30;
@@ -112,6 +120,8 @@
             // 
             // quantityTask
             // 
+            quantityTask.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            quantityTask.AppearanceHeader.Options.UseFont = true;
             quantityTask.Caption = "Quantity Task";
             quantityTask.FieldName = "quantityTask";
             quantityTask.MinWidth = 30;
@@ -122,6 +132,8 @@
             // 
             // userId
             // 
+            userId.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            userId.AppearanceHeader.Options.UseFont = true;
             userId.Caption = "userId";
             userId.FieldName = "userId";
             userId.MinWidth = 30;
@@ -172,7 +184,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.Workflow2;
-            pictureBox1.Location = new System.Drawing.Point(12, 6);
+            pictureBox1.Location = new System.Drawing.Point(8, 3);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new System.Drawing.Size(80, 80);
             pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -184,27 +196,31 @@
             label7.AutoSize = true;
             label7.Font = new System.Drawing.Font("Segoe UI", 28F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             label7.ForeColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            label7.Location = new System.Drawing.Point(94, 9);
+            label7.Location = new System.Drawing.Point(94, 6);
             label7.Name = "label7";
             label7.Size = new System.Drawing.Size(289, 74);
             label7.TabIndex = 57;
             label7.Text = "Workflow";
             // 
-            // label1
+            // labelProject
             // 
-            label1.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            label1.BackColor = System.Drawing.Color.FromArgb(41, 128, 185);
-            label1.Location = new System.Drawing.Point(0, 521);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(1350, 55);
-            label1.TabIndex = 56;
+            labelProject.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            labelProject.BackColor = System.Drawing.Color.FromArgb(41, 128, 185);
+            labelProject.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            labelProject.ForeColor = System.Drawing.Color.White;
+            labelProject.Location = new System.Drawing.Point(0, 521);
+            labelProject.Name = "labelProject";
+            labelProject.Size = new System.Drawing.Size(1350, 55);
+            labelProject.TabIndex = 56;
+            labelProject.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            labelProject.Click += label1_Click;
             // 
             // uc_ListEmployess
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             Controls.Add(pictureBox1);
             Controls.Add(label7);
-            Controls.Add(label1);
+            Controls.Add(labelProject);
             Controls.Add(buttonAddMenber);
             Controls.Add(buttonDelete);
             Controls.Add(gridControlEmployess);
@@ -236,7 +252,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn projectName;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelProject;
         private DevExpress.XtraGrid.Columns.GridColumn userId;
     }
 }

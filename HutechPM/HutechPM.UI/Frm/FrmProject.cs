@@ -40,7 +40,8 @@ namespace HutechPM.UI.Frm
         public string dateStart { get; set; }
         public string dateEnd { get; set; }
         public bool isActive { get; set; }
-        public FrmProject(string projectId, string projectName, string description, string owner, string dateStart, string dateEnd, bool isActive)
+        User UserNameLogin { get; set; }
+        public FrmProject(string projectId, string projectName, string description, string owner, string dateStart, string dateEnd, bool isActive, User userNameLogin)
         {
             InitializeComponent();
             _dbContext = new HutechNoteDbContext();
@@ -53,10 +54,10 @@ namespace HutechPM.UI.Frm
             this.dateStart = dateStart;
             this.dateEnd = dateEnd;
             this.isActive = isActive;
+            this.UserNameLogin = userNameLogin;
         }
         private async void FrmProject_Load(object sender, EventArgs e)
         {
-
             dateTimePickerStartDate.Format = DateTimePickerFormat.Custom;
             dateTimePickerStartDate.CustomFormat = "dd/MM/yyyy";
             dateTimePickerEndDate.Format = DateTimePickerFormat.Custom;
@@ -78,6 +79,15 @@ namespace HutechPM.UI.Frm
                 radioButtonFalse.Checked = false;
             }
 
+            if (UserNameLogin.userName != owner)
+            {
+                comboBoxOwner.Enabled = false;
+            }
+            else
+            {
+                comboBoxOwner.Enabled = true;
+            }
+
         }
 
         private void buttonExit_Click(object sender, EventArgs e)
@@ -94,6 +104,10 @@ namespace HutechPM.UI.Frm
         {
             try
             {
+                if (UserNameLogin.userName != comboBoxOwner.Text)
+                {
+                    throw new Exception("You do not have permission to edit this project");
+                }
                 Guid guidprojectId = new Guid(projectId);
                 Project project = await projectService.findProjectId(guidprojectId);
                 if (textBoxProjectName.Text == "" && textBoxDescription.Text == "")

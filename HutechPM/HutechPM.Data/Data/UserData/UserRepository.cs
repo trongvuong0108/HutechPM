@@ -1,6 +1,7 @@
 ﻿using HutechPM.Data.Common;
 using HutechPM.Data.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography.X509Certificates;
 
 namespace HutechPM.Data.UserData
 {
@@ -65,8 +66,11 @@ namespace HutechPM.Data.UserData
 
         public async Task<User> findUserByEmail(string email)
         {
-            return await _dbContext.users.FirstOrDefaultAsync(x => x.email == email);  
+            return await _dbContext.users.FirstOrDefaultAsync(x => x.email == email);
+
+
         }
+   
     }
 
 

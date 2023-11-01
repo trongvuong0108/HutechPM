@@ -71,7 +71,6 @@
             panelChangePassword.Name = "panelChangePassword";
             panelChangePassword.Size = new System.Drawing.Size(1152, 725);
             panelChangePassword.TabIndex = 87;
-            panelChangePassword.Paint += panelChangePassword_Paint;
             // 
             // panel1
             // 
@@ -93,6 +92,7 @@
             panel1.Name = "panel1";
             panel1.Size = new System.Drawing.Size(783, 561);
             panel1.TabIndex = 87;
+            panel1.Paint += panel1_Paint;
             // 
             // ChangePassword
             // 
@@ -107,6 +107,7 @@
             ChangePassword.TabIndex = 92;
             ChangePassword.Text = "Change Password";
             ChangePassword.UseVisualStyleBackColor = false;
+            ChangePassword.Click += ChangePassword_Click;
             // 
             // textBoxPasswordConfirm
             // 
@@ -206,6 +207,7 @@
             checkBoxShowpassword.TabIndex = 86;
             checkBoxShowpassword.Text = "Show Password";
             checkBoxShowpassword.UseVisualStyleBackColor = true;
+            checkBoxShowpassword.CheckedChanged += checkBoxShowpassword_CheckedChanged;
             // 
             // label10
             // 
