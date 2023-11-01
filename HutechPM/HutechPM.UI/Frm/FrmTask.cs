@@ -156,6 +156,7 @@ namespace HutechPM.UI.Frm
 
         private async void buttonSave_Click(object sender, EventArgs e)
         {
+            FrmLoader frmLoader = new FrmLoader();
             try
             {
                 /*foreach (Data.Entities.Project checkproject in await projectService.getAllProject())
@@ -186,6 +187,7 @@ namespace HutechPM.UI.Frm
                 {
                     throw new Exception("Please! Enter Remaining");
                 }
+                frmLoader.Show();
                 if (projectTaskId != null)
                 {
                     Guid guidprojectTaskId = new Guid(projectTaskId);
@@ -202,6 +204,7 @@ namespace HutechPM.UI.Frm
                         }
                     }
                     ActionBaseResult result = await projectTaskService.upadteProjectTask(projectTask);
+                    frmLoader.Close();
                     if (result.Success)
                     {
                         MessageBox.Show("Update task successfully");
@@ -233,6 +236,7 @@ namespace HutechPM.UI.Frm
                         }
                     }
                     ActionBaseResult result = await projectTaskService.AddProjectTask(projectTask);
+                    frmLoader.Close();
                     if (result.Success)
                     {
                         MessageBox.Show("Create task successfully");
@@ -242,6 +246,7 @@ namespace HutechPM.UI.Frm
             }
             catch (Exception ex)
             {
+                frmLoader.Close();
                 XtraMessageBox.Show(ex.Message, "Notification", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             }
         }

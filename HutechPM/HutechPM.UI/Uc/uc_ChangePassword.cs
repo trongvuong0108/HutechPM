@@ -2,6 +2,7 @@
 using HutechPM.Data.Common;
 using HutechPM.Data.Entities;
 using HutechPM.Data.UserData;
+using HutechPM.UI.FRM;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -45,6 +46,7 @@ namespace HutechPM.UI.Uc
             var hasUpperChar = new Regex(@"[A-Z]+");
             var hasMinimum8Chars = new Regex(@".{8,}");
             var hasSymbols = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-]");
+            FrmLoader frmLoader = new FrmLoader();
             try
             {
                 if (!hasNumber.IsMatch(textBoxNewPassword.Text))
@@ -67,6 +69,7 @@ namespace HutechPM.UI.Uc
                 {
                     throw new Exception("The confirmation password does not match the new password");
                 }
+                frmLoader.Show();
                 User finduserChangePassword = await userService.findUserByEmail(UserChangePassword.email);
                 if (finduserChangePassword.password != textBoxCurentPassword.Text)
                 {
@@ -74,8 +77,10 @@ namespace HutechPM.UI.Uc
                 }
                 if (finduserChangePassword != null)
                 {
+
                     finduserChangePassword.password = textBoxNewPassword.Text;
                     await userService.updateUser(finduserChangePassword);
+                    frmLoader.Close();
                     textBoxCurentPassword.Text = string.Empty;
                     textBoxNewPassword.Text = string.Empty;
                     textBoxPasswordConfirm.Text = string.Empty;
@@ -84,6 +89,7 @@ namespace HutechPM.UI.Uc
             }
             catch (Exception ex)
             {
+                frmLoader.Close();
                 XtraMessageBox.Show(ex.Message, "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
             }
         }

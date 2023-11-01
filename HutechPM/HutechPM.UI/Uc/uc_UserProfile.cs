@@ -1,6 +1,7 @@
 ﻿using HutechPM.Data.Common;
 using HutechPM.Data.Entities;
 using HutechPM.Data.UserData;
+using HutechPM.UI.FRM;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,8 +31,11 @@ namespace HutechPM.UI.Uc
         }
         private async void uc_UserProfile_Load(object sender, EventArgs e)
         {
+            FrmLoader frmLoader = new FrmLoader();
+            frmLoader.Show();
             BindingSource bindingSourceProject = new BindingSource();
             bindingSourceProject.DataSource = await userService.getUserProfile(UserLogin);
+            frmLoader.Close(); 
             gridControlUserProfile.DataSource = bindingSourceProject;
         }
     }
