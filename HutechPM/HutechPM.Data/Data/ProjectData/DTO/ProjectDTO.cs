@@ -1,13 +1,4 @@
-﻿using HutechNote.Data.Data.ProjectData;
-using HutechPM.Data.Entities;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HutechPM.Data.Data.ProjectData.DTO
+﻿namespace HutechPM.Data.Data.ProjectData.DTO
 {
     public class ProjectDTO
     {

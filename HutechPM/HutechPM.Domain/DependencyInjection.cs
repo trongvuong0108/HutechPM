@@ -1,11 +1,9 @@
 ﻿
-using HutechNote.Data.Data.ProjectData;
-using HutechPM.Data.Data.ProjectData;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Hutech.Application
+namespace Hutech.Data
 {
-    public static class DependencyInjection
+    public static class Domain
     {
         public static void AddApplication(this IServiceCollection services)
         {

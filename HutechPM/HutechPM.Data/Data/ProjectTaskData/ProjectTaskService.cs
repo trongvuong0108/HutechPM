@@ -1,47 +1,39 @@
-﻿using HutechPM.Data.Common;
-using HutechPM.Data.Data.ProjectAttachmentData;
-using HutechPM.Data.Data.ProjectData;
-using HutechPM.Data.Data.ProjectDetailData;
-using HutechPM.Data.Entities;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HutechPM.Domain.Entities;
+using HutechPM.Infrastructure.Common;
+using HutechPM.Infrastructure.ProjectTaskData;
 
 namespace HutechPM.Data.Data.ProjectTaskData
 {
     public class ProjectTaskService
     {
-        private readonly ProjectTaskRepository projectTaskRepository;
+        private readonly ProjectTaskRepository _projectTaskRepository;
      
-        public ProjectTaskService(HutechNoteDbContext _dbContext)
+        public ProjectTaskService(ProjectTaskRepository projectTaskRepository)
         {
-            this.projectTaskRepository = new ProjectTaskRepository(_dbContext);
+            this._projectTaskRepository = projectTaskRepository;
         }
 
         public async Task<List<ProjectTask>> getAllProjectTask()
         {
-            return await projectTaskRepository.GetProjectTask();
+            return await _projectTaskRepository.GetProjectTask();
         }
 
         public async Task<ActionBaseResult> AddProjectTask(ProjectTask projectTask)
         {
-            return await projectTaskRepository.AddProjectTask(projectTask);
+            return await _projectTaskRepository.AddProjectTask(projectTask);
         }
 
         public async Task<ActionBaseResult> upadteProjectTask(ProjectTask projectTask)
         {
-            return await projectTaskRepository.upadteProjectTask(projectTask);
+            return await _projectTaskRepository.upadteProjectTask(projectTask);
         }
         public async Task<ActionBaseResult> DeleteProjectTask(ProjectTask projectTask)
         {
-            return await projectTaskRepository.DeleteProjectTask(projectTask);
+            return await _projectTaskRepository.DeleteProjectTask(projectTask);
         }
         public async Task<ProjectTask> findProjectTaskId(Guid projectTaskId)
         {
-            return await projectTaskRepository.findProjectTaskId(projectTaskId);
+            return await _projectTaskRepository.findProjectTaskId(projectTaskId);
         }
 
     }

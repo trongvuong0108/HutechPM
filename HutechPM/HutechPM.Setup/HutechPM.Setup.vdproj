@@ -15,7 +15,7 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_E8B607A59BFE44D0B8A8491C9459D1FB"
+        "MsmKey" = "8:_75BEABBF3DB44ED4B51F0CE4C5CBBCCB"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -37,6 +37,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -53,6 +61,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -70,6 +86,16 @@
         {
             "LaunchCondition"
             {
+                "{A06ECF26-33A3-4562-8140-9B0E340D4F24}:_761696FC91274805B108A79A11E2EF70"
+                {
+                "Name" = "8:.NET Core"
+                "Message" = "8:[VSDNETCOREMSG]"
+                "AllowLaterVersions" = "11:FALSE"
+                "InstallUrl" = "8:https://dotnet.microsoft.com/download/dotnet-core/[NetCoreVerMajorDotMinor]"
+                "IsNETCore" = "11:TRUE"
+                "Architecture" = "2:0"
+                "Runtime" = "2:0"
+                }
             }
         }
         "File"
@@ -251,15 +277,15 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_622CD8A8F72B48F6900D439885F5D8CF"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_BBF9D4FDB2EB4DC5BD35A0D560734A87"
             {
-            "Name" = "8:HutechPM"
+            "Name" = "8:WorkFlow"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_E8B607A59BFE44D0B8A8491C9459D1FB"
+            "Target" = "8:_75BEABBF3DB44ED4B51F0CE4C5CBBCCB"
             "Folder" = "8:_C9A7587046EC45A4A0074B45088E7A56"
             "WorkingFolder" = "8:_2D747A90F0F046D4B315CDE1195262C4"
             "Icon" = "8:"
@@ -664,7 +690,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E8B607A59BFE44D0B8A8491C9459D1FB"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_75BEABBF3DB44ED4B51F0CE4C5CBBCCB"
             {
             "SourcePath" = "8:..\\HutechPM.UI\\obj\\Debug\\net6.0-windows\\apphost.exe"
             "TargetName" = "8:"

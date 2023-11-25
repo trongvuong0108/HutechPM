@@ -1,48 +1,39 @@
-﻿using HutechNote.Data.Data.UserData.DTOs;
-using HutechPM.Data.Common;
-using HutechPM.Data.Data.ProjectData;
-using HutechPM.Data.Data.ProjectData.DTO;
-using HutechPM.Data.Data.ProjectDetailData;
-using HutechPM.Data.Data.ProjectTaskData;
-using HutechPM.Data.Entities;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HutechPM.Data.Data.ProjectData.DTO;
+using HutechPM.Domain.Entities;
+using HutechPM.Infrastructure.Common;
+using HutechPM.Infrastructure.ProjectData;
 
 namespace HutechNote.Data.Data.ProjectData
 {
 
     public class ProjectService
     {
-        private readonly ProjectRepository projectRepository;
+        private readonly ProjectRepository _projectRepository;
 
         public ProjectService(HutechNoteDbContext _dbContext)
         {
-            this.projectRepository = new ProjectRepository(_dbContext);
+            this._projectRepository = new ProjectRepository(_dbContext);
         }
 
         public async Task<List<Project>> getAllProject()
         {
-            return await projectRepository.GetProject();
+            return await _projectRepository.GetProject();
         }
         public async Task<Project> findProjectId(Guid projectId)
         {
-            return await projectRepository.findProjectId(projectId);
+            return await _projectRepository.findProjectId(projectId);
         }
         public async Task<List<ProjectDTO>> getAllProjectsDTO()
         {
             List<ProjectDTO> ProjectDTOs = new List<ProjectDTO>();
-            List<Project> projects = await projectRepository.GetProject();
+            List<Project> projects = await _projectRepository.GetProject();
             foreach (Project project in projects)
             {
                 ProjectDTO projectDTO = new ProjectDTO();
                 projectDTO.projectId = project.projectId;
                 projectDTO.projectName = project.projectName;
                 projectDTO.description = project.description;
-                ProjectDetail findUserRole = await projectRepository.findProjectOfOwner(project);
+                ProjectDetail findUserRole = await _projectRepository.findProjectOfOwner(project);
                 if (findUserRole != null)
                 {
                     projectDTO.owner = findUserRole.user.userName;
@@ -50,7 +41,7 @@ namespace HutechNote.Data.Data.ProjectData
                 projectDTO.dateStart = project.dateStart;
                 projectDTO.dateEnd = project.dateEnd;
                 int count = 0;
-                foreach (ProjectTask projectTask in await projectRepository.GetProjectTask())
+                foreach (ProjectTask projectTask in await _projectRepository.GetProjectTask())
                 {
                     if (projectTask.projectDetail.project.projectId == project.projectId)
                     {
@@ -66,15 +57,15 @@ namespace HutechNote.Data.Data.ProjectData
 
         public async Task<ActionBaseResult> AddProject(Project project)
         {
-            return await projectRepository.AddProject(project);
+            return await _projectRepository.AddProject(project);
         }
         public async Task<ActionBaseResult> UpdateProject(Project project)
         {
-            return await projectRepository.UpdateProject(project);
+            return await _projectRepository.UpdateProject(project);
         }
         public async Task<ActionBaseResult> DeleteProject(Project project)
         {
-            return await projectRepository.DeleteProject(project);
+            return await _projectRepository.DeleteProject(project);
         }
     }
 }

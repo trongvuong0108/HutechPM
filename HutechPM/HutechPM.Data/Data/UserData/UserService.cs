@@ -1,11 +1,7 @@
 ﻿using HutechNote.Data.Data.UserData.DTOs;
-using HutechPM.Data.Common;
-using HutechPM.Data.Data.ProjectData.DTO;
-using HutechPM.Data.Data.ProjectData;
-using HutechPM.Data.Data.UserData.DTOs;
-using HutechPM.Data.Entities;
-using System.Reflection.Metadata.Ecma335;
-using Microsoft.EntityFrameworkCore;
+using HutechPM.Domain.Entities;
+using HutechPM.Infrastructure.Common;
+using HutechPM.Infrastructure.UserData;
 
 namespace HutechPM.Data.UserData
 {
@@ -14,7 +10,7 @@ namespace HutechPM.Data.UserData
         private readonly UserRepository userRepository;
 
 
-        public UserService(HutechNoteDbContext context) { this.userRepository = new UserRepository(context); }
+        public UserService(UserRepository userRepository) { this.userRepository = userRepository; }
 
 
         public async Task<List<User>> GetAllUsers()

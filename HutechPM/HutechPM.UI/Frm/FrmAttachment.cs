@@ -1,22 +1,15 @@
 ﻿using DevExpress.XtraEditors;
-using HutechNote.Data.Services;
-using HutechPM.Data.Common;
+using HutechNote.Infrastructure.Services;
 using HutechPM.Data.Data.ProjectAttachmentData;
 using HutechPM.Data.Data.ProjectTaskData;
-using HutechPM.Data.Entities;
+using HutechPM.Domain.Entities;
+using HutechPM.Infrastructure.Common;
 using HutechPM.UI.FRM;
-using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 
 namespace HutechPM.UI.Frm

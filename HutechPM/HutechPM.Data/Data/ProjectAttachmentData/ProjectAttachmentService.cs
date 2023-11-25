@@ -1,35 +1,29 @@
-﻿using HutechPM.Data.Common;
-using HutechPM.Data.Data.ProjectData;
-using HutechPM.Data.Entities;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HutechPM.Domain.Entities;
+using HutechPM.Infrastructure.Common;
+using HutechPM.Infrastructure.ProjectAttachmentData;
 
 namespace HutechPM.Data.Data.ProjectAttachmentData
 {
     public class ProjectAttachmentService
     {
-        private readonly ProjectAttachmentRepository projectAttachmentRepository;
-        public ProjectAttachmentService(HutechNoteDbContext _dbContext)
+        private readonly ProjectAttachmentRepository _projectAttachmentRepository;
+        public ProjectAttachmentService(ProjectAttachmentRepository projectAttachmentRepository)
         {
-            this.projectAttachmentRepository = new ProjectAttachmentRepository(_dbContext);
+            this._projectAttachmentRepository = projectAttachmentRepository;
         }
 
         public async Task<List<ProjectAttachment>> getAllProjectAttachment()
         {
-            return await projectAttachmentRepository.getAllProjectAttachment();
+            return await _projectAttachmentRepository.getAllProjectAttachment();
         }
         public async Task<ActionBaseResult> DeleteProjectAttachment(ProjectAttachment projectAttachment)
         {
-            return await projectAttachmentRepository.DeleteProjectAttachment(projectAttachment);
+            return await _projectAttachmentRepository.DeleteProjectAttachment(projectAttachment);
         }
 
         public async Task<ActionBaseResult> CreateProjectAttachment(ProjectAttachment projectAttachment)
         {
-            return await projectAttachmentRepository.CreateProjectAttachment(projectAttachment);
+            return await _projectAttachmentRepository.CreateProjectAttachment(projectAttachment);
         }
     }
 }
