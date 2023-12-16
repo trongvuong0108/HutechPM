@@ -21,17 +21,19 @@ namespace HutechPM.UI.Frm
         private readonly ProjectAttachmentService projectAttachmentService;
         private readonly ProjectTaskService projectTaskService;
         private readonly HutechNoteDbContext _dbContext;
-        public FrmAttachment()
+        public FrmAttachment(ProjectAttachmentService ProjectAttachmentService, ProjectTaskService ProjectTaskService)
         {
             //InitializeComponent();
+            projectAttachmentService = ProjectAttachmentService;
+            projectTaskService = ProjectTaskService;
         }
 
-        public FrmAttachment(string projectTaskName, string projectTaskId)
+        public FrmAttachment(string projectTaskName, string projectTaskId, ProjectAttachmentService ProjectAttachmentService, ProjectTaskService ProjectTaskService)
         {
             InitializeComponent();
             _dbContext = new HutechNoteDbContext();
-            projectAttachmentService = new ProjectAttachmentService(_dbContext);
-            projectTaskService = new ProjectTaskService(_dbContext);
+            projectAttachmentService = ProjectAttachmentService;
+            projectTaskService = ProjectTaskService;
             this.projectTaskName = projectTaskName;
             this.projectTaskId = projectTaskId;
             getAttachment();

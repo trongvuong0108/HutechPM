@@ -1,12 +1,13 @@
-﻿using HutechPM.Data.Data.ProjectData.DTO;
+﻿using HutechPM.Application.Data.ProjectData;
+using HutechPM.Data.ProjectData.DTO;
 using HutechPM.Domain.Entities;
 using HutechPM.Infrastructure.Common;
 using HutechPM.Infrastructure.ProjectData;
 
-namespace HutechNote.Data.Data.ProjectData
+namespace HutechNote.Data.ProjectData
 {
 
-    public class ProjectService
+    public class ProjectService : IProjectService
     {
         private readonly ProjectRepository _projectRepository;
 
@@ -54,7 +55,6 @@ namespace HutechNote.Data.Data.ProjectData
             }
             return ProjectDTOs;
         }
-
         public async Task<ActionBaseResult> AddProject(Project project)
         {
             return await _projectRepository.AddProject(project);
@@ -67,5 +67,6 @@ namespace HutechNote.Data.Data.ProjectData
         {
             return await _projectRepository.DeleteProject(project);
         }
+
     }
 }

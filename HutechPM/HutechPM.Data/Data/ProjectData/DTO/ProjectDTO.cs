@@ -1,4 +1,4 @@
-﻿namespace HutechPM.Data.Data.ProjectData.DTO
+﻿namespace HutechPM.Data.ProjectData.DTO
 {
     public class ProjectDTO
     {
